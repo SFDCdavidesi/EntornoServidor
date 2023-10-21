@@ -1,0 +1,40 @@
+body {
+    background-image: url('../img/IMG_20191026_130103.jpg');
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titulo{
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+    width: 70%;
+    text-align: center;
+
+}
+.contenedor{
+    width: 70%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    display: flex;
+}
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+

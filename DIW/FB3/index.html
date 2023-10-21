@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Galería de Imágenes con jQuery">
+        <meta name="keywords" content="Galería de Imágenes con jQuery">
+        <meta name="author" content="David Herrero">
+        <title> Galería de Imágenes con jQuery</title>
+        <link rel="stylesheet" href="css/estilos.css">
+        <!-- jQuery 1.8 or later, 33 KB -->
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Fotorama from CDNJS, 19 KB -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
+            rel="stylesheet">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous">
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="titulo">
+                    <h1>Galería de Imágenes con jQuery</h1>
+                </div>
+
+            </div>
+            <div class="row">
+                <!-- Add images to <div class="fotorama"></div> -->
+                <div class="fotorama fotorama_centrado" 
+                    data-maxwidth="100%"
+                    data-ratio="16/9"
+                    data-allowfullscreen="true"
+                    data-autoplay="true"
+                    data-loop="true"
+                    data-stopautoplayontouch="false"
+                    data-keyboard="true"
+                    data-arrows="true"
+                    transition="crossfade"
+                    data-nav="thumbs"
+                    style="margin: 0 auto;">
+                    <img src='img/DSC05416.JPG'>
+                    <img src='img/IMG_20231007_104025.jpg'>
+                    <img src='img/IMG_20231012_163414.jpg'>
+                    <img src='img/IMG_20231013_123054.jpg'>
+                    <img src='img/IMG_20231013_132429.jpg'>
+                    <img src='img/IMG_20231014_110540.jpg'>
+                    <img src='img/IMG_20231014_112449.jpg'>
+                    <img src='img/IMG_20231014_132751.jpg'>
+                    <img src='img/IMG_20231014_142244.jpg'>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+David Herrero Estévez - 2023 - Diseño de Interfaces Web - 2º DAW Feedback 3
+        </div>
+    </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    </body>
+</html>
