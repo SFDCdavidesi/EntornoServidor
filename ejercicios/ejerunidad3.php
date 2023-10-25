@@ -6,14 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <p>
-Definir un array con 3 nombres de compañeros, recorrerlo con for y for each 
+    <table width="75%" border="1"><tr><td>
+1 Definir un array con 3 nombres de compañeros, recorrerlo con for y for each 
 
-a. Añadir un elemento y borrar un elemento 
+a. Añadir un elemento y borrar un elemento </td></tr>
+<tr></tr>
+<tr><td>
 
 2. Escriba un programa que muestre una tirada de un número de dados al azar entre 2 y 
 
-7 e indique los valores.
+7 e indique los valores.</td></tr>
+<tr><td>
 
 3. Define tres arrays de 20 números enteros cada una, con nombres “numero”, 
 
@@ -25,15 +28,18 @@ array “numero”. En el array “cubo” se deben almacenar los cubos de los v
 
 hay en “numero”. A continuación, muestra el contenido de los tres arrays dispuesto en 
 
-tres columnas. 
+tres columnas. </td></tr>
+<tr><td>
 
 4. Confeccionar un formulario que solicite la carga de un nombre de persona y su edad,
 
-luego mostrar en otra página si es mayor de edad (si la edad es mayor o igual a 18) 
+luego mostrar en otra página si es mayor de edad (si la edad es mayor o igual a 18) </td></tr>
+<tr><td>
 
 5. Crear una aplicación que suma dos números. El programa index.php recoge los datos y 
 
-el programa suma.php suma los dos números que recibe y muestra el resultado 
+el programa suma.php suma los dos números que recibe y muestra el resultado </td></tr>
+<tr><td>
 
 6. Escribe un programa que lea 15 números por teclado y que los almacene en un array. 
 
@@ -42,20 +48,25 @@ Rota los elementos de ese array, es decir, el elemento de la posición 0 debe pa
 posición 1, el de la 1 ala 2, etc. El número que se encuentra en la última posición debe 
 
 pasar a la posición 0. Finalmente, muestra el contenido del array. 
-
+</td></tr>
+<tr><td>
 7. Almacenar en un vector asociativo la cantidad de dias que tiene cada mes del año. 
 
-Luego accederlo por su nombre 
+Luego accederlo por su nombre </td></tr>
+<tr><td>
 
 8. Crear un vector asociativo que almacene las claves de acceso de 5 usuarios de un 
 
 sistema. Acceder a cada componente por su nombre. Imprimir un componente del 
 
-vector. 
+vector. </td></tr>
+<tr>
+    <td>
 
 9. Array Bidimensional Crear un array con tres motos y sus características(marca, 
 modelo, color) recorrer el array decir las características de la motos 
-
+</td></tr>
+<tr><td>
 10. Estamos creado la web de una tienda online, en concreto, el código de un buscador de 
 productos. Nos piden que creemos un script que solucione el problema de filtrado de 
 productos, mostrando solo los productos que ha elegido filtrar el usuario. La 
@@ -63,10 +74,12 @@ información de los productos la tenemos en un Array multidimensional
 llamado $arrayProductos, en posiciones consecutivas (0, 1, 2, 3) y en cada una un array 
 con dos datos, la categoría del producto y el nombre del producto. 
 En la variable $categoria recibiremos el código de la categoria de productos a mostrar. 
-</p>
+</td></tr>
+    </table>
+    <br><hr><br>
 <?php
 $ejercicio =$_REQUEST['ejercicio']?$_REQUEST['ejercicio']:1;
-
+echo "<br><b>Ejercicio $ejercicio</b><br/>  ";
 switch($ejercicio){
     case 1:
         ejercicio1();
