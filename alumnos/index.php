@@ -4,6 +4,7 @@
 if (isset($_POST) && !empty($_POST)){
     $nombre=$_POST['nombre_completo'];
     $curso=$_POST['curso'];
+    $metodo=$_POST['metodo'];
 
 if ($nombre==null or $curso==null)
 return;
@@ -12,7 +13,7 @@ return;
 include_once("conexion.php");
 $dbname="ssii";
 include_once("sql.php");
-$res=inserta_nombre_curso($nombre,$curso);
+$res=inserta($nombre,$curso,$metodo);
 if ($res==TRUE){
     echo "$nombre introducido correctamente en curso $curso<br/>";
 }else{
@@ -32,9 +33,11 @@ no hemos enviado nada <br />
     <form action="index.php" method="POST">
         <label for="nombre">xNombre del alumno</label><input type="text" name="nombre_completo"><br />
         <label for="curso">Curso</label><select name="curso" id="curso"></select><br />
-        <label for="metodoConexion">Método de conexión</label><select name="metodo" id="metodo"></select>
+        <label for="metodo">Método de conexión</label><select name="metodo" id="metodo"></select>
         <input type="submit" value="Enviar">
     </form>
+    <hr>
+    <a href="listado.php">Listado</a>
 </body>
 <script>
 var cursos = ["PHP", "JAVA", "JAVASCRIPT"];
