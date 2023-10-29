@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Búsqueda</title>
+    <style>
+        h2{
+            color:red;
+        }
+        </style>
 </head>
 <body>
 <?php
@@ -22,7 +27,7 @@ if (isset($_POST) && !empty($_POST)){
     <?php
    }else{
     ?>
-    <h2 font-color='red'>No se ha encontrado a <?=$nombre?> en la base de datos </h2>
+    <h2>No se ha encontrado a <?=$nombre?> en la base de datos </h2>
     <?php
    }
 }
