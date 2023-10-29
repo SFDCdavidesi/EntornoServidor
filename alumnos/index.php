@@ -37,7 +37,9 @@ no hemos enviado nada <br />
         <input type="submit" value="Enviar">
     </form>
     <hr>
-    <a href="listado.php">Listado</a>
+  <?php
+    require_once("footer.php");
+    ?>
 </body>
 <script>
 var cursos = ["PHP", "JAVA", "JAVASCRIPT"];

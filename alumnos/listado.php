@@ -78,7 +78,9 @@
     
     ?>
     <hr><br />
-    <a href="index.php"> Introducir alumnos </a>
+    <?php
+      require_once("footer.php");
+      ?>
 </body>
 
 </html>

@@ -73,4 +73,18 @@ function listaalumnosmysql(){
         return null;
     }
 }
+
+function busqueda_y_elimina($dbname,$n):int{
+
+    $conn=conecta($dbname);
+    $n=trim($n);
+    $statement=$conn->prepare("DELETE  FROM alumnospdo WHERE nombre_completo = :nombre");
+    $statement->bindParam(':nombre',$n,PDO::PARAM_STR);
+    if ($statement->execute()){
+        return $statement->rowCount();
+    }else{
+        return -1;
+    }
+
+}
 ?>
