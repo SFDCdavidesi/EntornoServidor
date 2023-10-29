@@ -49,6 +49,9 @@ for (let i = 0; i < cursos.length; i++) {
     var option = document.createElement('option');
     option.value = (i + 1);
     option.text = cursos[i];
+    if ((i+1)=="<?=$curso?>"){
+        option.selected=true;
+    }
     c.appendChild(option);
     
 }
@@ -57,6 +60,9 @@ for (var i=0;i<metodos.length;i++){
     var option = document.createElement('option');
     option.value=metodos[i];
     option.text=metodos[i];
+    if (metodos[i]=="<?=$metodo?>"){
+        option.selected=true;
+    }
     metodo.appendChild(option);
 }
 </script>
