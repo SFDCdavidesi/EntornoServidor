@@ -8,6 +8,7 @@ function conecta($dbname){
     return new PDO($dsn,$user,$pass);
 }
     $con=conecta("ssii");
+    $conn=conectaMySQL("ssii");
 function inserta_nombre_curso($n,$c){
     global $con,$dbname;
     if ($con==null){
@@ -22,8 +23,8 @@ function conectaMySQL($dbname){
     $conn=new mysqli($host,$user,$pass,$dbname);
     return $conn;
 }
-function inserta($n,$c,$tipo="DBO"){
-    if ($tipo=="DBO"){
+function inserta($n,$c,$tipo="PDO"){
+    if ($tipo=="PDO"){
         return inserta_nombre_curso($n,$c);
     }else{
         return inserta_nombre_curso_mysql($n,$c);
@@ -35,8 +36,41 @@ function inserta_nombre_curso_mysql($n,$c){
     if ($conn==null){
         $conn=conectaMySQL($dbname);
     }
-    $SQL_INSERTA="INSERT INTO alumnosmysql (nombre_completo,codicurso) VALUES ('$n',$c)";
+    $SQL_INSERTA="INSERT INTO alumnosmysql(nombre_completo,codigocurso) VALUES ('$n',$c)";
     return $conn->query($SQL_INSERTA);
 }
 
+
+
+//obtenemos listado de alumnos
+function listaalumnos($t="PDO"){
+if ($t=="PDO"){
+    return listaalumnospdo();
+}else{
+    return listaalumnosmysql();
+}
+
+}
+function listaalumnospdo(){
+    global $con,$dbname;
+    if ($con==null){
+        $con=conecta($dbname);
+    }
+    $statement=$con->query("SELECT * FROM alumnospdo");
+    return $statement->fetchAll();
+}
+function listaalumnosmysql(){
+    global $conn,$dbname;
+
+    echo "<B>$dbname</b>";
+    if ($conn==null){
+        $conn=conectaMySQL($dbname);
+    }
+    $resultado=$conn->query("SELECT * FROM alumnosmysql");
+    if ($resultado->num_rows>0){
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }else{
+        return null;
+    }
+}
 ?>
