@@ -1,0 +1,9 @@
+/* Select the element(s) you want to apply the font to */
+body {
+    font-family: 'Pacifico', cursive;
+    color:red;
+    background-color: aquamarine;
+}
+table{
+    margin: 0 auto;
+}

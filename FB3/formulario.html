@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/estilos.css" type="text/css"> 
+        <script src="js/validaciones.js"></script>
+    </head>
+    <body>
+        <form action="php/registro.php" method="post" name="formulario" onsubmit="return validateForm();">
+            <table>
+                <tr>
+                    <td><label for="nombre">Nombre:</label></td>
+                    <td><input type="text" name="nombre" id="nombre" placeholder="Nombre"></td> 
+                </tr>
+                <tr>
+                    <td><label for="apellidos">Apellidos:</label></td>
+                    <td><input type="text" name="apellidos" id="apellidos" placeholder="Apellidos"></td> 
+                </tr>
+                <tr>
+                    <td><label for="telefono">Teléfono:</label></td>
+                    <td><input type="number" name="telefono" id="telefono" ></td> 
+                </tr>
+                <tr>
+                    <td><label for="fechaNacimiento">Fecha nacimiento:</label></td>
+                    <td><input type="date" name="fechaNacimiento" id="fechaNacimiento" ></td> 
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="email" name="email" id="email" ></td> 
+                </tr>
+               
+                <tr>
+                    <td><label for="direccion">Dirección:</label></td>
+                    <td><textarea rows="10" id="direccion" name="direccion"></textarea></td> 
+                <script>
+                
+                </script>
+                <tr><td><input type="submit" value="Enviar" ></td>
+                    <td><input type="reset" value="Borrar"></td>
+            </table>
+    </form>
+    </body>
+</html>
