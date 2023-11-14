@@ -20,20 +20,19 @@
 
     .enunciado {
         margin: auto;
-  font-family: Arial, sans-serif;
-  font-size: medium;
-  background-color: lightyellow;
+        font-family: Arial, sans-serif;
+        font-size: medium;
+        background-color: lightyellow;
     }
 
     ul {
-  display: flex;
-}
+        display: flex;
+    }
 
- li {
-  display: inline-block;
-  margin-right: 50px;
-}
-
+    li {
+        display: inline-block;
+        margin-right: 50px;
+    }
     </style>
 </head>
 
@@ -48,7 +47,7 @@
     <div class="menu">
         <ul>
             <li> <a href="<?=$_SERVER ['PHP_SELF']?>?opc=alta">Alta</a></li>
-        <li> <a href="<?=$_SERVER ['PHP_SELF']?>?opc=listado">Listado</a></li>
+            <li> <a href="<?=$_SERVER ['PHP_SELF']?>?opc=listado">Listado</a></li>
 
         </ul>
     </div>
@@ -73,6 +72,8 @@
             include_once("listado.php");
 
 
+    }
+    if (isset($conexion)){$conexion=null; // cerramos la conexión
     }
     ?>
     </div>
