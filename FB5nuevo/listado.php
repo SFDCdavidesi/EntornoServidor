@@ -47,7 +47,10 @@ while($resultado=$stm->fetch(PDO::FETCH_ASSOC)){
             <?php
             }
             ?>
-            <td><a href="<?=$_SERVER['PHP_SELF']?>?opc=modificar&id=<?=$resultado['city_id']?>" ><img src="./img/icons8-editar-propiedad-26.png" alt="Modificar registro"></a><a href="#" onClick="if(confirm('¿Confirma que desea eliminar la ciudad de <?=$resultado['city']?>?')){window.location='eliminar.php?id=<?=$resultado['city_id']?>'}";>&nbsp;<img src="./img/icons8-eliminar-26.png" alt="Eliminar registro"></a></td>
+            <td><a href="<?=$_SERVER['PHP_SELF']?>?opc=modificar&id=<?=$resultado['city_id']?>"><img
+                        src="./img/icons8-editar-propiedad-26.png" alt="Modificar registro"></a><a href="#"
+                    onClick="if(confirm('¿Confirma que desea eliminar la ciudad de <?=$resultado['city']?>?')){window.location='eliminar.php?id=<?=$resultado['city_id']?>'}"
+                    ;>&nbsp;<img src="./img/icons8-eliminar-26.png" alt="Eliminar registro"></a></td>
         </tr>
         <?php
     }
