@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once ("database.php");
         // Connect to the database
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "<div class='error'>Falló la conexión " . $e->getMessage() . "</div>";
