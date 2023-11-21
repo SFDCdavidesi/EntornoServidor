@@ -1,10 +1,12 @@
 <html>
 <?php
     include_once("header.php");
+    include_once("funciones.php");
     ?>
-      <body>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+<body>
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $debug) {
     echo "<table>";
     foreach ($_POST as $key => $value) {
         echo "<tr><td><b>$key</b></td><td>$value</td></tr>";
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check connection
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $formpassword = htmlspecialchars($_POST["password"]) ;
         require_once ("database.php");
         // Connect to the database
         try {
@@ -31,27 +33,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Prepare and execute the query
         $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
-        echo $email;
+      //  echo $email;
         $stmt->execute([$email]);
         $result = $stmt->fetch();
         
         // Check if the user exists
         if ($result) {
-            $hashed_password = $result["password"];
+            $dbpassword=$result['password'];
+           
 
             // Verify the password
-            if (password_verify($password, $hashed_password)) {
-                if (password_verify($password, $hashed_password)) {
-                    session_start();
+                if (coincidenContrasenias($formpassword, $dbpassword)) {
                     $_SESSION["success"] = "Login successful!";
+                    $_SESSION["email"]=$email;
                     header("Location: usuariovalido.php"); // Redirect to the dashboard page
                     exit;
                 } else {
                     echo "<div class='error'>Contraseña no válida</div>"; // Return an error message
                 }
-            } else {
-                echo "<div class='error'>Contraseña no válida</div>"; // Return an error message
-            }
+            
         } else {
             echo "<div class='error'>Usuario no encontrado</div>"; // Return an error message
         }
@@ -61,9 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
     <a href="index.php">Volver</a>
-  
 
-    </body>
-    </html>
 
- 
+</body>
+
+</html>

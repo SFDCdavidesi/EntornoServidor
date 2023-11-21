@@ -8,3 +8,8 @@
 <link rel="stylesheet" href="../css/estilos.css">
 <script src="../js/validaciones.js"></script>
 </head>
+
+<?php
+  $debug=false;
+  session_start();
+  ?>

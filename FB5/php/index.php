@@ -5,7 +5,35 @@
 <script>
 
 </script>
+
 <body>
+    <?php
+
+    //miramos si ha eliminado la sesión
+    if (isset($_SESSION) && isset($_SESSION['success']))
+    {
+        $session_id = session_id();
+
+        if(isset($_REQUEST['borrarsesion']) && $_REQUEST['borrarsesion']==$session_id){
+        session_destroy();
+        unset($_SESSION['success']);
+        unset($_SESSION['borrarsesion']);
+    }
+
+
+
+
+    
+        ?>
+
+    <p>Ya está identificado con el siguiente email [<?=$_SESSION["email"]?>] </p>
+    <br>
+    <hr>
+    <a href="<?=$_SERVER['PHP_SELF']?>?borrarsesion=<?=$session_id;?>">Borrar sesión</a>
+    <?php
+    
+}else{
+    ?>
     <div class="container">
         <form action="login.php" method="post" onsubmit="return validateLoginForm()">
             <div class="formulario">
@@ -20,6 +48,9 @@
             </div>
         </form>
     </div>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

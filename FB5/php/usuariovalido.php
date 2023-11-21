@@ -1,7 +1,6 @@
 <html>
 <?php
     include_once("header.php");
-    session_start();
 
     if (!isset($_SESSION['success'])) {
         header("Location: index.php");

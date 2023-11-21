@@ -1,9 +1,10 @@
 <html>
 <?php
     include_once("header.php");
+    include_once("funciones.php");
     ?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $debug) {
     echo "<table>";
     foreach ($_POST as $key => $value) {
         echo "<tr><td><b>$key</b></td><td>$value</td></tr>";
@@ -13,14 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $passwordform = $_POST["password"];
     $passwordconfirm = $_POST["passwordconfirm"];
    
 
         // Validate input
-        if (empty($email) || empty($password) ) {
+        if (empty($email) || empty($passwordform) ) {
             echo "<div class='error'>Error: Todos los campos son obligatorios.</div>";
-        } elseif ($password != $passwordconfirm) {
+        } elseif ($passwordform != $passwordconfirm) {
             echo "<div class='error'>Error: Las contraseñas no coinciden.</div>.";
         } else {
            require_once ("database.php");
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Create user
                     $stmt = $conn->prepare("INSERT INTO usuarios (email, password) VALUES (:email, :password)");
                     $stmt->bindParam(":email", $email);
-                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt->bindParam(":password", $hashed_password);
+                    $pw=hashContrasenia($passwordform);
+                    $stmt->bindParam(":password", $pw);
                    
                     $stmt->execute();
                     echo "<div class='green'>Usuario creado correctamente.</div>.";
