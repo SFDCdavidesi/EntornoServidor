@@ -1,0 +1,11 @@
+{
+  "name": "mi-primera-pagina-node",
+  "version": "1.0.0",
+  "description": "Mi primera página con node js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "david herrero",
+  "license": "ISC"
+}

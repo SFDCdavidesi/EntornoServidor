@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback1</title>
+
+
+    <script  src="js/funciones.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">  
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="#" onclick="muestra('meses')">Meses del año</a> </li>
+            <li><a href="#" onclick="muestra('operaciones')">Operaciones</a></li>
+            <li><a href="#" onclick="muestra('colores')">Colores</a></li>
+        </ul>
+    </div>
+    <div id="colores" class="main oculto">
+      <p>
+c) Realizar un programa en Javascript de forma que defina un párrafo 
+(HTML) y tres botones: AZUL, VERDE, ROJO de forma que según el
+que pulse el usuario, haga que lo escrito en el párrafo se cambie al color 
+del botón seleccionado.
+</p>
+<div id="ejercicio">
+    <pre id="parrafo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque ipsum in fermentum posuere. Cras tempus ut augue non dignissim. Sed maximus massa lorem, id porttitor lorem 
+        vulputate in. Aenean faucibus finibus lorem, eget ultricies augue. Aenean egestas egestas mi egestas suscipit. Donec tristique dignissim est ut congue. Vestibulum ante ipsum primis in faucibus orci 
+        luctus et ultrices posuere cubilia curae; Morbi consequat, odio et blandit sagittis, urna magna mattis urna, a convallis justo sapien non ex. Donec vestibulum quam rhoncus dui euismod ultricies. Proin 
+        imperdiet, purus ut aliquet consequat, risus felis vulputate felis, eget semper tellus massa quis neque. Suspendisse eget risus in lorem ullamcorper faucibus. Vivamus vitae ullamcorper ex.
+
+
+        Donec varius neque pharetra augue convallis accumsan. Phasellus accumsan luctus lacus, eget eleifend 
+        neque accumsan in. Curabitur nec nulla augue. Sed consectetur odio sit amet leo gravida, vehicula 
+        cursus tellus volutpat. Cras mauris augue, iaculis eget sapien ut, vulputate sollicitudin lorem. Ut 
+        suscipit efficitur orci a bibendum. Pellentesque lobortis nisl a orci auctor malesuada. Vestibulum 
+        lobortis lacinia eros, vulputate viverra ante. Maecenas sed felis dolor. Vivamus a venenatis libero,
+         at mattis neque. Quisque in elit nulla. Phasellus fringilla ligula id tortor condimentum convallis at semper nisi.
+
+        Cras dolor nisi, tempus eu vulputate eget, iaculis vel metus. Mauris nec laoreet dolor. Quisque sit 
+        amet accumsan enim, et elementum erat. Nullam varius, nisl in varius molestie, nisl libero rutrum dui,
+         ut suscipit felis purus sit amet est. In tristique commodo augue vitae vestibulum. Nam ac felis ut 
+         lorem iaculis dapibus eu a ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices 
+         posuere cubilia curae; Duis velit elit, pulvinar a massa sit amet, ultrices malesuada eros. Mauris pharetra tortor metus, non fermentum sem sagittis in. Donec viverra vel nisi id porta. Phasellus 
+         convallis odio eu lacus consectetur, ac luctus mauris viverra. Mauris elit libero, accumsan eget nunc
+          a, fermentum semper urna. Curabitur ut dignissim mi. Ut gravida, enim sed tempus accumsan, purus 
+          nunc rutrum nibh, quis consectetur leo mauris ut nibh. Duis vitae libero sodales, sollicitudin lorem id, imperdiet magna. Nullam sit amet placerat metus.
+
+        Cras nibh arcu, auctor ut eros nec, interdum interdum justo. Ut eu euismod justo. Phasellus eleifend congue felis, sit amet ullamcorper nisi fringilla quis. Sed semper mauris quis convallis pulvinar. Aliquam dapibus viverra pharetra. Aenean vel mauris erat. Mauris auctor et nulla vitae varius. Maecenas ornare, felis eget rutrum vestibulum, purus sem gravida magna, eget scelerisque nibh nunc a tortor.
+    </pre>
+    <br>
+    <input type="button" value="rojo" onclick="ponColor('rojo')">
+    <input type="button" value="verde" onclick="ponColor('verde')">
+    <input type="button" value="azul" onclick="ponColor('azul')">
+    
+    
+    
+</div>
+    </div>
+    <div class="main oculto" id="operaciones">
+        <p>Realizar un programa en Javascript que presente 4 botones HTML:
+            <ol>
+           <li>Sumar</li>  
+           <li>Restar</li>
+           <li>Multiplicar</li> 
+           <li>Potencia</li>  
+          
+        </ol><br>
+            Se le pedirán al usuario dos números, y dependiendo del botón pulsado 
+            por el usuario, el programa tendrá que calcular la operación seleccionada 
+            con los números introducidos.
+            NOTA: para la operación de Potencia utilizar Math.pow(x,y)</p>
+
+            <br>
+            <div class="formulario">
+                <label for="num1">Primer número</label><input type="number" id="num1" size="3" maxlength="3" ><br>
+                <label for="num2">Segundo número</label><input type="number" id="num2" size="3" maxlength="3"><br>
+                <label for="operaciones">Operación</label><input type="button" value="+" onclick="calcular('sumar')"><input type="button" value="-" onclick="calcular('restar')"><input type="button" value="*" onclick="calcular('multiplicar')"><input type="button" value="^" onclick="calcular('potencia')">
+                <br>
+                <label for="resultado">Resultado</label><input type="text" id="resultado" readonly>
+            </div>
+            <div id="destinoopera"></div>
+    </div>
+    <div class="main oculto" id="meses">
+<p>Realizar un programa que se ejecute en un navegador web y pida por 
+    teclado un número del 1 al 12, que corresponderá a los meses del año, y 
+    se presentará el número de días del mes introducido (No contemplar 
+    bisiestos)</p>
+<div id="formulario">
+   <label for="meses">Introduce un mes</label> <input type="number" id="mes" name="mes" maxlength="2" size="2" onblur="return validate(this)" >
+   <br><input type="button" onclick="cuantosdias()" value="Cuántos días">
+</div>
+<div id="destino"></div> </div>
+</body>
+<script>
+   
+</script>
+</html>
