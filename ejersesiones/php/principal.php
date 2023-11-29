@@ -63,6 +63,8 @@ if (isset($_REQUEST) && isset($_REQUEST['addCarrito'])){
 }
 if (isset($_REQUEST) && isset($_REQUEST['borrarCarrito']) && $_REQUEST['borrarCarrito']=='yes'){
     unset($_SESSION['carrito']);
+    session_destroy();
+    header("location")
 }
 // Muestra el contenido en una tabla creada con DIVs
 echo '<div style="display: flex; flex-wrap: wrap;">';
