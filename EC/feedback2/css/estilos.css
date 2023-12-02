@@ -1,10 +1,15 @@
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     justify-content: center;
-    background: linear-gradient(to right, #3498db, #c0392b); /* Ajusta los colores según tus preferencias */
-
+    background: linear-gradient(to right, #5bdb34, #c0392b); 
 }
 table{
     text-align: center;
     margin: auto;
+}
+.contenido{
+    border: 1px solid black;
+    margin: auto;
+    width:75%;
+    text-align: center;
 }

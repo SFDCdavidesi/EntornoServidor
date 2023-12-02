@@ -12,7 +12,7 @@ function creaTabla(muestra = "todos") {
         let parimpar=(conta%2==0?"par":"impar");
         imagen.alt="Imagen " + conta + " , por lo que es " + parimpar;
         imagen.title=conta + " " + parimpar;
-        imagen.width = 200;
+        imagen.width = 215;
         if (
           muestra == "todos" ||
           (muestra == "par" && conta % 2 == 0) ||
