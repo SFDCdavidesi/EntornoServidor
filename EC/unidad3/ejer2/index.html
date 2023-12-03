@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/funciones.js"></script>
+</head>
+<body>
+    <div id="contenido">
+        <pre>
+            <b>Ejercicio 1</b>
+            Realizar un ejercicio en JavaScript que presente una caja de texto en la 
+            que el usuario introducirá un email.
+            El programa deberá de comprobar que el formato del email es correcto.
+            Se utilizarán una expresión para su validación y además se utilizan 
+            manejadores de eventos para validar dicho campo.
+            <b>Ejercicio 2</b>
+            El cálculo de la letra del Documento Nacional de Identidad (DNI) es un 
+            proceso matemático sencillo que se basa en obtener el resto de la división entera 
+            del número de DNI y el número 23. A partir del resto de la división, se obtiene la 
+            letra seleccionándola dentro de un array de letras.
+            El array de letras es:
+            var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 
+            'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+            De esta forma:
+            • Si el resto de la división es 0, la letra del DNI es la T
+            • Si el resto es 3 la letra es la A. 
+            ESTRUCTURAS DEFINIDAS POR EL PROGRAMADOR(II). EVENTOS. 
+            FORMULARIOS
+            Desarrollo Entorno Cliente Página 3 de 7
+            Teniendo en cuenta los datos anteriores, elaborar un programa que pida 
+            al usuario el DNI y su letra correspondiente. Tendrá que comprobar:
+            • DNI entre 0 y 99999999. En otro caso, se indicará un mensaje del error 
+            y se terminará.
+            • Si el número es válido, se calcula la letra que le corresponde según el 
+            método anterior.
+            • Una vez calculada la letra, se debe comparar con la letra indicada por 
+            el usuario, dando al usuario un mensaje de coincidencia o diferencia</pre>
+    </div>
+    <h1>validación de email</h1><br>
+   <label for="email">Email</label> <input type="text" id="email" name="email" onchange="valida()"><br>
+   <input type="button" value="Validar correo" onclick="valida()">
+   <br>
+   <div id="destino"></div>
+   <br>
+   <h1>Validación letra DNI</h1>
+   <br>
+   <label for="numeroDni">Número de DNI</label><input type="number" id="numeroDNI" onchange="validaNum()">
+   <br>
+   <label for="letra">letra</label><input type="text" size="1" maxlength="1" name="letra" id="letra"><br>
+   <input type="button" value="Validar" onclick="validaLetra()">
+</body>
+</html>

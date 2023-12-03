@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/funciones.js"></script>
+    <style>
+        /* Aplica estilos al campo de número */
+        input[type="number"] {
+          width: 4ch; /* Establece el ancho en 2 caracteres */
+          max-width: 8em; /* Establece el ancho máximo para evitar que se estire demasiado */
+        }
+      </style>
+</head>
+<body>
+    <pre>
+       <b>Ejercicio 1</b> 
+Realizar un programa en JavaScript que defina un array con los días de 
+la semana y posteriormente los presente en una página html.
+<b>Ejercicio 2</b> 
+Realizar un programa que tenga una array con 10 números y presente:
+- Botón “Números menores” y una caja de texto. Cuando el usuario 
+pulse el botón se mostrarán los números del arrays menores que el 
+número introducido en la caja de texto anterior
+- Lo mismo, pero con los números mayores
+    </pre>
+    <div id="contenido"></div>
+    <div id="numeros">
+
+        <input type ="number" id="numero"><br>
+        <input type="button" value="Números menores" onclick="muestra('menores')">
+        <input type="button" value="Números mayores"onclick="muestra('mayores')">
+    </div>
+</body>
+<script>
+    pintaArray('contenido',diasDeLaSemana);
+    inicializaNumeros();
+</script>
+
+</html>

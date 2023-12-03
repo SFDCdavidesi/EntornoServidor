@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/funciones.js"></script>
+    <style>
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: medium;
+        }
+        fieldset{
+            margin: auto;
+            width: 75%;
+        }
+    </style>
+</head>
+<body>
+    <form name="formulario">
+        <fieldset>
+            <legend>Rellenar la siguiente información para su matrícula</legend>
+            <br><br>
+            <textarea name="razones" cols="55" rows="10" onchange="calculaOcurrencias()" id="razones">
+                Escriba aquí por qué quier hacer un TFGC:
+            </textarea>
+            <br><br>
+            <label for="lenguajes">¿Con cuál de los siguientes lenguajes de programación tiene más experiencia?</label>
+            <select name="lenguajes" id="lenguajes">
+                <option value="Java">Java</option>
+                <option value="Php">Php</option>
+                <option value="VisualBasic">Visual Basic</option>
+                <option value="Python">Python</option>
+            </select>
+            <br><br>
+            <label for="ciclo">¿Qué CFGS quiere realizar?</label>
+            <input type="checkbox" name="ciclo" value="asir">Asir
+            <input type="checkbox" name="ciclo" value="dam">DAM
+            <input type="checkbox" name="ciclo" value="daw">DAW
+            <br><br>
+            <label for="fecha">Seleccione una fecha para hacer CFGS</label>
+            <input type="date" name="fecha">
+            <br><br>
+            <label for="cv">Seleccione su CV</label><input type="file" name="cv">
+            <br><br>
+            Seleccione una fecha para hacer CFGS:<input type="date"> <br><br>
+ Seleccione su CV:<input type="file"> <br><br>
+ Indique qué CFGS (varios) podría cursar por conocimientos:
+ <br><br>
+ <select name='ciclo' multiple='multiple'>
+ <option value='smir'>SMIR</option>
+ <option value='asir'>ASIR</option>
+ <option value='dam'>DAM</option>
+ <option value='daw'>DAW</option>
+ </select>
+        </fieldset>
+    </form>
+
+    <p id="resultadoOcurrencias">Ocurrencias de "TFGC": 0</p>
+</body>
+</html>
