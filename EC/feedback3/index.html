@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback 3</title>
+</head>
+<body>
+    <pre>
+        Realiza un programa en javascript que defina una caja de texto de forma que:
+- Cuando pulse una tecla en esta caja de texto (onkeydown) el fondo de 
+color de esta caja de texto se vuelva azul.
+- Cuando pulse una tecla en esta caja de texto (onkeyup) el fondo de 
+color de esta caja de texto se vuelva rojo.
+
+    </pre>
+    <div class="contenido">
+        <input type="text" id="caja" onkeydown="fondo('navy')" onkeyup="fondo('red')">
+        <input onkeydown="this.style.backgroundColor='blue'" onkeyup="this.style.backgroundColor='red'">
+    </div>
+</body>
+<script>  
+    function fondo(color){
+        document.getElementById('caja').style.backgroundColor=color;
+    }
+</script>
+</html>
