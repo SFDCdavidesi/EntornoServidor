@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 require_once("php/header.php");
+require_once("php/funciones.php");
+
 
 ?>
 <html lang="en">
@@ -13,6 +15,8 @@ require_once("php/header.php");
 
 <body>
     <div class="container">
+    <?=pintaBarraDeNavegacion($_SESSION["usuario"]);?>
+
         <div class="row">
             <?php
             if (isset($_REQUEST["accion"])) {
