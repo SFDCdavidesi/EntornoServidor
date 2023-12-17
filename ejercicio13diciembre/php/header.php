@@ -1,7 +1,16 @@
 
 <?php
+session_start();
+if (!isset($_SESSION['usuario'])){
 
-    $pathfolder=(!str_ends_with($_SERVER['PHP_SELF'],'login.php'))?"":"../";
+    //usuario no autenticado
+    //redirigimos a la página de Login
+    if (!str_ends_with($_SERVER['PHP_SELF'],'login.php')){
+         header("Location: php/login.php");
+    }
+}
+   $pathfolder=(!str_ends_with($_SERVER['PHP_SELF'],'login.php'))?"":"../";
+   $_SESSION["pathfolder"]=$pathfolder;
 ?>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
@@ -15,4 +24,3 @@
 
 <link rel="stylesheet" href="<?=$pathfolder?>css/estilos.css">
 <script src="<?=$pathfolder?>js/funciones.js"></script>
-<?=$pathfolder?>

@@ -2,25 +2,31 @@
 require_once "header.php";
 
 ?>
-<div id="login">
+<div id="login" class="container-lg ">
     <fieldset>
         <legend>Login</legend>
         <form action="<?=$_SERVER['PHP_SELF']?>" method="post" onsubmit="return validateFormLogin();" id="flogin">
         <input type="hidden" name="accion" value="login">
-        <label for="nombreDeUsuario">Nombre de usuario:</label>
-    <input type="text" name="nombreDeUsuario"><br><br>
-    <label for="pass1">Contraseña</label>
-    <input type="password" name="pass1"><br><br>
+        <div class="mb-3">
+    <label for="nombreDeUsuario" class="form-label">Nombre de usuario:</label>
+    <input type="text" class="form-control" id="nombreDeUsuario" name="nombreDeUsuario" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">Introduzca el nombre de usuario.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="pass1">
+  </div>
     <input type="submit" value="Enviar">
 
         </form>
+        
     </fieldset>
     <div class="d-md-inline-block">
-    <a href="#" onclick="muestra('registro')">¿No tienes cuenta? Regístrate</a>
+    <a href="#" onclick="muestra('registro');oculta('login');">¿No tienes cuenta? Regístrate</a>
 </div>
 </div>
 <div id="mensajes"></div>
-<div id="registro" class="oculto">
+<div id="registro" class="container-fluid text-center pt-3 d-none">
     <fieldset>
         <legend>Registro</legend>
         <form action="<?=$_SERVER['PHP_SELF']?>" method="post" id="fregistro" name="registro"  onsubmit="return validateFormRegistro();">
@@ -44,7 +50,7 @@ require_once "header.php";
         </form>
     </fieldset>
     <div class="d-md-inline-block">
-    <a href="#" onclick="muestra('login')">¿Ya tienes cuenta? Haz login aquí</a>
+    <a href="#" onclick="muestra('login');oculta('registro');">¿Ya tienes cuenta? Haz login aquí</a>
 </div>
 </div>
 <?php

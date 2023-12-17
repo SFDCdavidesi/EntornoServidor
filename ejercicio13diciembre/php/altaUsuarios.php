@@ -11,8 +11,9 @@ $usuario["nombreDeUsuario"]=$_REQUEST["nombreDeUsuario"];
 $usuario["pass1"]=$_REQUEST["pass1"];
 
 if ($bd->altaUsuario($usuario)){
-    echo "Usuario creado correctamente";
+    pintaMensaje( "Alta usuario","Usuario creado correctamente");
 }else{
-    echo "ha ocurrido un error al dar de alta el usuario:" . $bd->muestraErrores();
+ 
+    pintaMensaje("Error en Alta de Usuario","ha ocurrido un error al dar de alta el usuario:" . $bd->muestraErrores());
 }
 ?>

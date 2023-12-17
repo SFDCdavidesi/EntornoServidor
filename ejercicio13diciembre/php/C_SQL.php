@@ -2,7 +2,8 @@
 require_once ("C_errores.php");
 require_once ("C_Queries.php");
 
-          
+require_once ("funciones.php");
+  
             
 class SQL extends Errores{
     private $servername;
@@ -94,7 +95,7 @@ return false;
         try{
         
 
-            $stmt = $this->con->prepare("INSERT INTO usuarios (usuario,email,password,nombre,apellidos) values (:usuario,:email,:password,:nombre,:apellidos)");
+            $stmt = $this->con->prepare(Queries::CREATE_USUARIO);
         $username=$usuario["nombreDeUsuario"];
         if ($this->existeUsuario($username)){
             $this->error("El usuario " . $username . " ya existe en la BBDD");

@@ -10,5 +10,6 @@ const GET_NUM_LIBROS="SELECT COUNT(titulo) as numLibros from libros where titulo
 const GET_LIBRO="select * from libros where codigo=:codigo_libro";
 const UPDATE_LIBRO="UPDATE libros set titulo=:titulo,codigo_autor=:codigo_autor,disponible=:disponible where codigo=:codigo_libro";
 const DELETE_LIBRO="DELETE FROM libros where codigo=:codigo_libro";
+const CREATE_USUARIO="INSERT INTO usuarios (usuario,email,password,nombre,apellidos) values (:usuario,:email,:password,:nombre,:apellidos)";
 }
 ?>
