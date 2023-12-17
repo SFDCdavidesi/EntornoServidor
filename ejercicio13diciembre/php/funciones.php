@@ -26,10 +26,8 @@ function pintaDisponibilidad($d){
 }
 function pintalibros($arrayasociativo){
     ?>
-    <div class="container-fluid listado">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-striped table-bordered">
+
+    
     <?php
     pintaCabecera($arrayasociativo);
     foreach($arrayasociativo as $row){
@@ -39,24 +37,24 @@ function pintalibros($arrayasociativo){
         echo "<td>" . $row["nombre"] . "</td>";
         echo "<td>" . $row["apellidos"] . "</td>";
         echo "<td>" . pintaDisponibilidad($row["disponible"]) . "</td>";
-        echo"<td><button type='button' class='btn btn-warning'>Modificar</button></td>";
-        echo"<td><button type='button' class='btn btn-danger'>Eliminar</button></td>";
+        echo"<td><button type='button' class='btn btn-warning' onclick='modificalibro(" . $row["codigo"] . ");'>Modificar</button></td>";
+        echo"<td><button type='button' class='btn btn-danger' onclick='eliminalibro(" . $row["codigo"] . ");'>Eliminar</button></td>";
         echo "</tr>";
 
 
 
     }
     ?>
-    </div>
+ 
 <?php
 }
-function pintaAutores(){
+function pintaAutores($autorpreselected="-1"){
 
         $bd= new BBDD();
     
    $res= $bd->getAutores();
    foreach($res as $autor){
-    echo "<option value='" . $autor["codigo_autor"] . "'>" . $autor["nombre"] . " " . $autor["apellidos"] . "</option>";
+    echo "<option value='" . $autor["codigo_autor"] . "' " . ($autorpreselected==$autor["codigo_autor"]?"selected":"") . ">" . $autor["nombre"] . " " . $autor["apellidos"] . "</option>";
    }
 }
 ?>

@@ -7,6 +7,8 @@ const CREATE_LIBROS="INSERT INTO libros (titulo,codigo_autor,disponible) values(
 
 const GET_NUM_AUTORES="SELECT COUNT(nombre) as numAutores from autores where nombre=:nombre AND apellidos=:apellidos";
 const GET_NUM_LIBROS="SELECT COUNT(titulo) as numLibros from libros where titulo=:titulo AND codigo_autor=:codigo_autor";
-
+const GET_LIBRO="select * from libros where codigo=:codigo_libro";
+const UPDATE_LIBRO="UPDATE libros set titulo=:titulo,codigo_autor=:codigo_autor,disponible=:disponible where codigo=:codigo_libro";
+const DELETE_LIBRO="DELETE FROM libros where codigo=:codigo_libro";
 }
 ?>

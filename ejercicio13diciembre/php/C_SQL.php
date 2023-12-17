@@ -233,5 +233,50 @@ return null;
             return false;
         }
     }
+    public function dameLibro($codigo){
+        try{
+            $stmt = $this->con->prepare(Queries::GET_LIBRO);
+            $stmt->bindParam("codigo_libro",$codigo,PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+         }catch (PDOException $e){
+             $this->error($e->getMessage());
+         }
+
 }
+public function modificarLibro($libro):bool{
+    try{
+    
+//const UPDATE_LIBRO="UPDATE libros set titulo=:titulo,codigo_autor=:codigo_autor,disponible=:disponible where codigo=:codigo_libro";
+
+        $stmt = $this->con->prepare(Queries::UPDATE_LIBRO);
+        $disponible=(isset($libro["disponible"])?1:0);
+
+    $stmt->bindParam(":titulo",$libro["titulo"],PDO::PARAM_STR);
+    $stmt->bindParam(":codigo_autor",$libro["codigo_autor"],PDO::PARAM_INT);
+    $stmt->bindParam(":disponible",$disponible,PDO::PARAM_INT);
+    $stmt->bindParam(":codigo_libro",$libro["codigo"],PDO::PARAM_INT);
+
+
+    $stmt->execute();
+    return true;
+    }catch(PDOException $e){
+        $this->error($e->getMessage());
+        return false;
+    }
+}
+public function eliminarLibro($libro):bool{
+    try{
+    $stmt=$this->con->prepare(Queries::DELETE_LIBRO);
+    $stmt->bindParam("codigo_libro",$libro);
+    $stmt->execute();
+    return true;
+    }catch(PDOException $e){
+       $this->error($e->getMessage());
+       return false;
+    
+    }
+}
+}
+
 ?>

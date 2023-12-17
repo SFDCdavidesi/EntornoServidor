@@ -35,3 +35,20 @@ recarga();
         });
     });
 });
+
+function modificalibro(codigolibro){
+let url=window.location.href;
+let aux=url.split('?');
+    
+    url =aux[0] + '?verFormulario=modificarLibro&codigo_libro=' + codigolibro;
+window.location.href=url;
+}
+function eliminalibro(codigolibro){
+    let url=window.location.href;
+    let aux=url.split('?');
+    
+    url =aux[0] + '?accion=eliminarLibro&codigo=' + codigolibro;
+   if (confirm("¿Está seguro de querer eliminar el libro con código " + codigolibro + "?")){
+    window.location.href=url;
+   } 
+    }
