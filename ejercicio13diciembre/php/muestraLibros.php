@@ -12,3 +12,8 @@ $resultado=$bd->getLibros();
             ?>
     </table>
 </div>
+<div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-info" onclick="muestra('formulariolibros');">Crear</button>
+
+            </div>

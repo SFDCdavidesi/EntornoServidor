@@ -11,6 +11,10 @@ if (ini_get("session.use_cookies")) {
         $params["path"], $params["domain"],
         $params["secure"], $params["httponly"]
     );
+    //eliminamos la cookie de usuario
+    setcookie("usuario","",time()-42000,      
+    $params["path"], $params["domain"],
+    $params["secure"], $params["httponly"]);
 }
 
 // Finalmente, destruir la sesión.

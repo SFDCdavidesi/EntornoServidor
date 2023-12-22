@@ -45,7 +45,7 @@
                 "localhost:0"
             ],
             "program": "",
-            "cwd": "${workspaceRoot}/practicaPhp/",
+            "cwd": "${workspaceRoot}/practica-proyecto-mvc/",
             "port": 9003,
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",

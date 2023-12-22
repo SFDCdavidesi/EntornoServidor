@@ -2,3 +2,7 @@
 .oculto{
     display:none;
 }
+#autores{
+    display: flex;
+    margin: 5px;
+}

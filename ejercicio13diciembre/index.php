@@ -2,7 +2,7 @@
 <?php
 require_once("php/header.php");
 require_once("php/funciones.php");
-
+require_once("php/navegacion.php");
 
 ?>
 <html lang="en">
@@ -15,22 +15,28 @@ require_once("php/funciones.php");
 
 <body>
     <div class="container">
-    <?=pintaBarraDeNavegacion($_SESSION["usuario"]);?>
+        <?=pintaBarraDeNavegacion($_COOKIE["usuario"]);?>
 
         <div class="row">
             <?php
             if (isset($_REQUEST["accion"])) {
                 require_once("php/acciones.php");
             }
-            require_once("php/muestralibros.php");
+            switch($navega){
+                case "catalogo":
+                    require_once("php/catalogo.php");
+                    break;
+                case "vercarrito":
+                    require_once("php/carrito.php");
+                    break;  
+                default:
+                     require_once("php/muestralibros.php");
+
+            }
             ?>
         </div>
 
-        <div class="row">
-            <div class="col-6">
-                <button type="button" class="btn btn-info" onclick="muestra('formulariolibros');">Crear</button>
 
-            </div>
         </div>
         <?php
         if (isset($resultadoaccion)) {

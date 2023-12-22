@@ -52,3 +52,20 @@ function eliminalibro(codigolibro){
     window.location.href=url;
    } 
     }
+
+    function addCart(libro){
+        $.ajax({
+            type: "POST",
+            url: "php/ajaxaddlibrocarrito.php",
+            data: { libro: libro }
+        }).done(function( numlibros ) {
+            
+            if(!isNaN(numlibros)){
+                alert( "Libro añadido correctamente al carrito " + numlibros );
+            }else{
+                alert('Ha ocurrido un error al añadir el libro al carrito');
+            }
+
+        });
+   
+    }

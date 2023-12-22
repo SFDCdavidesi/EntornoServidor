@@ -46,8 +46,8 @@ public function muestraErrores(){
     private function existeUsuario($username):bool{
         $stmt=$this->con->prepare("SELECT COUNT(usuario) as NumUsers from usuarios where usuario=:usuario ");
         $stmt->bindParam("usuario",$username);
-        $stmt->execute();
-        $numregs=$stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            $numregs=$stmt->fetch(PDO::FETCH_ASSOC);
         return $numregs["NumUsers"]>0;
     }
     private function existeAutor($autor):bool{
@@ -225,7 +225,7 @@ return null;
    
         $stmt->bindParam(":nombre",$autor["nombre"],PDO::PARAM_STR);
         $stmt->bindParam(":apellidos",$autor["apellidos"],PDO::PARAM_STR);
-        $stmt->bindParam(":anio_nacimiento",$autor["año_nacimiento"],PDO::PARAM_STR);
+        $stmt->bindParam(":año_nacimiento",$autor["año_nacimiento"],PDO::PARAM_STR);
 
         $stmt->execute();
         return true;
@@ -277,6 +277,18 @@ public function eliminarLibro($libro):bool{
        return false;
     
     }
+}
+public function getLibrosAutor($autor){
+    try{
+        $clausula=" WHERE disponible=True ";
+    if(isset($autor)&& $autor>-1){
+        $clausula.=" AND l.codigo_autor=" . $autor;
+    }        $stmt = $this->con->query(Queries::GET_LIBROS . $clausula);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+     }catch (PDOException $e){
+         $this->error($e->getMessage());
+     }
+return null;
 }
 }
 

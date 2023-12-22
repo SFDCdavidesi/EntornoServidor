@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let hora=Number(prompt("dame hora"));
+        let minuto=Number(prompt("dame minuto"));
+        let segundo=Number(prompt("dame segundo"));
+        
+        segundo+=1;
+        if (segundo>=60){
+            minuto+=1;
+            segundo=0;
+        }
+        if (minuto>=60){
+            hora+=1;
+            minuto=0;
+        }
+        if (hora>=24){
+            hora=0;
+        }
+       console.log('Nueva hora: ' + hora + ':' + minuto + ':' + segundo);
+    </script>
+</body>
+</html>
