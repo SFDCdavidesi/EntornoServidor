@@ -1,0 +1,5 @@
+.mensaje-error {
+    color: red;
+    font-size: 1.5em; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    font-weight: bold; /* Opcional: si deseas que el texto sea más grueso */
+}

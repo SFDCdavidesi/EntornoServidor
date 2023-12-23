@@ -81,7 +81,7 @@ function get_libros_by_autor($autor){
 function get_libros_by_codigolibro($arrayLibros){
     try{
         $con =BD::getConexion();
-        $query="select l.codigo,l.titulo,a.nombre,a.apellidos,l.disponible,l.descripcion,l.precio from libros l left join autores a on l.codigo_autor=a.codigo_autor";
+        $query="select l.codigo,l.titulo,a.nombre,a.apellidos,l.disponible,l.descripcion,l.precio, l.codigo_autor from libros l left join autores a on l.codigo_autor=a.codigo_autor";
 
         if ($arrayLibros){ //el autor está definido, lo incluimos para filtrarlo
             $query.=" where l.codigo in (" . implode(',',array_fill(0,count($arrayLibros),'?')) . ")";
@@ -110,8 +110,9 @@ function get_libros_by_codigolibro($arrayLibros){
     }
 }
 function comprarLibro($codigo_libro){
-session_start();
 $carrito=array();
+$libro=get_libros_by_codigolibro([$codigo_libro])[0];
+if ($libro["disponible"]=="1"){
 if(isset($_SESSION["carrito"])){
 $carrito=$_SESSION["carrito"];
 }
@@ -121,6 +122,9 @@ if ($carrito[$codigo_libro]){
     $carrito[$codigo_libro]["unidades"]=1;
 }
 $_SESSION["carrito"]=$carrito;
+}else{
+    $error="Libro no disponible";
+}
 }
 
 function calculaTotal($carrito,$libros){
@@ -136,5 +140,26 @@ function calculaTotal($carrito,$libros){
         $total+=$uds*$precio;
     }
     return $total;
+}
+function modificar_carrito($codigo,$incremento){
+    $carrito=$_SESSION["carrito"];
+    $carrito[$codigo]["unidades"]+=$incremento;
+    if ($carrito[$codigo]["unidades"]==0){
+        unset($carrito[$codigo]);
+    }
+    if (count($carrito)>0){
+        $_SESSION["carrito"]=$carrito;
+
+    }else{
+        unset($_SESSION["carrito"]); //en el caso de que no quede ningún elemento en el carrito, lo eliminamos
+    }
+}
+/**Si eliminamos un libro lo eliminamos también en el caso de que esté en el carrito de la compra */
+function eliminar_libros_carrito($codigo){
+    $carrito=$_SESSION["carrito"];
+    if (key_exists($codigo,$carrito)){
+        unset($carrito[$codigo]);
+        $_SESSION[$carrito];
+    }
 }
 ?>

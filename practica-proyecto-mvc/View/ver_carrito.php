@@ -21,38 +21,25 @@
             <p><?php echo ($libro['disponible']>0?"🟢":"🔴"); ?></p>
             <p><?= $libro['precio']; ?></p>
         </div>
-        <?php if (isset($_COOKIE["usuario"]) && isset($_COOKIE["rol"]) && $_COOKIE["rol"]=="Admin" ){
-            ?>
-        <div class="list__removeItem">
-            <form action="." method="post">
-                <input type="hidden" name="action" value="delete_libro">
-                <input type="hidden" name="codigo" value="<?= $libro['codigo']; ?>">
-                <button class="remove-button">❌</button>
-            </form>
-        </div>
-        <div class="list__updateItem">
-            <form action="." method="post">
-                <input type="hidden" name="action" value="update_libro">
-                <input type="hidden" name="codigo" value="<?= $libro['codigo']; ?>">
-                <button class="update-button">📝</button>
-            </form>
-        </div>
-        <?php
-        }
-        ?>
-          <?php if (isset($_COOKIE["usuario"]) ){
-            ?>
+     
+
+       
         <div class="list__buyLibro">
             <form action="." method="post">
-                <input type="hidden" name="action" value="buy_libro">
+                <input type="hidden" name="action" value="incrementar_carrito">
                 <input type="hidden" name="codigo" value="<?= $libro['codigo']; ?>">
-                <button class="buy-button">🛒</button>
+                <button class="buy-button"> ➕</button>
             </form>
         </div>
-       
-        <?php
-        }
-        ?>
+              
+        <div class="list__buyLibro">
+            <form action="." method="post">
+                <input type="hidden" name="action" value="decrementar_carrito">
+                <input type="hidden" name="codigo" value="<?= $libro['codigo']; ?>">
+                <button class="buy-button">  ➖</button>
+            </form>
+        </div>
+      
     </div>
     <?php } ?>
     <?php } else { ?>

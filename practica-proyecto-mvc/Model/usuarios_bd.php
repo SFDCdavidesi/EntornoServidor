@@ -1,5 +1,5 @@
 <?php
-function comprueba_usuario($usu,$pass):bool{
+function comprueba_usuario($usu,$pass):int{
     $con=BD::getConexion();
     $query="select usuario,password,rol from usuarios where usuario=:usuario";
    $statement= $con->prepare($query);
@@ -12,22 +12,18 @@ function comprueba_usuario($usu,$pass):bool{
         if ($userOK==true){
             actualizaLoginDate($usu);
             crearSesion($usu,$resultado["rol"]);
-            return true;
+            return 1;
         }else{
-            $error="Usuario y contraseña no son correctos";
-            include ("../View/error.php"); 
-             exit();
+            return 2;
         }
     }else{
         $statement->closeCursor();
-        $error="Usuario no encontrado en la base de datos";
-        include ("../View/error.php");
-        exit();
+       return 3;
     }
 
 }
 
-function upsert_usuario($usuario,$password,$nombre,$apellidos,$email):bool{
+function upsert_usuario($usuario,$password,$nombre,$apellidos,$email,$rol):bool{
     
     
     try{
@@ -36,20 +32,33 @@ function upsert_usuario($usuario,$password,$nombre,$apellidos,$email):bool{
    $statement= $con->prepare($query);
     $statement->bindValue(":usuario",$usuario);
     $statement->execute();
+    $actualizapassword=false;
     if ($statement->rowCount()>0){
         //ya existe el usuario, lo actualizamos
-        $query="update usuarios set email=:email,nombre=:nombre,apellidos=:apellidos,password=:password where usuario=:usuario";
+        //comprobamos si hemos actualizado la password
+      $res=$statement->fetch();
+      if ($res["password"]!=$password){$actualizapassword=true;
+        $query="update usuarios set email=:email,nombre=:nombre,apellidos=:apellidos,password=:password,rol=:rol where usuario=:usuario";
+    }else{
+        $query="update usuarios set email=:email,nombre=:nombre,apellidos=:apellidos,rol=:rol where usuario=:usuario";
+    }
+
+
     }else{
         //no existe el usuario, lo insertamos
-        $query="insert into usuarios (usuario,nombre,apellidos,email,password) values (:usuario,:nombre,:apellidos,:email,:password)";
+        $query="insert into usuarios (usuario,nombre,apellidos,email,password,rol) values (:usuario,:nombre,:apellidos,:email,:password,:rol)";
     }
    $statement= $con->prepare($query);
     $statement->bindValue(":usuario",$usuario);
-    $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
-    $statement->bindValue(":password",$hashedpassword);
+    if($actualizapassword){
+        $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
+        $statement->bindValue(":password",$hashedpassword);
+    }
+
     $statement->bindValue(":nombre",$nombre);
     $statement->bindValue(":apellidos",$apellidos);
     $statement->bindValue(":email",$email);
+    $statement->bindValue(":rol",$rol);
     $statement->execute();
     $statement->closeCursor();
     return true;
@@ -109,6 +118,7 @@ function actualizaLoginDate($usuario){
 
 function borra_sesion($usuario){
     setcookie("usuario",null,time()-86400);
+    setcookie("rol",null,time()-(3600*24));
     //destruimos también la sesión
     session_destroy();
     unset($_SESSION["carrito"]);
