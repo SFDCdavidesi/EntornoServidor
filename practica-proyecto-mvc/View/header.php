@@ -7,6 +7,7 @@
     <title>Assignment Tracker</title>
     <link rel="stylesheet" href="../View/css/main.min.css" />
     <link rel="stylesheet" href="../View/css/estilos.css" />
+    <script src="../View/js/validaciones.js"></script>
 
 </head>
 
@@ -15,6 +16,7 @@
     <section id="menu" class="menu">
         <ul>
             <?php
+            if (!isset($error)){
             if (isset($_COOKIE["usuario"])){
                 ?>
                <li> <?=$_COOKIE["usuario"]?> (<?=$_COOKIE["rol"]?>)</li>
@@ -34,6 +36,14 @@
 
                 <?php
             }
+        }
             ?>
         </ul>
     </section>
+    <?php
+    if (isset($mensaje)){
+        ?>
+        <div class="mensaje"><?=$mensaje?></div>
+        <?php
+    }
+    ?>

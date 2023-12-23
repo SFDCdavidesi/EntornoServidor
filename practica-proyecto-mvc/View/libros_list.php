@@ -22,7 +22,7 @@
             <button class="add-button bold">Listar</button>
         </form>
     </header>
-    <?php if($libros && !empty($libros)) { ?>
+    <?php if($libros && !empty($libros) ) { ?>
     <?php foreach ($libros as $libro) : ?>
     <div class="list__row">
         <div class="list__item">
@@ -76,7 +76,11 @@
  
     <?php } ?>
 </section>
+<?php
+if( isset($_COOKIE["usuario"]) && isset($_COOKIE["rol"]) && $_COOKIE["rol"]=="Admin"){
+    //sólo mostramos el formulario si el usuario es administrador 
 
+?>
 <section id="add" class="add">
     <h2><?php echo (isset($limo)?"Modificar":"Añadir");?> Libro</h2>
     <form action="." method="post" id="add__form" class="add__form">
@@ -114,6 +118,7 @@
 </section>
 <br>
 <?php
+}
 if (isset($limo)){
     ?><p><a href=".">Ver/Editar Libros</a></p>
 

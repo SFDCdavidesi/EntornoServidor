@@ -12,7 +12,7 @@ class BD{
         }catch(PDOException $e){
             $error="Error de base de datos: ";
             $error.= $e->getMessage();
-            include ("View/error.php");
+            include ("../View/error.php");
             exit();
         }
  

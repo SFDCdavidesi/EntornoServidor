@@ -110,6 +110,7 @@ function get_libros_by_codigolibro($arrayLibros){
     }
 }
 function comprarLibro($codigo_libro){
+    global $error;
 $carrito=array();
 $libro=get_libros_by_codigolibro([$codigo_libro])[0];
 if ($libro["disponible"]=="1"){

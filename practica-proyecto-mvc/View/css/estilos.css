@@ -3,3 +3,19 @@
     font-size: 1.5em; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
     font-weight: bold; /* Opcional: si deseas que el texto sea más grueso */
 }
+.mensaje {
+    color: green;
+    font-size: 1.5em; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+    font-weight: bold; /* Opcional: si deseas que el texto sea más grueso */
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  ul li {
+    margin-right: 10px;
+    
+  }

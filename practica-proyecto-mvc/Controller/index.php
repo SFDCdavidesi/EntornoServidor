@@ -122,6 +122,7 @@
             }
            
             $usuarios=get_usuarios_by_username($usuario);
+            $mensaje="Usuario añadido correctamente";
             include ("../View/usuarios_list.php");
             break;
         case "delete_usuario":
@@ -165,14 +166,14 @@
         case "buy_libro":
             $error="";
             comprarLibro($codigo);
-            if ($error!=""){
-                include('../view/error.php');
-                exit();
-            }else{
-                header("Location: .?action=list_libros&codigo_autor=".$codigo_autor);
-
-            }
-            default:
+            $mensaje=$error;
+            unset($error);
+            $libros = get_libros_by_autor($codigo_autor);
+            $autores = get_autores_by_autor(null);
+       
+            include('../View/libros_list.php');
+            break;
+        default:
        
             header("Location: .?action=list_libros");
     }

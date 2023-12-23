@@ -50,7 +50,7 @@ function upsert_usuario($usuario,$password,$nombre,$apellidos,$email,$rol):bool{
     }
    $statement= $con->prepare($query);
     $statement->bindValue(":usuario",$usuario);
-    if($actualizapassword){
+    if($actualizapassword || $statement->rowCount()==0){
         $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
         $statement->bindValue(":password",$hashedpassword);
     }

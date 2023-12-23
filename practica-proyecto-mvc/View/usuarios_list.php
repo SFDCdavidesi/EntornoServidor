@@ -51,7 +51,7 @@
 <?php } ?>
 <section id="add" class="add">
     <h2>Añadir Usuario</h2>
-    <form action="." method="post" id="add__form" class="add__form">
+    <form action="." method="post" id="add__form" class="add__form" onsubmit="return validaAltaUsuario();">
         <input type="hidden" name="action" value="crea_usuario">
         <div class="add__inputs">
             <label>usuario:</label>
