@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function cargaValores(donde,valores){
+            var d=document.getElementById(donde);
+            for (let i=0;i<valores.length;i++){
+                var o=document.createElement("option");
+                o.text=valores[i];
+                o.value=valores[i];
+                d.appendChild(o);
+            }
+        }
+        $(document).ready(function(){
+            //inicialmente cargamos los países
+
+ $.getJSON("paises.json", function(data) {
+        // La variable 'data' contendrá el contenido del archivo JSON
+        console.log(data);
+             // Crear un array asociativo
+             var paisesCiudades = {};
+
+// Recorrer la lista de países y construir el array asociativo
+$.each(data.paises, function(index, pais) {
+    paisesCiudades[pais.nombre] = pais.ciudades;
+});
+console.log(paisesCiudades);
+cargaValores("paises",Object.keys(paisesCiudades));
+cargaValores("ciudades",Object.values(paisesCiudades["España"]));
+$("#paises").change(function(){
+    $("#ciudades").empty();
+cargaValores("ciudades",Object.values(paisesCiudades[$(this).val()]));
+});
+      });
+        });
+    </script>
+</head>
+<body>
+
+    </script>
+    <section>
+        <form>
+            <label for="paises">Países</label><select name="paises" id="paises"></select><br>
+            <label for="ciudades">Ciudades</label><select name="ciudades" id="ciudades"></select>
+        </form>
+    </section>
+</body>
+</html>

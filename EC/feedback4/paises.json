@@ -1,0 +1,167 @@
+{
+    "paises": [
+      {
+        "nombre": "España",
+        "ciudades": ["Madrid", "Barcelona", "Sevilla"]
+      },
+      {
+        "nombre": "Francia",
+        "ciudades": ["París", "Marsella", "Lyon"]
+      },
+      {
+        "nombre": "Italia",
+        "ciudades": ["Roma", "Milán", "Florencia"]
+      },
+      {
+        "nombre": "Alemania",
+        "ciudades": ["Berlín", "Múnich", "Hamburgo"]
+      },
+      {
+        "nombre": "Reino Unido",
+        "ciudades": ["Londres", "Manchester", "Edimburgo"]
+      },
+      {
+        "nombre": "Portugal",
+        "ciudades": ["Lisboa", "Oporto", "Coímbra"]
+      },
+      {
+        "nombre": "Suecia",
+        "ciudades": ["Estocolmo", "Gotemburgo", "Malmö"]
+      },
+      {
+        "nombre": "Países Bajos",
+        "ciudades": ["Ámsterdam", "Róterdam", "La Haya"]
+      },
+      {
+        "nombre": "Bélgica",
+        "ciudades": ["Bruselas", "Amberes", "Gante"]
+      },
+      {
+        "nombre": "Suiza",
+        "ciudades": ["Zúrich", "Ginebra", "Berna"]
+      },
+      {
+        "nombre": "Estados Unidos",
+        "ciudades": ["Nueva York", "Los Ángeles", "Chicago", "Miami", "San Francisco"]
+      },
+      {
+        "nombre": "Canadá",
+        "ciudades": ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa"]
+      },
+      {
+        "nombre": "México",
+        "ciudades": ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Tijuana"]
+      },
+      {
+        "nombre": "Brasil",
+        "ciudades": ["Sao Paulo", "Río de Janeiro", "Brasilia", "Salvador", "Fortaleza"]
+      },
+      {
+        "nombre": "Argentina",
+        "ciudades": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "La Plata"]
+      },
+      {
+        "nombre": "Colombia",
+        "ciudades": ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena"]
+      },
+      {
+        "nombre": "Chile",
+        "ciudades": ["Santiago", "Valparaíso", "Concepción", "Antofagasta", "Viña del Mar"]
+      },
+      {
+        "nombre": "Perú",
+        "ciudades": ["Lima", "Arequipa", "Trujillo", "Chiclayo", "Cusco"]
+      },
+      {
+        "nombre": "Venezuela",
+        "ciudades": ["Caracas", "Maracaibo", "Valencia", "Barquisimeto", "Maracay"]
+      },
+      {
+        "nombre": "Ecuador",
+        "ciudades": ["Quito", "Guayaquil", "Cuenca", "Ambato", "Loja"]
+      },
+      {
+        "nombre": "Nigeria",
+        "ciudades": ["Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt"]
+      },
+      {
+        "nombre": "Egipto",
+        "ciudades": ["El Cairo", "Alejandría", "Giza", "Shubra El-Kheima", "Port Said"]
+      },
+      {
+        "nombre": "Sudáfrica",
+        "ciudades": ["Ciudad del Cabo", "Johannesburgo", "Durban", "Pretoria", "Port Elizabeth"]
+      },
+      {
+        "nombre": "Etiopía",
+        "ciudades": ["Adís Abeba", "Addis Zemen", "Dire Dawa", "Mekele", "Nazret"]
+      },
+      {
+        "nombre": "Kenia",
+        "ciudades": ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret"]
+      },
+      {
+        "nombre": "Argelia",
+        "ciudades": ["Argel", "Orán", "Constantina", "Annaba", "Blida"]
+      },
+      {
+        "nombre": "Marruecos",
+        "ciudades": ["Casablanca", "Rabat", "Fez", "Marrakech", "Tánger"]
+      },
+      {
+        "nombre": "Ghana",
+        "ciudades": ["Acra", "Kumasi", "Tamale", "Sekondi-Takoradi", "Cape Coast"]
+      },
+      {
+        "nombre": "Camerún",
+        "ciudades": ["Yaundé", "Duala", "Bamenda", "Bafoussam", "Garoua"]
+      },
+      {
+        "nombre": "Costa de Marfil",
+        "ciudades": ["Abiyán", "Bouaké", "San Pedro", "Yamoussoukro", "Daloa"]
+      },
+      {
+        "nombre": "Tailandia",
+        "ciudades": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya", "Ayutthaya"]
+      },
+      {
+        "nombre": "Indonesia",
+        "ciudades": ["Yakarta", "Bali", "Surabaya", "Medan", "Bandung"]
+      },
+      {
+        "nombre": "Vietnam",
+        "ciudades": ["Ho Chi Minh", "Hanói", "Da Nang", "Nha Trang", "Hue"]
+      },
+      {
+        "nombre": "Malasia",
+        "ciudades": ["Kuala Lumpur", "Penang", "Johor Bahru", "Ipoh", "Malaca"]
+      },
+      {
+        "nombre": "Filipinas",
+        "ciudades": ["Manila", "Cebú", "Davao", "Quezón", "Zamboanga"]
+      },
+      {
+        "nombre": "Singapur",
+        "ciudades": ["Singapur"]
+      },
+      {
+        "nombre": "Myanmar",
+        "ciudades": ["Rangún", "Mandalay", "Naypyidaw", "Bagan", "Inle Lake"]
+      },
+      {
+        "nombre": "Camboya",
+        "ciudades": ["Nom Pen", "Siem Reap", "Sihanoukville", "Battambang", "Kampot"]
+      },
+      {
+        "nombre": "Laos",
+        "ciudades": ["Vientián", "Luang Prabang", "Pakse", "Savannakhet", "Thakhek"]
+      },
+      {
+        "nombre": "Brunei",
+        "ciudades": ["Bandar Seri Begawan"]
+      }
+    ]
+  }
+
+
+  

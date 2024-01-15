@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<script>
+var xhttp = new XMLHttpRequest();
+// Cada vez que se produzca un cambio de estado, verifico
+xhttp.onreadystatechange = function() {
+ if (this.readyState == 4 && this.status == 200) {
+ selecciona(this);
+ }
+};
+//Inicializamos la petición con GET y sobre el recurso local “libros.xml” que se encontrará en el mismo directorio que nuestro programa
+// Indicamos que la solicitud sea asíncrona
+xhttp.open("GET", "libros.xml", true);
+xhttp.send();
+function selecciona(xml) {
+ var xmlDoc = xml.responseXML;
+var libro = prompt("Dime número libro 0-3",1);
+var carac= prompt("¿Qué quieres ver title/author/year/price","title");
+//Buscamos en el doc XML el número de libro y carac introducida por usuario
+ var x = xmlDoc.getElementsByTagName(carac)[libro];
+// Se obteniene el valor del elemento seleccionado. 0 porque solamente hay un valor en cada item.
+ var y = x.childNodes[0];
+ document.getElementById("demo").innerHTML = y.nodeValue; 
+}
+</script>
+</body>
+</html>
