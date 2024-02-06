@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//scope.js
+let a = "JavaScript"; // es un scope global que se encontrará en cualquier parte de este archivo
+let b = 10; // es un scope global que se encontrará en cualquier parte de este archivo
+function letsLearnScope() {
+  console.log(a, b); // JavaScript 10, accesible
+  if (true) {
+    let a = "Python";
+    let b = 100;
+    console.log(a, b); // Python 100
+  }
+  console.log(a, b);
+}
+letsLearnScope();
+console.log(a, b); // JavaScript 10, accesible
+    </script>
+    
+</body>
+</html>

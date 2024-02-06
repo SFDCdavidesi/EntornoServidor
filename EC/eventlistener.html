@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 id="w3c">hola</h3>
+</body>
+<script>
+    let x = document.getElementById('w3c');
+    x.addEventListener("click",saluda,false);
+    x.addEventListener("mouseover",fondo,false);
+    function saluda(){
+        console.log('hola cocacola');
+        document.getElementById('w3c').removeEventListener("click",saluda);
+    }
+    function fondo(){
+        let x = document.getElementById('w3c');
+        x.style.backgroundColor='red';
+
+    }
+</script>
+</html>

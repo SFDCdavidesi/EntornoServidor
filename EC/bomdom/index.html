@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function muestraEjercicio(num){
+            var nombre="ejercicio"+num;
+            const ejercicio=document.getElementById(nombre).classList.remove("oculto");
+            for (let i = 1; i <= 16; i++) {
+                console.log('indice ' + i );
+                if (i==num){
+                    continue;
+                }
+             let div = document.getElementById("ejercicio" + i );
+             console.log(div);
+            if(div!=null){
+                
+                div.classList.add("oculto");
+            }else{
+                break;
+            }
+          
+
+        }
+    }
+        var tamanio=12;
+        function cambiapropiedad(donde,propiedad,que){
+            console.log('entra') + tamanio;
+            let p = document.getElementById(donde);
+           if (propiedad=="color"){
+            p.style.backgroundColor =que;
+           }else if (propiedad=="fuente"){
+            var tam = p.style.fontSize;
+            tamanio+=(que*3);
+            if (tamanio<1){tamanio=3};
+
+
+            p.style.fontSize=tamanio + "px";
+ 
+          
+           }else if (propiedad=="setfuente"){
+            p.style.fontSize=que+"px";
+           }
+        }
+        function insertaParrafo(){
+            const donde=document.getElementById('esundiv');
+            const parrafo=document.createElement('p');
+            parrafo.innerHTML='Es un número párrafo';
+            donde.prepend(parrafo);
+        }
+        function checkNodes(documentId){
+            const d=document.getElementById(documentId);
+            const p = document.createElement('p');
+            p.innerHTML='El div tiene ' + d.childNodes.length + '<br>';
+            for (let i=0;i<d.childNodes.length;i++){
+                p.innerHTML+='El nodo hijo número' + (i+1) + ' es de tipo ' + d.childNodes[i].nodeType + '<br>';
+            }
+            d.prepend(p);
+
+        }
+    </script>
+    <style>
+        .oculto{
+            display: none;
+        }
+        #rojo{
+            background-color: red;
+            color:white;
+        }
+        #verde{
+            background-color: green;
+            color:white;
+        }
+        .fuente{
+            font-size: large;
+            opacity: 0.5;
+
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        Ejercicios de manipulación de DOM 
+        1. Disponer una eƟqueta h1 con un mensaje. Luego dos botones que permitan cambiar el 
+        color y el tamaño de la fuente. 
+        2. PermiƟr cambiar el tamaño de la fuente de un párrafo. Para esto crear tres botones 
+        (fuente pequeña (10), fuente mediana(13) y fuente grande(20)) 
+        3. Se debe crear una página que contenga un div con 2 párrafos. Al presionar un botón 
+        insertar un nuevo párrafo al principio del div que conƟene los 2 párrafos. 
+        4. Confeccionar una página que contenga un div con tres párrafos. Luego acceder a la 
+        propiedad childNodes y verificar cuantos hijos Ɵene y de que Ɵpo de nodos se tratan. 
+        5. Crear pagina y proceder a definir un atributo a un nodo de Ɵpo elemento pagina, crear 
+        un nodo Ɵpo elemento y definir el atributo href
+        6. A partir de la página web proporcionada y utilizando las funciones DOM, 
+        mostrar por pantalla la siguiente información: 
+        Ejercicio 11 - DOM b�sico (um.es)
+         Número de enlaces de la página 
+         Dirección a la que enlaza el penúltimo enlace 
+         Numero de enlaces que enlazan a http://prueba
+         Número de enlaces del tercer párrafo
+        7. Crear una pagina web que tenga un botón para crear un elemento de Ɵpo input cada 
+        vez que sea presionado
+    </pre>
+    <div id="menu">
+        <ul>
+            <li><a href="#" onclick="muestraEjercicio(1)">Ejercicio 1</a></li>
+            <li><a href="#" onclick="muestraEjercicio(2)">Ejercicio 2</a></li>
+            <li><a href="#" onclick="muestraEjercicio(3)">Ejercicio 3</a></li>
+            <li><a href="#" onclick="muestraEjercicio(4)">Ejercicio 4</a></li>
+        </ul>
+    </div>
+    <div id="ejercicio1" class="oculto">
+        <h1 id="h1"> etiqueta h1 con mensaje</h1><br/>
+        <button id="rojo" onclick="cambiapropiedad('h1','color','red');">Cambia color rojo</button>
+        <button id="verde"onclick="cambiapropiedad('h1','color','green');">Cambia a color verde</button>
+        <button class="fuente"onclick="cambiapropiedad('h1','fuente',1);">Incrementa el tamaño de la fuente</button>
+        <button class="fuente"onclick="cambiapropiedad('h1','fuente',-1);">Decrementa el tamaño de la fuente</button>
+    </div>
+    <div id="ejercicio2"class="oculto">
+       <pre id="pre">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc sed blandit libero volutpat sed cras ornare arcu dui. Sit amet luctus venenatis lectus magna
+         fringilla urna. Aliquet eget sit amet tellus cras adipiscing. Quis vel eros donec ac. Purus sit amet volutpat consequat mauris. Sed pulvinar proin gravida hendrerit lectus. Ultricies mi quis hendrerit dolor magna eget est.
+          Id nibh tortor id aliquet. Neque convallis a cras semper auctor. Feugiat vivamus at augue eget arcu.
+        </pre>
+
+        <button class="fuente"onclick="cambiapropiedad('pre','setfuente',10);">Fuente pequeña</button>
+        <button class="fuente"onclick="cambiapropiedad('pre','setfuente',13);">Fuente mediana</button>
+
+        <button class="fuente"onclick="cambiapropiedad('pre','setfuente',20);">Fuente grande</button>
+    </div>
+    <div id="ejercicio3"class="oculto">
+       <div id="esundiv">
+        <p>párrafo 1</p>
+        <p>párrafo 2</p>
+       </div>
+
+        <button class="fuente"onclick="insertaParrafo();">Inserta un nuevo párrafo</button>
+    </div>
+    <div id="ejercicio4"class="oculto">
+        <div id="divejer4">
+            <p>párrafo 1</p>
+            <p>párrafo 2</p>
+            <p>párrafo 3</p>
+        </div>
+        <button id="rojo" onclick="checkNodes('divejer4');">Verificar cuantos nodos hijos tiene </button>
+
+    </div>
+</body>
+</html>
