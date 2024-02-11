@@ -1,0 +1,45 @@
+<script>
+const catsAPI = "https://api.thecatapi.com/v1/breeds";
+
+fetch(catsAPI)
+  .then((response) => response.json())
+  .then((data) => {
+    for (gato of data){
+let conta,peso=0;
+   for ( let dato in gato){
+        console.log(`El datos ${dato} es ${gato[dato]}`);
+        if (dato=='weight'){
+            alert(gato[dato]);
+            conta++;
+            peso+=gato[dato];
+        }
+    }
+    console.log('XXXX ' + conta);
+    console.log('Media = ' + (peso/conta));
+    }
+    
+  })
+  .catch((error) => console.error(error));
+const fetchData = async () => {
+  try {
+    const response = await fetch(catsAPI);
+    const countries = await response.json();
+    console.log(countries);
+  } catch (err) {
+    console.error(err);
+  }
+};
+console.log("===== async and await");
+fetchData();
+        </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>

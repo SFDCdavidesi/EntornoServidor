@@ -1,0 +1,982 @@
+[
+    {
+      "kind": "books#volume",
+      "id": "T4rqEAAAQBAJ",
+      "etag": "CB4bCvzdjOE",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/T4rqEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - Cicatriz - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-03",
+        "description": "RESUMEN Y ANALISIS CICATRIZ BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Sumérgete en la emocionante trama de \"Resumen de: Cicatriz\" de Juan Gómez-Jurado. Descubre un mundo de misterios, conspiraciones y dilemas morales mientras sigues la búsqueda incansable del protagonista por desentrañar el enigma detrás de una cicatriz enigmática. A través de giros impactantes y alianzas inesperadas, esta obra te llevará a cuestionar el precio de la verdad y las profundas marcas que deja en el alma. Una experiencia de lectura que te mantendrá intrigado de principio a fin, explorando los límites de la determinación y las decisiones que dan forma a nuestras vidas. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304806826"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304806820"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=T4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=T4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=T4rqEAAAQBAJ&printsec=frontcover&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=1&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ&rdid=book-T4rqEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Cicatriz_Basado_En_El-sample-epub.acsm?id=T4rqEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Cicatriz_Basado_En_El-sample-pdf.acsm?id=T4rqEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=T4rqEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "RESUMEN Y ANALISIS CICATRIZ BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "b4rqEAAAQBAJ",
+      "etag": "+aJFijoacAM",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/b4rqEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - Rey Blanco - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-03",
+        "description": "Beschreibung RESUMEN Y ANALISIS REY BLANCO BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre los secretos ocultos detrás de la intrigante trama de 'Rey blanco' con nuestro 'Resumen de: Rey blanco'. Sumérgete en una narrativa llena de giros sorprendentes mientras desentrañamos cada capítulo, desde el enigma inicial hasta las confrontaciones finales. Este resumen cuidadosamente elaborado te ofrece una visión completa de la historia, destacando los momentos clave y los personajes memorables. Perfecto para quienes buscan explorar la emoción y el suspenso de 'Rey blanco' de manera concisa. Prepárate para una aventura de misterio y descubrimiento en este resumen que te llevará al corazón de la intriga. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304806888"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "130480688X"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=b4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=b4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=b4rqEAAAQBAJ&printsec=frontcover&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=2&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=b4rqEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=b4rqEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=b4rqEAAAQBAJ&rdid=book-b4rqEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Rey_Blanco_Basado_En-sample-epub.acsm?id=b4rqEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Rey_Blanco_Basado_En-sample-pdf.acsm?id=b4rqEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=b4rqEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Beschreibung RESUMEN Y ANALISIS REY BLANCO BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "WYrqEAAAQBAJ",
+      "etag": "yJrvaasSyzM",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/WYrqEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - El Paciente - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-03",
+        "description": "RESUMEN Y ANALISIS EL PACIENTE BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre los secretos ocultos en \"Resumen de: El Paciente\". Sumérgete en esta intrigante narración que condensa los giros y misterios de la novela original de Juan Gómez-Jurado. Acompaña a la protagonista en su búsqueda de la verdad mientras desentraña una organización secreta con planes siniestros. Este resumen te llevará a través de los momentos más intensos y reveladores, ofreciéndote una visión completa de la trama y los personajes. Prepárate para una experiencia emocionante llena de acción, suspense y descubrimientos impactantes. Ideal para quienes buscan una dosis concentrada de intriga en un viaje literario inolvidable. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304806680"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304806685"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=WYrqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=WYrqEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=WYrqEAAAQBAJ&printsec=frontcover&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=3&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ&rdid=book-WYrqEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Paciente_Basado_En-sample-epub.acsm?id=WYrqEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Paciente_Basado_En-sample-pdf.acsm?id=WYrqEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=WYrqEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "RESUMEN Y ANALISIS EL PACIENTE BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "uGLrEAAAQBAJ",
+      "etag": "Z80uDUSjIpY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/uGLrEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - Espia De Dios - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-04",
+        "description": "RESUMEN Y ANALISIS ESPIA DE DIOS BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre la trama intrigante de 'Espía de Dios' en este cautivador resumen. Sumérgete en un mundo de secretos religiosos, conspiraciones y misterios que desafían la fe y la moralidad. Acompaña al enigmático sacerdote en su búsqueda de la verdad y la redención mientras se enfrenta a decisiones imposibles. Una mezcla emocionante de thriller y reflexión que te mantendrá en vilo hasta la última página. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304797674"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304797678"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=uGLrEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=uGLrEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=uGLrEAAAQBAJ&printsec=frontcover&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=4&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ&rdid=book-uGLrEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Espia_De_Dios_Basado-sample-epub.acsm?id=uGLrEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Espia_De_Dios_Basado-sample-pdf.acsm?id=uGLrEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=uGLrEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "RESUMEN Y ANALISIS ESPIA DE DIOS BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "T4rqEAAAQBAJ",
+      "etag": "aQJKlbm3Nx4",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/T4rqEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - Cicatriz - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-03",
+        "description": "RESUMEN Y ANALISIS CICATRIZ BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Sumérgete en la emocionante trama de \"Resumen de: Cicatriz\" de Juan Gómez-Jurado. Descubre un mundo de misterios, conspiraciones y dilemas morales mientras sigues la búsqueda incansable del protagonista por desentrañar el enigma detrás de una cicatriz enigmática. A través de giros impactantes y alianzas inesperadas, esta obra te llevará a cuestionar el precio de la verdad y las profundas marcas que deja en el alma. Una experiencia de lectura que te mantendrá intrigado de principio a fin, explorando los límites de la determinación y las decisiones que dan forma a nuestras vidas. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304806826"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304806820"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=T4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=T4rqEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=T4rqEAAAQBAJ&pg=PT23&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=5&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=T4rqEAAAQBAJ&rdid=book-T4rqEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Cicatriz_Basado_En_El-sample-epub.acsm?id=T4rqEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Cicatriz_Basado_En_El-sample-pdf.acsm?id=T4rqEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=T4rqEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "WYrqEAAAQBAJ",
+      "etag": "3ZBLX1B9hoY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/WYrqEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - El Paciente - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-03",
+        "description": "RESUMEN Y ANALISIS EL PACIENTE BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre los secretos ocultos en \"Resumen de: El Paciente\". Sumérgete en esta intrigante narración que condensa los giros y misterios de la novela original de Juan Gómez-Jurado. Acompaña a la protagonista en su búsqueda de la verdad mientras desentraña una organización secreta con planes siniestros. Este resumen te llevará a través de los momentos más intensos y reveladores, ofreciéndote una visión completa de la trama y los personajes. Prepárate para una experiencia emocionante llena de acción, suspense y descubrimientos impactantes. Ideal para quienes buscan una dosis concentrada de intriga en un viaje literario inolvidable. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304806680"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304806685"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=WYrqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=WYrqEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=WYrqEAAAQBAJ&pg=PT23&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=6&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=WYrqEAAAQBAJ&rdid=book-WYrqEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Paciente_Basado_En-sample-epub.acsm?id=WYrqEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Paciente_Basado_En-sample-pdf.acsm?id=WYrqEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=WYrqEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "SPjvEAAAQBAJ",
+      "etag": "+0yvq+ZZlbs",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/SPjvEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - El Emblema Del Traidor - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-26",
+        "description": "RESUMEN Y ANALISIS EL EMBLEMA DEL TRAIDOR BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre la esencia de la intrigante novela \"El Emblema del Traidor\" en este resumen cautivador. Sumérgete en una trama llena de misterio, acción y revelaciones sorprendentes mientras el protagonista y su aliada se enfrentan a enemigos despiadados y secretos históricos. Experimenta la emoción de la búsqueda de un emblema con poderes oscuros que podría desencadenar una catástrofe global. Este resumen te lleva en un viaje fascinante a través de capítulos llenos de suspense, giros inesperados y dilemas morales. Explora un mundo de conspiración y aventura en esta versión condensada de \"El Emblema del Traidor\". ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304799876"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304799875"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 43,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=SPjvEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=SPjvEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=SPjvEAAAQBAJ&pg=PT23&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=7&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=SPjvEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=SPjvEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=SPjvEAAAQBAJ&rdid=book-SPjvEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Emblema_Del_Traido-sample-epub.acsm?id=SPjvEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_El_Emblema_Del_Traido-sample-pdf.acsm?id=SPjvEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=SPjvEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "uGLrEAAAQBAJ",
+      "etag": "a1F56DfR8eg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/uGLrEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - Espia De Dios - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-04",
+        "description": "RESUMEN Y ANALISIS ESPIA DE DIOS BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre la trama intrigante de 'Espía de Dios' en este cautivador resumen. Sumérgete en un mundo de secretos religiosos, conspiraciones y misterios que desafían la fe y la moralidad. Acompaña al enigmático sacerdote en su búsqueda de la verdad y la redención mientras se enfrenta a decisiones imposibles. Una mezcla emocionante de thriller y reflexión que te mantendrá en vilo hasta la última página. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304797674"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304797678"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=uGLrEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=uGLrEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=uGLrEAAAQBAJ&pg=PT14&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=8&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=uGLrEAAAQBAJ&rdid=book-uGLrEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Espia_De_Dios_Basado-sample-epub.acsm?id=uGLrEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_Espia_De_Dios_Basado-sample-pdf.acsm?id=uGLrEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=uGLrEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "LdHsEAAAQBAJ",
+      "etag": "ANfgCw1Vfok",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/LdHsEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - La Historia Secreta Del Señor White - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-04",
+        "description": "RESUMEN Y ANALISISLA HISTORIA SECRETA DEL SEÑOR WHITEBASADO EN EL LIBRO DE JUAN GOMEZ JURADORESUMEN ESCRITO POR: LIBROS VELOCES EDITORIALCONTENIDOResumen del libro (9 capítulos)Análisis del libroBiografía De Juan Gómez JuradoACERCA DEL LIBRO ORIGINALDescubre los entresijos ocultos en \"Resumen de: La historia secreta del señor White\"! Sumérgete en una trama de misterio y traición mientras seguimos al protagonista en su búsqueda de la verdad detrás de un asesinato desconcertante. Este resumen te llevará a través de giros sorprendentes, revelaciones impactantes y personajes intrigantes. Experimenta toda la emoción y suspenso de la novela original en una versión condensada y emocionante. ¿Quién era realmente el señor White y qué secretos oscuros lo rodeaban? Descubre la verdad en esta fascinante síntesis de la exitosa novela de Juan Gómez-Jurado.ACERCA DEL AUTOR ORIGINALJuan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304797513"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304797511"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 37,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.2.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=LdHsEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=LdHsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=LdHsEAAAQBAJ&pg=PT23&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=9&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=LdHsEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=LdHsEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=LdHsEAAAQBAJ&rdid=book-LdHsEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_La_Historia_Secreta_D-sample-epub.acsm?id=LdHsEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_La_Historia_Secreta_D-sample-pdf.acsm?id=LdHsEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=LdHsEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "ymLrEAAAQBAJ",
+      "etag": "uELN6AXiMj8",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/ymLrEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Resumen Y Analisis - La Leyenda Del Ladrón - Basado En El Libro De Juan Gomez Jurado",
+        "authors": [
+          "Libros Veloces Editorial"
+        ],
+        "publisher": "Libros Veloces Editorial",
+        "publishedDate": "2024-01-04",
+        "description": "RESUMEN Y ANALISIS LA LEYENDA DEL LADRON BASADO EN EL LIBRO DE JUAN GOMEZ JURADO RESUMEN ESCRITO POR: LIBROS VELOCES EDITORIAL CONTENIDO Resumen del libro (9 capítulos) Análisis del libro Biografía De Juan Gómez Jurado ACERCA DEL LIBRO ORIGINAL Descubre la intriga y la emoción de \"La leyenda del ladrón\" en este cautivador resumen. Sumérgete en la España del siglo XIX mientras sigues a Elías, un joven huérfano, en su viaje desde las calles hasta el mundo del crimen y la redención. Experimenta giros inesperados, secretos profundos y conexiones emocionales en esta historia de aventura y redención. Ideal para los amantes de la intriga histórica, este resumen captura la esencia de la novela original en una experiencia de lectura concisa y emocionante. ACERCA DEL AUTOR ORIGINAL Juan Gómez-Jurado, autor español nacido en 1977, destaca por su impacto en la literatura de thriller. Graduado en Comunicación, se distingue por su capacidad para tejer historias cautivadoras. Su debut con \"Espía de Dios\" marcó el inicio de una prolífica carrera. Con obras como \"La leyenda del ladrón\" y \"Reina Roja\", ha conquistado a lectores internacionales. La versatilidad narrativa de Gómez-Jurado y su habilidad para mezclar suspenso y emoción lo han convertido en un referente contemporáneo. Su pasión por la escritura y la intriga continúa cautivando a audiencias alrededor del mundo.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781304797001"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1304797007"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 46,
+        "printType": "BOOK",
+        "categories": [
+          "Self-Help"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=ymLrEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=ymLrEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "es",
+        "previewLink": "http://books.google.es/books?id=ymLrEAAAQBAJ&pg=PT23&dq=intitle:juan+g%C3%B3mez+jurado&hl=&cd=10&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=ymLrEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=ymLrEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "ES",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "retailPrice": {
+          "amount": 3.99,
+          "currencyCode": "EUR"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=ymLrEAAAQBAJ&rdid=book-ymLrEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "retailPrice": {
+              "amountInMicros": 3990000,
+              "currencyCode": "EUR"
+            },
+            "giftable": true
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "ES",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_La_Leyenda_Del_Ladr%C3%B3-sample-epub.acsm?id=ymLrEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.es/books/download/Resumen_Y_Analisis_La_Leyenda_Del_Ladr%C3%B3-sample-pdf.acsm?id=ymLrEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=ymLrEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Libros Veloces Editorial. ACERCA. DE. JUAN. <b>GÓMEZ</b>-<b>JURADO</b>. Juan <b>Gómez</b>-<b>Jurado</b> es un reconocido autor y periodista español nacido el 16 de diciembre de 1977 en Madrid. Es conocido ... <b>Gómez</b>-<b>Jurado</b> ha recibido varios ACERCA DE JUAN <b>GÓMEZ</b>-<b>JURADO</b> ."
+      }
+    }
+  ]

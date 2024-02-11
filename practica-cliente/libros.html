@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/book.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+<div class="container">
+    <form id="searchForm">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" class="form-control" id="author" placeholder="Enter author">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    
+    <table id="resultsTable" class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Results will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Function to handle form submission
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Get search query values
+        var title = document.getElementById('title').value;
+        var author = document.getElementById('author').value;
+        
+        // Perform API search and display results
+        searchBooks(title, author);
+    });
+    
+    // Function to search books using Google Books API
+    function searchBooks(title, author) {
+        // Perform API request and handle response
+        // Replace this with your actual API request code
+        var apiKey = "AIzaSyDSoHcvfQftw5PA2WgCHIx83YQW8RtY0w4";
+        // Your API request code goes here
+        
+        // Dummy data for demonstration purposes
+        var books = [
+            { title: 'Book 1', author: 'Author 1' },
+            { title: 'Book 2', author: 'Author 2' },
+            { title: 'Book 3', author: 'Author 3' }
+        ];
+        
+        // Clear previous results
+        var tableBody = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = '';
+        
+        // Add new results to table
+        books.forEach(function(book) {
+            var row = tableBody.insertRow();
+            var titleCell = row.insertCell(0);
+            var authorCell = row.insertCell(1);
+            titleCell.innerHTML = book.title;
+            authorCell.innerHTML = book.author;
+        });
+    }
+</script>
+</body>
+</html>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+    
+</body>
+</html>

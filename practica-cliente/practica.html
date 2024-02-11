@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      </head>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Ejercicios Entorno Cliente</h2>
+      
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Topic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Manipulación del DOM</td></tr>
+            <tr><td>Manipulación del BOM</td></tr>
+            <tr><td>Validación (formulario)</td></tr>
+            <tr><td>Eventos</td></tr>
+            <tr><td>Ajax</td></tr>
+            <tr><td>Jquery</td></tr>
+            <tr><td>Consumo API (con fetch)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <script>
+        // Configuración de la aplicación conectada
+        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+      </script>
+</body>
+</html>
