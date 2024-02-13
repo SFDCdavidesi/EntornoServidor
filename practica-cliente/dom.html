@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <pre>
+        1- Manipulación del DOM 
+        •	
+        •	Buscar elementos
+        •	movernos entre los elementos del DOM Acceder a padre, hijo…
+        •	crear y borrar elementos
+        
+    </pre>
+    <br>
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Modificar 📝 </th>
+                <th>Eliminar ❌</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+    </table>
+    <hr>
+    <form>
+        <input type="text" id="nombre" required ="Nombre">
+        <input type="text" id="apellido" required placeholder="Apellido">
+        <input type="number" id="edad" required placeholder="Edad">
+        <button type="submit">Agregar</button>
+
+</body>
+<script>
+    const form = document.querySelector('form');
+    const tbody = document.querySelector('tbody');
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+        if (!form.reportValidity()) {
+            return;
+        }
+        const nombre = document.getElementById('nombre').value.toUpperCase();
+        const apellido = document.getElementById('apellido').value.toUpperCase();
+        const edad = document.getElementById('edad').value;
+        if (nombre === '' || apellido === '' || edad === '') {
+            alert('Todos los campos son obligatorios');
+            return;
+        }
+
+        const tr = document.createElement('tr');
+        let numeroTablas=document.querySelector('tbody').rows?document.querySelector('tbody').rows.length:0;
+        console.log(document.querySelector('tbody').rows);
+        console.info(numeroTablas);
+        numeroTablas++;
+        tr.innerHTML = `
+            <td>${numeroTablas}</td>
+            <td>${nombre}</td>
+            <td>${apellido}</td>
+            <td>${edad}</td>
+            <td>📝</td>
+            <td>❌</td>
+        `;
+        tbody.appendChild(tr);
+
+
+        let td = tr.querySelector('td:last-child');
+        td.addEventListener('click', function(){
+            const tr = td.parentElement;
+           
+            tr.remove();
+        });
+        let tdEdit = tr.querySelector('td:nth-child(5)');
+        tdEdit.addEventListener('click', function(){
+            const tr = tdEdit.parentElement;
+            const tds = tr.querySelectorAll('td');
+            document.getElementById('nombre').value = tds[1].textContent;
+            document.getElementById('apellido').value = tds[2].textContent;
+            document.getElementById('edad').value = tds[3].textContent;
+            //tr.remove();
+        });
+
+    });
+</script>
+</html>
