@@ -95,6 +95,19 @@
            
             tr.remove();
         });
+        let tdnumero = tr.querySelector('td:first-child');
+        tdnumero.addEventListener('mouseover', function(){ //
+            const tr = tdnumero.parentElement;
+           
+            tr.style.backgroundColor = 'red';
+            tr.style.color = 'white';
+        });
+        tdnumero.addEventListener('mouseout', function(){ //
+            const tr = tdnumero.parentElement;
+            tr.style.backgroundColor = 'white';
+            tr.style.color = 'black';
+        });
+
         let tdEdit = tr.querySelector('td:nth-child(5)'); //editar
         tdEdit.addEventListener('click', function(){
             const tr = tdEdit.parentElement;
