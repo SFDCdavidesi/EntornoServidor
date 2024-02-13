@@ -20,8 +20,8 @@
         <thead>
             <tr>
                 <th>Número</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Nombre <span id="ordenanombre" style="font-size: 0.8em;">&#x1F53C;</span></th>
+                <th>Apellido<span id="ordenaapellidos" style="font-size: 0.8em;">&#x1F53C;</span></th>
                 <th>Edad</th>
                 <th>Modificar 📝 </th>
                 <th>Eliminar ❌</th>
@@ -33,15 +33,16 @@
     </table>
     <hr>
     <form>
-        <input type="text" id="nombre" required ="Nombre">
-        <input type="text" id="apellido" required placeholder="Apellido">
-        <input type="number" id="edad" required placeholder="Edad">
+       <label for="nombre">Nombre</label> <input type="text" id="nombre" required ="Nombre">
+       <label for="apellido">Apellido</label>  <input type="text" id="apellido" required placeholder="Apellido">
+       <label for="edad">Edad</label> <input type="number" id="edad" required placeholder="Edad">
         <button type="submit">Agregar</button>
 
 </body>
 <script>
     const form = document.querySelector('form');
     const tbody = document.querySelector('tbody');
+    let filaeditada=-1;
     form.addEventListener('submit', function(event){
         event.preventDefault();
         if (!form.reportValidity()) {
@@ -54,6 +55,23 @@
             alert('Todos los campos son obligatorios');
             return;
         }
+
+        let botonsubmit=document.querySelector('button');
+        
+        if (botonsubmit.textContent === 'Editar') {
+            let tr = tbody.querySelector('tr:nth-child('+(filaeditada+1)+')');
+            tr.querySelector('td:nth-child(2)').textContent = nombre;
+            tr.querySelector('td:nth-child(3)').textContent = apellido;
+            tr.querySelector('td:nth-child(4)').textContent = edad;
+            botonsubmit.textContent = 'Agregar';
+            botonsubmit.style.backgroundColor = 'grey';
+            botonsubmit.style.color = 'white';
+            document.getElementById('nombre').value = '';
+            document.getElementById('apellido').value = '';
+            document.getElementById('edad').value = '';
+            filaeditada=-1;
+            return;
+        }else{
 
         const tr = document.createElement('tr');
         let numeroTablas=document.querySelector('tbody').rows?document.querySelector('tbody').rows.length:0;
@@ -72,21 +90,106 @@
 
 
         let td = tr.querySelector('td:last-child');
-        td.addEventListener('click', function(){
+        td.addEventListener('click', function(){ //eliminar
             const tr = td.parentElement;
            
             tr.remove();
         });
-        let tdEdit = tr.querySelector('td:nth-child(5)');
+        let tdEdit = tr.querySelector('td:nth-child(5)'); //editar
         tdEdit.addEventListener('click', function(){
             const tr = tdEdit.parentElement;
             const tds = tr.querySelectorAll('td');
             document.getElementById('nombre').value = tds[1].textContent;
             document.getElementById('apellido').value = tds[2].textContent;
             document.getElementById('edad').value = tds[3].textContent;
-            //tr.remove();
-        });
+            filaeditada=tr.rowIndex-1;
+            console.log(filaeditada);
+            let botonsubmit=document.querySelector('button');
+            botonsubmit.textContent = 'Editar';
+            botonsubmit.style.backgroundColor = 'green';
+            botonsubmit.style.color = 'white';
 
+        });
+    }
     });
+let ordenanombre = document.getElementById('ordenanombre');
+let ordenaapellidos = document.getElementById('ordenaapellidos');
+let sentido = 1;
+ordenanombre.addEventListener('click', function(){
+    let filas = Array.from(tbody.querySelectorAll('tr'));
+    if (sentido==1){
+        filas.sort((a, b) => {
+        if (a.querySelector('td:nth-child(2)').textContent > b.querySelector('td:nth-child(2)').textContent) {
+            return 1;
+        }
+        if (a.querySelector('td:nth-child(2)').textContent < b.querySelector('td:nth-child(2)').textContent) {
+            return -1;
+        }
+        return 0;
+    });
+    sentido=-1;
+    }
+    else{
+        filas.sort((a, b) => {
+        if (a.querySelector('td:nth-child(2)').textContent < b.querySelector('td:nth-child(2)').textContent) {
+            return 1;
+        }
+        if (a.querySelector('td:nth-child(2)').textContent > b.querySelector('td:nth-child(2)').textContent) {
+            return -1;
+        }
+        return 0;
+    });
+    sentido=1;
+
+    }
+
+    tbody.innerHTML = '';
+    for (let fila of filas) {
+        tbody.appendChild(fila);
+    }
+    if (ordenanombre.textContent === '🔼') {
+        ordenanombre.textContent = '🔽';
+    } else {
+        ordenanombre.textContent = '🔼';
+    }
+});
+ordenaapellidos.addEventListener('click', function(){
+    let filas = Array.from(tbody.querySelectorAll('tr'));
+    if (sentido==1){
+        filas.sort((a, b) => {
+        if (a.querySelector('td:nth-child(3)').textContent > b.querySelector('td:nth-child(3)').textContent) {
+            return 1;
+        }
+        if (a.querySelector('td:nth-child(3)').textContent < b.querySelector('td:nth-child(3)').textContent) {
+            return -1;
+        }
+        return 0;
+    });
+    sentido=-1;
+    }
+    else{
+        filas.sort((a, b) => {
+        if (a.querySelector('td:nth-child(3)').textContent < b.querySelector('td:nth-child(3)').textContent) {
+            return 1;
+        }
+        if (a.querySelector('td:nth-child(3)').textContent > b.querySelector('td:nth-child(3)').textContent) {
+            return -1;
+        }
+        return 0;
+    });
+    sentido=1;
+
+    }
+
+    tbody.innerHTML = '';
+    for (let fila of filas) {
+        tbody.appendChild(fila);
+    }
+    if (ordenaapellidos.textContent === '🔼') {
+        ordenaapellidos.textContent = '🔽';
+    } else {
+        ordenaapellidos.textContent = '🔼';
+    }
+});
 </script>
 </html>
