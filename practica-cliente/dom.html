@@ -37,9 +37,44 @@
        <label for="apellido">Apellido</label>  <input type="text" id="apellido" required placeholder="Apellido">
        <label for="edad">Edad</label> <input type="number" id="edad" required placeholder="Edad">
         <button type="submit">Agregar</button>
+    </form>
+        <hr>
+        <h2>Lista de elementos (para hacer referencia al elemento parent)</h2>
+<ul id="lista">
 
+  
+</ul>
 </body>
 <script>
+var elementosLista = [
+  'disc',
+  'circle',
+  'square',
+  'decimal',
+  'decimal-leading-zero',
+  'lower-roman',
+  'upper-roman',
+  'lower-alpha',
+  'upper-alpha',
+  'none'
+];
+
+    const lista = document.getElementById('lista');
+    lista.sty
+    for (let elemento of elementosLista) {
+        const li = document.createElement('li');
+        li.textContent = elemento;
+        lista.appendChild(li);
+    }
+
+    let elementosDeLaLista = document.querySelectorAll('li');
+    for (let elemento of elementosDeLaLista) {
+        elemento.addEventListener('click', function(){
+            console.log('click en ' + elemento.textContent);
+            elemento.parentElement.style.listStyleType=elemento.textContent;
+            
+        });
+    }
     const form = document.querySelector('form');
     const tbody = document.querySelector('tbody');
     let filaeditada=-1;

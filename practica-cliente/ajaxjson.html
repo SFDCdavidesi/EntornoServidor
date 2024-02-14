@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Usuarios</title>
+</head>
+<style>
+/* Estilo para las filas pares */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Fondo blanco para las filas pares */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilo para las filas impares */
+tr:nth-child(odd) {
+  background-color: #e6f2ff; /* Fondo azul claro para las filas impares */
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+</style>
+<body>
+
+<h2>Dar de alta registro de usuario</h2>
+<form id="formularioAlta">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
+    <input type="submit" value="Registrar">
+</form>
+
+<hr>
+
+<h2>Buscar registros de usuario</h2>
+<form id="formularioBusqueda">
+    <label for="busquedaNombre">Nombre:</label>
+    <input type="text" id="busquedaNombre" name="busquedaNombre"><br><br>
+    <label for="busquedaApellidos">Apellidos:</label>
+    <input type="text" id="busquedaApellidos" name="busquedaApellidos"><br><br>
+    <input type="submit" value="Buscar">
+</form><button>Borrar Resultados</button>
+<button id="mostrartodos">Mostrar Todos los registros</button>
+
+<div id="resultadosBusqueda"></div>
+
+<hr>
+<script>
+    let borra=document.querySelector('button');
+    borra.addEventListener('click',function(){
+        document.getElementById('resultadosBusqueda').innerHTML='';
+    });
+    let muestra=document.getElementById('mostrartodos');
+    muestra.addEventListener('click',function(){
+        //borramos el resultado
+        document.getElementById('resultadosBusqueda').innerHTML='';
+        let parametros = 'nombre=' + encodeURIComponent('') + '&apellidos=' + encodeURIComponent('');
+        enviarSolicitud('GET', 'ajaxjson.php?' + parametros, null, function(response) {
+            var resultados = '';
+            var registros = JSON.parse(response);
+            if (registros.length==0){
+                resultados += '<p>No hay registros</p>';
+            }else{
+                resultados='<table><thead><tr><th>Nombre</th><th>Apellidos</th><th>Email</th><th>Fecha de Nacimiento</th></tr></thead><tbody>';
+            }
+            registros.forEach(function(registro) {
+                resultados += '<tr><td>' + registro[0] + '</td><td>' + registro[1] + '</td><td>' + registro[2] + '</td><td>' + registro[3] + '</td></tr>';
+            });
+            resultados+='</tbody></table>';
+            document.getElementById('resultadosBusqueda').innerHTML = resultados;
+        });
+    });
+// Función para enviar una solicitud AJAX
+function enviarSolicitud(method, url, data, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+ //   xhr.setRequestHeader('Content-Type', '"application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(xhr.responseText);
+        }
+    };
+    xhr.send(data);
+}
+
+// Evento para dar de alta un nuevo registro de usuario
+document.getElementById('formularioAlta').addEventListener('submit', function(event) {
+    event.preventDefault();
+    console.log('Enviando formulario...');
+    let formulario = document.querySelector('form#formularioAlta');
+
+    var data = new FormData(formulario);
+
+    enviarSolicitud('POST', 'ajaxjson.php', data, function(response) {
+        alert(response); // Muestra la respuesta del servidor
+    });
+});
+
+
+// Evento para buscar registros de usuario
+document.getElementById('formularioBusqueda').addEventListener('submit', function(e) {
+    //borramos el resultado
+    document.getElementById('resultadosBusqueda').innerHTML='';
+    e.preventDefault();
+    var nombre = document.getElementById('busquedaNombre').value;
+    var apellidos = document.getElementById('busquedaApellidos').value;
+    var parametros = 'nombre=' + encodeURIComponent(nombre) + '&apellidos=' + encodeURIComponent(apellidos);
+    enviarSolicitud('GET', 'ajaxjson.php?' + parametros, null, function(response) {
+        var resultados = '';
+        var registros = JSON.parse(response);
+        registros.forEach(function(registro) {
+            resultados += '<p>Nombre: ' + registro[0] + '</p>';
+            resultados += '<p>Apellidos: ' + registro[1] + '</p>';
+            resultados += '<p>Email: ' + registro[2] + '</p>';
+            resultados += '<p>Fecha de Nacimiento: ' + registro[3] + '</p>';
+            resultados += '<hr>';
+        });
+        document.getElementById('resultadosBusqueda').innerHTML = resultados;
+    });
+});
+
+</script>
+
+</body>
+</html>

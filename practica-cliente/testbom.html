@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botón para abrir y cerrar ventana emergente</title>
+</head>
+<body>
+
+<button id="boton">Abrir Google</button>
+
+<script>
+let ventanaEmergente = null;
+
+document.getElementById('boton').addEventListener('click', function() {
+    if (ventanaEmergente === null || ventanaEmergente.closed) {
+        // Abrir una nueva ventana si no existe o está cerrada
+        ventanaEmergente = window.open('https://www.google.com', '_blank');
+    } else {
+        // Cerrar la ventana si está abierta
+        ventanaEmergente.close();
+        ventanaEmergente = null; // Reiniciar la variable
+    }
+});
+</script>
+
+</body>
+</html>

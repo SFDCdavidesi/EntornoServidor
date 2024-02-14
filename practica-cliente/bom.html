@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/product_bom_icon_149894.ico">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <pre>
+        2- Manipulación del BOM
+•	Window
+•	control de tiempo
+
+    </pre>
+    <button >Abrir ventana</button>
+    <button >Usar timeout</button>
+
+    <button> cambiar URL a google</button>
+   
+
+ 
+    <script>
+        var ventana;
+        const botones = document.querySelectorAll('button');
+      // habilitarbotones(0,true);
+        botones[0].addEventListener('click', function(){ //abrir ventana
+                        ventana=window.open('','_blank','width=400,height=400');
+                        console.log('abriendo ventana => ' + ventana);
+                     //   habilitarbotones(0,false);
+                       
+                    });
+        botones[1].addEventListener('click', function(){ //usar timeout
+        //creamos un campo de texto y un label
+        const label = document.createElement('label');
+        label.textContent = 'Tiempo';
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = 'tiempo';
+        input.placeholder = 'Tiempo en segundos';
+        input.required = true;
+        input.min = 1;
+        input.max = 10;
+        const botonAccion = document.createElement('button');
+        botonAccion.textContent = 'lanzar temporizador';
+        botonAccion.style.marginLeft = '10px';
+        botonAccion.style.backgroundColor = 'red';
+        botonAccion.style.color = 'white';    
+        botones[1].insertAdjacentElement('beforebegin', label);
+        botones[1].insertAdjacentElement('beforebegin', input);
+        botones[1].insertAdjacentElement('beforebegin', botonAccion);
+        input.focus();
+        habilitarbotones(1,true);
+
+        botonAccion.addEventListener('click', function(){
+            const tiempo = input.value;
+            setTimeout(() => {
+                alert('Han pasado ' + tiempo + ' segundos');
+                input.remove();
+                label.remove();
+                habilitarbotones(1,false);
+                botonAccion.remove();
+
+            }, tiempo * 1000);
+        
+        });
+    });
+    botones[2].addEventListener('click', function(){ //cambiar URL a google
+        window.location.href = 'https://www.google.com';
+    });
+
+    function habilitarbotones(excepcion,habilitar){
+        let botones=document.querySelectorAll('button');
+        botones.forEach((boton,indice)=>{
+            console.log('indice => ' + indice);
+            console.log(boton.textContent);
+            if (indice!=excepcion  ){
+                boton.disabled=habilitar;
+            }else{
+                boton.disabled=!habilitar;
+            }
+
+          
+        }); 
+    }
+                </script>
+            </body>
+            </html>
+      
+         
+    </script>
+</body>
+</html>
