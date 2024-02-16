@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="./json/carnetsconducir.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.each(carnets, function(index, value){
+                $("#carnet").append("<option value='"+value.tipo+"'>"+value.tipo+"</option>"); 
+            });
+            $.each(marcas, function(index, value){
+                $("#marca").append("<option value='"+value.marca+"'>"+value.marca+"</option>"); 
+            });
+            $("#marca").change(function(){
+                $("#modelo").empty();
+                $.each(marcas, function(index, value){
+                    if(value.marca==$("#marca").val()){
+                        $.each(value.modelos, function(index, value){
+                            $("#modelo").append("<option value='"+value+"'>"+value+"</option>"); 
+                        });
+                    }
+                });
+            
+            });
+            $("form").submit(function(event){
+                event.preventDefault();
+                let datos = {
+                    nombre: $("input[name='nombre']").val(),
+                    apellidos: $("input[name='apellidos']").val(),
+                    email: $("input[name='email']").val(),
+                    fecha_nacimiento: $("input[name='fecha_nacimiento']").val(),
+                    carnet: $("#carnets").val(),
+                    marca: $("#marca").val(),
+                    modelo: $("#modelo").val(),
+                    acabado: $("input[name='acabado']").val()
+                };
+                console.log(datos);
+                $.ajax({
+                    type: "POST",
+                    url: "vehiculos.php",
+                    data: JSON.stringify(datos),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(data){
+                        console.log(data);
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+            });
+        });
+        
+        
+    </script>
+</head>
+<body>
+    <form>
+
+    <table>
+        <tr>
+            <td>Nombre:</td>
+            <td><input type="text" name="nombre" required minlength="2"></td>
+        </tr>
+        <tr>
+            <td>Apellidos:</td>
+            <td><input type="text" name="apellidos" required minlength="3"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="email" required></td>
+        </tr>
+        <tr>
+            <td>Fecha de nacimiento:</td>
+            <td><input type="date" name="fecha_de_nacimiento"></td>
+        </tr>
+        <tr>
+            <td>Carnet de conducir:</td>
+            <td><select id="carnet"></select></td>
+        </tr>
+        <tr>
+            <td>Marca vehículo:</td>
+            <td><select id="marca"></select>></td>
+        </tr>
+        <tr>
+            <td>Modelo:</td>
+            <td><select id="modelo"></select>></td>
+        </tr>
+        <tr>
+            <td>Acabado:</td>
+            <td><input type="text" name="acabado"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Enviar">
+            </td>
+        </tr>
+    </table>
+</form>
+        
+       
+        <footer>
+            <a href="#" onclick="window.href=window.history.back();" >Volver</a>
+        </footer>
+</body>
+</html>
