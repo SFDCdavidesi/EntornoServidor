@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estilos.css">
+
+<title>Eventos en JavaScript</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 70%;
+        margin: auto;
+            }
+            th, td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(even) {
+                background-color: #f8f8f8;
+            }
+        </style>
+        <script>
+        window.addEventListener('load', function() {
+            const eventos = document.querySelectorAll('td');
+            eventos.forEach(evento => {
+                console.log(evento.textContent);
+                switch(evento.textContent){
+                    case "click":
+                        evento.addEventListener('click', function() {
+                            alert("Has hecho clic en el evento click");
+                        });
+                        break;
+                    case "mouseover":
+                        evento.addEventListener('mouseover', function() {
+                            alert("Has pasado el ratón por encima del evento mouseover");
+                        });
+                        break;
+                    case "mouseout":
+                        evento.addEventListener('mouseout', function() {
+                            alert("Has sacado el ratón del evento mouseout");
+                        });
+                        break;
+                    case "keydown":
+                        evento.addEventListener('keydown', function() {
+                            alert("Has pulsado una tecla en el evento keydown");
+                        });
+                        break;
+                    case "focus":
+                      
+                        break;
+
+                }
+               
+            });
+            const inputtext = document.getElementById('keyupintext');
+            inputtext.addEventListener('keyup', function() {
+                alert("Has pulsado una tecla en el evento keyup");
+            });
+            document.getElementById('keydowntext').addEventListener('keydown', function(e) {
+                console.log("Has pulsado una tecla en el evento keydown (" + e.key + ")");
+            });
+            document.getElementById('eventoChange').addEventListener('change', (e) => {
+                alert("Has cambiado el valor del evento change a: " + e.target.value);
+            });
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert("Has enviado el formulario");
+            });
+            document.getElementById('botonFocus').addEventListener('focus', function(e) {
+                alert("Has hecho foco en el botón focus");
+                //para evitar un bucle, quitamos el foco
+                e.target.blur();
+            });
+            document.getElementById('botonblur').addEventListener('blur',(e)=>{
+                console.log("%cHas hecho blur en el campo de texto  blur","color: green");
+            });
+            for (let i = 0; i < 10; i++) {
+                document.getElementById('eventoscroll').textContent += 'scroll\n';
+            }
+            document.getElementById('eventoscroll').addEventListener('scroll', function() {
+                console.log("%cHas hecho scroll en el evento scroll", "color: orange");
+            });
+        });
+    
+        </script>
+        </head>
+        <body>
+
+        <h2>Eventos en JavaScript</h2>
+
+        <table>
+            <tr>
+                <th>Evento</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td>click</td>
+                <td>Se dispara cuando se hace clic en un elemento.</td>
+            </tr>
+            <tr>
+                <td>mouseover</td>
+                <td>Se dispara cuando el cursor del ratón se mueve sobre un elemento.</td>
+            </tr>
+            <tr>
+                <td>mouseout</td>
+                <td>Se dispara cuando el cursor del ratón se mueve fuera de un elemento.</td>
+            </tr>
+            <tr>
+                <td>keydown <input type="text" id="keydowntext"></td>
+                <td>Se dispara cuando una tecla del teclado está siendo presionada.</td>
+            </tr>
+            <tr>
+                <td>keyup <input type="text" id="keyupintext"></input></td>
+                <td>Se dispara cuando una tecla del teclado es liberada.</td>
+            </tr>
+            <tr>
+                <td>change <select id="eventoChange">
+                    <option value="1">Opción 1</option>
+                    <option value="2">Opción 2</option>
+                    <option value="3">Opción 3</option>
+                    <option value="4">Opción 4</option>
+                    <option value="--" selected></option>
+                </select></td>
+                <td>Se dispara cuando el valor de un elemento cambia (por ejemplo, un input).</td>
+            </tr>
+            <tr> 
+                <td><form><button type="submit">submit</button></form></td>
+                <td>Se dispara cuando se envía un formulario.</td>
+            </tr>
+            <tr>
+                <td>focus 🚗<button id="botonFocus" class="boton-con-imagen"></button>
+                </td>
+                <td>Se dispara cuando un elemento recibe el foco.</td>
+            </tr>
+            <tr>
+                <td>blur <input type="text" id="botonblur" ></input></td>
+                <td>Se dispara cuando un elemento pierde el foco.</td>
+            </tr>
+            <tr>
+                <td><textarea id="eventoscroll">scroll</textarea></td>
+                <td>Se dispara cuando se desplaza un elemento (por ejemplo, una ventana o un elemento con scroll).</td>
+            </tr>
+        </table>
+
+        </body>
+        </html>
+        

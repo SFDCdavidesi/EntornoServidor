@@ -1,0 +1,37 @@
+
+    .footer,footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f5f5f5;
+        text-align: center;
+        border:1px solid black;
+        padding: 10px;
+    }
+    .resultados {
+        text-align: center;
+        margin-top: 20px;
+        max-width: 60;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .boton-con-imagen {
+        background-image: url('../img/fordfocus.jpg');
+        background-size: cover; 
+        width: 75px; /* Ancho del botón */
+        height: 75px; /* Alto del botón */
+        border: none; /* Eliminar bordes del botón */
+        cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    }
+    .boton-con-imagenblur {
+        background-image: url('../img/blur.png');
+        background-size: cover; 
+        width: 75px; /* Ancho del botón */
+        height: 75px; /* Alto del botón */
+        border: none; /* Eliminar bordes del botón */
+        cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    }
+    textarea {
+        height: 100px; 
+        overflow-y: scroll; 
+    }
