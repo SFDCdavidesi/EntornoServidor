@@ -18,23 +18,33 @@ tr:nth-child(odd) {
   font-family: Arial, Helvetica, sans-serif;
 
 }
+label{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100px;
+    display: inline-block;
+    margin-left: 100px;
+}
+h2{
+margin-left: 100px;
+}
 
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/estilos.css">
 <body>
-
+<h1> Uso de Ajax</h1>
 <h2>Dar de alta registro de usuario</h2>
+<!-- formulario para dar de alta usuarios en la "base de datos"-->
 <form id="formularioAlta">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+    <input type="text" id="nombre" name="nombre" required ><br><br>
     <label for="apellidos">Apellidos:</label>
     <input type="text" id="apellidos" name="apellidos" required><br><br>
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required><br><br>
     <label for="fechaNacimiento">Fecha de Nacimiento:</label>
     <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
-    <input type="submit" value="Registrar">
+    <input type="submit" value="Dar de alta">
 </form>
 
 <hr>
@@ -80,23 +90,23 @@ tr:nth-child(odd) {
 // Función para enviar una solicitud AJAX
 function enviarSolicitud(method, url, data, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
+    xhr.open(method, url, true); // abre la conexión
  //   xhr.setRequestHeader('Content-Type', '"application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function() { // función que se ejecuta cuando cambia el estado de la conexión
         if (xhr.readyState === 4 && xhr.status === 200) {
-            callback(xhr.responseText);
+            callback(xhr.responseText); // ejecuta la función callback pasándole la respuesta del servidor
         }
     };
-    xhr.send(data);
+    xhr.send(data); // envía la solicitud
 }
 
 // Evento para dar de alta un nuevo registro de usuario
 document.getElementById('formularioAlta').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // evita que se envíe el formulario
     console.log('Enviando formulario...');
     let formulario = document.querySelector('form#formularioAlta');
 
-    var data = new FormData(formulario);
+    var data = new FormData(formulario); // crea un objeto FormData con los datos del formulario
 
     enviarSolicitud('POST', 'ajaxjson.php', data, function(response) {
         alert(response); // Muestra la respuesta del servidor
@@ -112,17 +122,17 @@ document.getElementById('formularioBusqueda').addEventListener('submit', functio
     var nombre = document.getElementById('busquedaNombre').value;
     var apellidos = document.getElementById('busquedaApellidos').value;
     var parametros = 'nombre=' + encodeURIComponent(nombre) + '&apellidos=' + encodeURIComponent(apellidos);
-    enviarSolicitud('GET', 'ajaxjson.php?' + parametros, null, function(response) {
+    enviarSolicitud('GET', 'ajaxjson.php?' + parametros, null, function(response) { // envía una solicitud GET al servidor
         var resultados = '';
         var registros = JSON.parse(response);
         registros.forEach(function(registro) {
-            resultados += '<p>Nombre: ' + registro[0] + '</p>';
+            resultados += '<p>Nombre: ' + registro[0] + '</p>'; // crea un párrafo con el nombre del usuario
             resultados += '<p>Apellidos: ' + registro[1] + '</p>';
             resultados += '<p>Email: ' + registro[2] + '</p>';
             resultados += '<p>Fecha de Nacimiento: ' + registro[3] + '</p>';
             resultados += '<hr>';
         });
-        document.getElementById('resultadosBusqueda').innerHTML = resultados;
+        document.getElementById('resultadosBusqueda').innerHTML = resultados; // muestra los resultados en el div
     });
 });
 

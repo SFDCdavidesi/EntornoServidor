@@ -2,97 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/product_bom_icon_149894.ico">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOM</title>
+    <title>Manipulación del BOM</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <pre>
-        2- Manipulación del BOM
-•	Window
-•	control de tiempo
-
-    </pre>
-    <button >Abrir ventana</button>
-    <button >Usar timeout</button>
-
-    <button> cambiar URL a google</button>
-   
-
-    <div class="footer">
-        <a href="#" onclick="window.href=window.history.back();" >Volver</a>
+    <h2> Manipulación del BOM</h2>
+    <br
+    <div id ="botones">
+        <button id="abrir" onclick="abrirventana()">Abrir ventana</button>
+        <button id="cerrar" onclick="cerrarVentana()">Cerrar ventana</button>
+        <button id="moverVentana" onclick="moverVentana()">Mover ventana</button>
+        <button id="cambiarUrl" onclick="cambiarUrl()">Cambiar URL Ventana</button>
+        <label for="temporizador">Temporizador</label> <input type="checkbox" id="temporizador" >
     </div>
-   
+    <footer>
+        <a href="#" onclick="window.href=window.history.back();" >Volver</a>
+
 </body>
+</html>
 <script>
     var ventana;
-    const botones = document.querySelectorAll('button');
-  // habilitarbotones(0,true);
-    botones[0].addEventListener('click', function(){ //abrir ventana
-                    ventana=window.open('','_blank','width=400,height=400');
-                    console.log('abriendo ventana => ' + ventana);
-                 //   habilitarbotones(0,false);
-                   
-                });
-    botones[1].addEventListener('click', function(){ //usar timeout
-    //creamos un campo de texto y un label
-    const label = document.createElement('label');
-    label.textContent = 'Tiempo';
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.id = 'tiempo';
-    input.placeholder = 'Tiempo en segundos';
-    input.required = true;
-    input.min = 1;
-    input.max = 10;
-    const botonAccion = document.createElement('button');
-    botonAccion.textContent = 'lanzar temporizador';
-    botonAccion.style.marginLeft = '10px';
-    botonAccion.style.backgroundColor = 'red';
-    botonAccion.style.color = 'white';    
-    botones[1].insertAdjacentElement('beforebegin', label);
-    botones[1].insertAdjacentElement('beforebegin', input);
-    botones[1].insertAdjacentElement('beforebegin', botonAccion);
-    input.focus();
-    habilitarbotones(1,true);
-
-    botonAccion.addEventListener('click', function(){
-        const tiempo = input.value;
-        setTimeout(() => {
-            alert('Han pasado ' + tiempo + ' segundos');
-            input.remove();
-            label.remove();
-            habilitarbotones(1,false);
-            botonAccion.remove();
-
-        }, tiempo * 1000);
-    
-    });
-});
-botones[2].addEventListener('click', function(){ //cambiar URL a google
-    window.location.href = 'https://www.google.com';
-});
-
-function habilitarbotones(excepcion,habilitar){
-    let botones=document.querySelectorAll('button');
-    botones.forEach((boton,indice)=>{
-        console.log('indice => ' + indice);
-        console.log(boton.textContent);
-        if (indice!=excepcion  ){
-            boton.disabled=habilitar;
+    var temporizador=false;
+    document.getElementById('temporizador').addEventListener('change',function(){
+        if(this.checked){
+       temporizador = true;
         }else{
-            boton.disabled=!habilitar;
-        }
-
+            temporizador = false;}
+            console.log('El temporizado está '+temporizador);
+    });
+    /*
+    @description: Abrir una ventana. Si el checkbox temporizador está seleccionado, lo hará con un delay de 3 segundos*/
+    function abrirventana(){
+        console.log('abrir ventana');
+cambiarDisponibilidadExcepto('abrir',false);
+        if (temporizador){
+            window.setTimeout(function(){
+                ventana = window.open("","_blank","width=400,height=400");
+            },3000);
+    }else{
+        ventana = window.open("","_blank","width=400,height=400");
+    }
+    //cuando la ventana se cierre, habilita todos los botones
+    ventana.addEventListener('close',function(){
+        cambiarDisponibilidadExcepto('abrir',true);
+    });
+    }
+    
+    /*
+   @description: Cierra la ventana inmediatamente o en 3 segundos, si el checktemporizador está seleccionado */
+    function cerrarVentana(){
+        
+        try{
+            console.log('cerrar ventana' + ventana);
       
-    }); 
+        if (temporizador){
+            window.setTimeout(function(){
+                ventana.close();
+            },3000);
+    }   else{
+        ventana.close();
+    }
+    cambiarDisponibilidadExcepto('abrir',true);
+}catch(e){
+    alert('Ha ocurrido un error al cerrar la ventana' + e);
+    }
 }
-            </script>
-        </body>
-        </html>
-  
-     
+    /*
+    @description: Mueve la ventana.
+    Lo hará inmediatamente o con un pequeño delay si el temporizador está seleccionado o no*/
+    function moverVentana(){
+        console.log('mover ventana');
+        if (temporizador){
+            window.setTimeout(function(){
+                ventana.moveBy(100,100);
+            },500);
+    }else{
+        ventana.moveBy(100,100);
+    }
+    }
+    /*usando BOM cambia la url de la ventana abierta*/
+    function cambiarUrl(){
+        console.log('cambiar url');
+        const listadoUrls = [
+            'https://www.google.com',
+            'https://www.youtube.com',
+            'https://www.facebook.com',
+            'https://www.twitter.com',
+            'https://www.instagram.com'
+        ];
+        let random = Math.floor(Math.random()*listadoUrls.length);
+        console.log(listadoUrls[random]);
+        if (temporizador){
+            window.setTimeout(function(){
+                ventana.location.href=listadoUrls[random];
+            },3000);}else{
+                ventana.location.href=listadoUrls[random];
+            }
+        }
+        //habilita o deshabilita todos los botones excepto el que se pasa como parámetro
+        function cambiarDisponibilidadExcepto(exception, habilitar){
+            var botones = document.querySelectorAll('button');
+            for (var i=0; i<botones.length; i++){
+                if (botones[i].id != exception){
+                    botones[i].disabled = habilitar;
+                }else{
+                    botones[i].disabled = !habilitar;
+                }
+            }
+        }
+        cambiarDisponibilidadExcepto('abrir',true);
 </script>
-</html>

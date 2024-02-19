@@ -55,16 +55,14 @@
 <script>
     document.getElementById('myForm').addEventListener('submit', function(event) {
         var form = event.target;
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            form.reportValidity();
+        if (!form.checkValidity()) { //si el formulario no es válido
+            event.preventDefault(); //cancelamos el envío
+            form.reportValidity(); //mostramos el mensaje de error
         }
-        if (form.password.value != form.confirm_password.value) {
-            event.preventDefault();
-            if (form.password.value != form.confirm_password.value) {
-                event.preventDefault();
+        if (form.password.value != form.confirm_password.value) { //si las contraseñas no coinciden
+            event.preventDefault(); //  cancelamos el envío del formulario
                 alert('Las contraseñas no coinciden');
-            }
+         
         }
     });
 </script>

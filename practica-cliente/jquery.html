@@ -11,48 +11,86 @@
     <script src="./json/carnetsconducir.js"></script>
     <script>
         $(document).ready(function(){
+            //document ready se ejecuta cuando la página ha cargado completamente
             $.each(carnets, function(index, value){
                 $("#carnet").append("<option value='"+value.tipo+"'>"+value.tipo+"</option>"); 
+                //recorremos el array de carnets y añadimos cada uno al select
             });
             $.each(marcas, function(index, value){
                 $("#marca").append("<option value='"+value.marca+"'>"+value.marca+"</option>"); 
+                //recorremos el array de marcas, obtenido a través del fichero json y añadimos cada uno al select
             });
             $("#marca").change(function(){
-                $("#modelo").empty();
+                //cada vez que cambie el valor del select de marca, se ejecutará esta función
+                $("#modelo").empty(); //vaciamos el select de modelos
                 $.each(marcas, function(index, value){
                     if(value.marca==$("#marca").val()){
                         $.each(value.modelos, function(index, value){
+                            //recorremos el array de modelos de la marca seleccionada y los añadimos al select
                             $("#modelo").append("<option value='"+value+"'>"+value+"</option>"); 
                         });
                     }
                 });
             
             });
+            $("#marca").val("Audi").change(); //seleccionamos la marca Audi y ejecutamos el evento change
             $("form").submit(function(event){
-                event.preventDefault();
-                let datos = {
-                    nombre: $("input[name='nombre']").val(),
-                    apellidos: $("input[name='apellidos']").val(),
-                    email: $("input[name='email']").val(),
-                    fecha_nacimiento: $("input[name='fecha_nacimiento']").val(),
-                    carnet: $("#carnets").val(),
-                    marca: $("#marca").val(),
-                    modelo: $("#modelo").val(),
-                    acabado: $("input[name='acabado']").val()
-                };
-                console.log(datos);
+                //cuando se envíe el formulario
+                event.preventDefault(); //evitamos que se envíe el formulario
+                 // Obtener los datos del formulario
+             var formData = $(this).serialize();
+                console.log(formData);
                 $.ajax({
                     type: "POST",
                     url: "vehiculos.php",
-                    data: JSON.stringify(datos),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(data){
-                        console.log(data);
+                    data: formData,                   
+                    success: function(response){ //si la petición se ha realizado correctamente
+                        console.log(response);
                     },
-                    error: function(data){
-                        console.log(data);
-                    }
+                    error: function(xhr, status, error){
+                          console.error(xhr.responseText); // Imprimir mensaje de error en la consola
+            }
+                });
+            });
+            $("button").click(function(){
+                //cuando se haga clic en el botón
+                $.ajax({
+                    type: "GET",
+                    url: "vehiculos.php",
+                    success: function(response){ //si la petición se ha realizado correctamente
+                       
+                        const vehiculos = JSON.parse(response); //parseamos la respuesta a JSON
+                        $("#resultadosBusqueda").empty(); //vaciamos el div resultadosBusqueda
+                      
+                        for (let vehiculo of vehiculos) {
+                            //recorremos el array de vehículos y mostramos cada registro en el div resultadosBusqueda
+                           console.log('vehículo->' + vehiculo);
+                            let nombre=vehiculo[0]; //obtenemos el nombre del vehículo
+
+                            let apellidos=vehiculo[1];
+                            let email=vehiculo[2];
+                            let fecha_de_nacimiento=vehiculo[3];
+                            let carnet=vehiculo[4];
+                            let marca=vehiculo[5];
+                            let modelo=vehiculo[6];
+                            let acabado=vehiculo[7];
+                            console.debug("nombre : " + nombre);
+                            $("#resultadosBusqueda").append("<p>Nombre: " + nombre + "</p>");
+                            $("#resultadosBusqueda").append("<p>Apellidos: " + apellidos + "</p>");
+                            $("#resultadosBusqueda").append("<p>Email: " + email + "</p>");
+                            $("#resultadosBusqueda").append("<p>Fecha de Nacimiento: " + fecha_de_nacimiento + "</p>");
+                            $("#resultadosBusqueda").append("<p>Carnet de conducir: " + carnet + "</p>");
+                            $("#resultadosBusqueda").append("<p>Marca: " + marca + "</p>");
+                            $("#resultadosBusqueda").append("<p>Modelo: " + modelo + "</p>");
+                            $("#resultadosBusqueda").append("<p>Acabado: " + acabado + "</p>");
+                            $("#resultadosBusqueda").append("<hr>");
+                        }
+
+                       
+                    },
+                    error: function(xhr, status, error){
+                          console.error(xhr.responseText); // Imprimir mensaje de error en la consola
+            }
                 });
             });
         });
@@ -61,6 +99,7 @@
     </script>
 </head>
 <body>
+    <h1> Uso de Jquery</h1>
     <form>
 
     <table>
@@ -82,15 +121,15 @@
         </tr>
         <tr>
             <td>Carnet de conducir:</td>
-            <td><select id="carnet"></select></td>
+            <td><select id="carnet" name="carnet"></select></td>
         </tr>
         <tr>
             <td>Marca vehículo:</td>
-            <td><select id="marca"></select>></td>
+            <td><select id="marca" name="marca"></select>></td>
         </tr>
         <tr>
             <td>Modelo:</td>
-            <td><select id="modelo"></select>></td>
+            <td><select id="modelo" name="modelo"></select>></td>
         </tr>
         <tr>
             <td>Acabado:</td>
@@ -103,8 +142,10 @@
         </tr>
     </table>
 </form>
-        
-       
+        <hr>
+        <h2>Buscar registros de usuario</h2>
+        <button> Mostrar todos los registros guardados</button>
+       <div id="resultadosBusqueda"></div>
         <footer>
             <a href="#" onclick="window.href=window.history.back();" >Volver</a>
         </footer>

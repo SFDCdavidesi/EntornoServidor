@@ -4,6 +4,7 @@
     <title>Buscador de Libros</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="UTF-8">
 
 </head>
 <body>
@@ -63,7 +64,6 @@
                     var books = data.items;
                     var html = '';
                     if (books.length > 0) {
-                        $('#json').html(JSON.stringify(books, null, 2));
                         $('.resultados').html('');
                         html += '<table class="table"><thead><tr><th>Autor</th><th>Libro</th><th>Imagen</th></tr></thead><tbody>';
                         for (var i = 0; i < books.length; i++) {

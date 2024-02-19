@@ -6,20 +6,20 @@ $archivo = 'registros.csv';
 function agregarRegistro($nombre, $apellidos, $email, $fechaNacimiento) {
     global $archivo;
     $nuevoRegistro = array($nombre, $apellidos, $email, $fechaNacimiento);
-    $manejadorArchivo = fopen($archivo, 'a');
-    fputcsv($manejadorArchivo, $nuevoRegistro);
-    fclose($manejadorArchivo);
+    $filehandler = fopen($archivo, 'a');
+    fputcsv($filehandler, $nuevoRegistro);
+    fclose($filehandler);
 }
 
 // Función para leer todos los registros de usuarios del archivo CSV
 function leerRegistros() {
     global $archivo;
     $registros = array();
-    $manejadorArchivo = fopen($archivo, 'r');
-    while (($registro = fgetcsv($manejadorArchivo)) !== false) {
+    $filehandler = fopen($archivo, 'r');
+    while (($registro = fgetcsv($filehandler)) !== false) {
         $registros[] = $registro;
     }
-    fclose($manejadorArchivo);
+    fclose($filehandler);
     return $registros;
 }
 
@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         agregarRegistro($_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['fechaNacimiento']);
         echo "Registro agregado correctamente.";
+        http_response_code(200);
     } else {
         // Datos incompletos
         http_response_code(400);

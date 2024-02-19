@@ -27,21 +27,22 @@
         </style>
         <script>
         window.addEventListener('load', function() {
+            //obtenemos todos los elementos td
             const eventos = document.querySelectorAll('td');
-            eventos.forEach(evento => {
-                console.log(evento.textContent);
+            eventos.forEach(evento => { //recorremos cada uno de los elementos
+                console.log(evento.textContent); //mostramos el texto de cada uno de los elementos
                 switch(evento.textContent){
-                    case "click":
+                    case "click": //si el evento es click
                         evento.addEventListener('click', function() {
                             alert("Has hecho clic en el evento click");
                         });
                         break;
-                    case "mouseover":
+                    case "mouseover": //si el evnto del texto es mouseover
                         evento.addEventListener('mouseover', function() {
                             alert("Has pasado el ratón por encima del evento mouseover");
                         });
                         break;
-                    case "mouseout":
+                    case "mouseout": //si el evento es mouseout
                         evento.addEventListener('mouseout', function() {
                             alert("Has sacado el ratón del evento mouseout");
                         });
@@ -58,20 +59,24 @@
                 }
                
             });
+            //eventos de teclado
             const inputtext = document.getElementById('keyupintext');
             inputtext.addEventListener('keyup', function() {
                 alert("Has pulsado una tecla en el evento keyup");
             });
+            //eventos de teclado : keydowntext. Si pulsamos una tecla, se mostrará en consola
             document.getElementById('keydowntext').addEventListener('keydown', function(e) {
                 console.log("Has pulsado una tecla en el evento keydown (" + e.key + ")");
             });
-            document.getElementById('eventoChange').addEventListener('change', (e) => {
+            document.getElementById('eventoChange').addEventListener('change', (e) => { //evento change
                 alert("Has cambiado el valor del evento change a: " + e.target.value);
             });
+            //evento submit
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert("Has enviado el formulario");
-            });
+            }); 
+            //evento focus
             document.getElementById('botonFocus').addEventListener('focus', function(e) {
                 alert("Has hecho foco en el botón focus");
                 //para evitar un bucle, quitamos el foco

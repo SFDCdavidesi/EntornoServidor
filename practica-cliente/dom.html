@@ -95,28 +95,28 @@ var elementosLista = [
             return;
         }
 
-        let botonsubmit=document.querySelector('button');
+        let botonsubmit=document.querySelector('button'); //accedemos al botón mediante la propiedad query selector
         
-        if (botonsubmit.textContent === 'Editar') {
-            let tr = tbody.querySelector('tr:nth-child('+(filaeditada+1)+')');
-            tr.querySelector('td:nth-child(2)').textContent = nombre;
-            tr.querySelector('td:nth-child(3)').textContent = apellido;
-            tr.querySelector('td:nth-child(4)').textContent = edad;
-            botonsubmit.textContent = 'Agregar';
-            botonsubmit.style.backgroundColor = 'grey';
-            botonsubmit.style.color = 'white';
-            document.getElementById('nombre').value = '';
-            document.getElementById('apellido').value = '';
-            document.getElementById('edad').value = '';
-            filaeditada=-1;
+        if (botonsubmit.textContent === 'Editar') { //editar
+            let tr = tbody.querySelector('tr:nth-child('+(filaeditada+1)+')'); //accedemos a la fila que queremos editar
+            tr.querySelector('td:nth-child(2)').textContent = nombre; //el nombre está en la segunda columna
+            tr.querySelector('td:nth-child(3)').textContent = apellido;//el apellido está en la tercera columna
+            tr.querySelector('td:nth-child(4)').textContent = edad; //la edad está en la cuarta columna
+            botonsubmit.textContent = 'Agregar'; //modificarmos el texto del botón a "Agregar"
+            botonsubmit.style.backgroundColor = 'grey'; //modificamos el color de fondo del botón a gris
+            botonsubmit.style.color = 'white'; //modificamos el color del texto del botón a blanco
+            document.getElementById('nombre').value = ''; //limpiamos el campo nombre
+            document.getElementById('apellido').value = ''; //limpiamos el campo apellido
+            document.getElementById('edad').value = ''; //limpiamos el campo edad
+            filaeditada=-1; //reseteamos la variable filaeditada
             return;
-        }else{
+        }else{ //en caso contrario, añadimos una nueva fila
 
-        const tr = document.createElement('tr');
-        let numeroTablas=document.querySelector('tbody').rows?document.querySelector('tbody').rows.length:0;
+        const tr = document.createElement('tr'); //creamos un elemento tr
+        let numeroTablas=document.querySelector('tbody').rows?document.querySelector('tbody').rows.length:0; //obtenemos el número de filas de la tabla
         console.log(document.querySelector('tbody').rows);
         console.info(numeroTablas);
-        numeroTablas++;
+        numeroTablas++; //incrementamos el número de filas para que empiece en 1 y no en 0
         tr.innerHTML = `
             <td>${numeroTablas}</td>
             <td>${nombre}</td>
@@ -124,8 +124,8 @@ var elementosLista = [
             <td>${edad}</td>
             <td>📝</td>
             <td>❌</td>
-        `;
-        tbody.appendChild(tr);
+        `; //añadimos el contenido de las celdas
+        tbody.appendChild(tr); //añadimos el tr a la tabla
 
 
         let td = tr.querySelector('td:last-child');
@@ -167,19 +167,19 @@ var elementosLista = [
 let ordenanombre = document.getElementById('ordenanombre');
 let ordenaapellidos = document.getElementById('ordenaapellidos');
 let sentido = 1;
-ordenanombre.addEventListener('click', function(){
-    let filas = Array.from(tbody.querySelectorAll('tr'));
+ordenanombre.addEventListener('click', function(){ //ordenar por nombre
+    let filas = Array.from(tbody.querySelectorAll('tr')); //obtenemos todas las filas de la tabla
     if (sentido==1){
-        filas.sort((a, b) => {
-        if (a.querySelector('td:nth-child(2)').textContent > b.querySelector('td:nth-child(2)').textContent) {
-            return 1;
+        filas.sort((a, b) => { //ordenamos las filas
+        if (a.querySelector('td:nth-child(2)').textContent > b.querySelector('td:nth-child(2)').textContent) { //comparamos el contenido de la segunda celda de la fila a con el contenido de la segunda celda de la fila b
+            return 1; //si el contenido de la celda a es mayor que el contenido de la celda b, devolvemos 1
         }
-        if (a.querySelector('td:nth-child(2)').textContent < b.querySelector('td:nth-child(2)').textContent) {
-            return -1;
+        if (a.querySelector('td:nth-child(2)').textContent < b.querySelector('td:nth-child(2)').textContent) { //comparamos el contenido de la segunda celda de la fila a con el contenido de la segunda celda de la fila b
+            return -1; //si el contenido de la celda a es menor que el contenido de la celda b, devolvemos -1
         }
-        return 0;
+        return 0; //si el contenido de la celda a es igual que el contenido de la celda b, devolvemos 0
     });
-    sentido=-1;
+    sentido=-1; //cambiamos el sentido de la ordenación
     }
     else{
         filas.sort((a, b) => {
