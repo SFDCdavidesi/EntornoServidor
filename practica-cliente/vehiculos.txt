@@ -10,3 +10,7 @@ Natalia;García Abadillo;natalia@garcia.es;;;;elantra
 Fermín ;Caballero;fc@hotmail.com;2024-02-22;;;;dd
 Fermín ;Caballero;fc@hotmail.com;2024-02-22;;;;dd
 Ras;PuTin;ras@putin.com;2024-02-15;Clase C;Mercedes-Benz;Clase E;
+David;Herrero Estévez;david@herrero.us;2024-02-22;Clase B;Ford;Kuga;tt
+David;Herrero Estévez;david@herrero.us;2024-02-23;Clase B;Renault;Clio;tt
+David;Herrero Estévez;david@herrero.us;2024-02-20;Clase B;Mercedes-Benz;Clase E;
+David;Herrero Estévez;david@herrero.us;2024-02-08;Clase B;Volkswagen;Passat;tt

@@ -11,16 +11,23 @@
     <script src="./json/carnetsconducir.js"></script>
     <script>
         $(document).ready(function(){
+            $("h1").animate({fontSize: "3em"}, 2000);
+            $("form").slideUp(2000).slideDown(2000);
             //document ready se ejecuta cuando la página ha cargado completamente
             $.each(carnets, function(index, value){
                 $("#carnet").append("<option value='"+value.tipo+"'>"+value.tipo+"</option>"); 
                 //recorremos el array de carnets y añadimos cada uno al select
             });
+            $("#carnet").animate({fontSize: "2em"}, 2000);
+            //animamos el tamaño de la fuente del select carnet
+            
             $.each(marcas, function(index, value){
                 $("#marca").append("<option value='"+value.marca+"'>"+value.marca+"</option>"); 
                 //recorremos el array de marcas, obtenido a través del fichero json y añadimos cada uno al select
             });
+   
             $("#marca").change(function(){
+           
                 //cada vez que cambie el valor del select de marca, se ejecutará esta función
                 $("#modelo").empty(); //vaciamos el select de modelos
                 $.each(marcas, function(index, value){
@@ -36,6 +43,7 @@
             $("#marca").val("Audi").change(); //seleccionamos la marca Audi y ejecutamos el evento change
             $("form").submit(function(event){
                 //cuando se envíe el formulario
+                $("#spinner").show(); //mostramos el spinner
                 event.preventDefault(); //evitamos que se envíe el formulario
                  // Obtener los datos del formulario
              var formData = $(this).serialize();
@@ -46,6 +54,7 @@
                     data: formData,                   
                     success: function(response){ //si la petición se ha realizado correctamente
                         console.log(response);
+                        $("#spinner").hide();
                     },
                     error: function(xhr, status, error){
                           console.error(xhr.responseText); // Imprimir mensaje de error en la consola
@@ -53,12 +62,18 @@
                 });
             });
             $("button").click(function(){
+        
+                $("#spinner").show();
+
                 //cuando se haga clic en el botón
                 $.ajax({
                     type: "GET",
                     url: "vehiculos.php",
                     success: function(response){ //si la petición se ha realizado correctamente
-                       
+                      // Después de 3 segundos, ocultar el spinner
+
+    $("#spinner").hide();
+
                         const vehiculos = JSON.parse(response); //parseamos la respuesta a JSON
                         $("#resultadosBusqueda").empty(); //vaciamos el div resultadosBusqueda
                       
@@ -75,7 +90,7 @@
                             let modelo=vehiculo[6];
                             let acabado=vehiculo[7];
                             console.debug("nombre : " + nombre);
-                            $("#resultadosBusqueda").append("<p>Nombre: " + nombre + "</p>");
+                            $("#resultadosBusqueda").append("<p>Nombre: " + nombre + "</p>").show (2000);
                             $("#resultadosBusqueda").append("<p>Apellidos: " + apellidos + "</p>");
                             $("#resultadosBusqueda").append("<p>Email: " + email + "</p>");
                             $("#resultadosBusqueda").append("<p>Fecha de Nacimiento: " + fecha_de_nacimiento + "</p>");
@@ -83,7 +98,7 @@
                             $("#resultadosBusqueda").append("<p>Marca: " + marca + "</p>");
                             $("#resultadosBusqueda").append("<p>Modelo: " + modelo + "</p>");
                             $("#resultadosBusqueda").append("<p>Acabado: " + acabado + "</p>");
-                            $("#resultadosBusqueda").append("<hr>");
+                            $("#resultadosBusqueda").append("<hr>").fadeIn(2000);
                         }
 
                        
@@ -100,6 +115,10 @@
 </head>
 <body>
     <h1> Uso de Jquery</h1>
+    <div id="spinner" class="spinner-border text-primary" style="display:none;">
+        <span class="sr-only">Loading...</span>
+      </div>
+      
     <form>
 
     <table>
