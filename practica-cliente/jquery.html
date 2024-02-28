@@ -1,172 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="icon" href="img/book.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/estilos.css">
-
-    <script src="./json/carnetsconducir.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
     <script>
-        $(document).ready(function(){
-            $("h1").animate({fontSize: "3em"}, 2000);
-            $("form").slideUp(2000).slideDown(2000);
-            //document ready se ejecuta cuando la página ha cargado completamente
-            $.each(carnets, function(index, value){
-                $("#carnet").append("<option value='"+value.tipo+"'>"+value.tipo+"</option>"); 
-                //recorremos el array de carnets y añadimos cada uno al select
-            });
-            $("#carnet").animate({fontSize: "2em"}, 2000);
-            //animamos el tamaño de la fuente del select carnet
-            
-            $.each(marcas, function(index, value){
-                $("#marca").append("<option value='"+value.marca+"'>"+value.marca+"</option>"); 
-                //recorremos el array de marcas, obtenido a través del fichero json y añadimos cada uno al select
-            });
-   
-            $("#marca").change(function(){
-           
-                //cada vez que cambie el valor del select de marca, se ejecutará esta función
-                $("#modelo").empty(); //vaciamos el select de modelos
-                $.each(marcas, function(index, value){
-                    if(value.marca==$("#marca").val()){
-                        $.each(value.modelos, function(index, value){
-                            //recorremos el array de modelos de la marca seleccionada y los añadimos al select
-                            $("#modelo").append("<option value='"+value+"'>"+value+"</option>"); 
-                        });
-                    }
-                });
-            
-            });
-            $("#marca").val("Audi").change(); //seleccionamos la marca Audi y ejecutamos el evento change
-            $("form").submit(function(event){
-                //cuando se envíe el formulario
-                $("#spinner").show(); //mostramos el spinner
-                event.preventDefault(); //evitamos que se envíe el formulario
-                 // Obtener los datos del formulario
-             var formData = $(this).serialize();
-                console.log(formData);
-                $.ajax({
-                    type: "POST",
-                    url: "vehiculos.php",
-                    data: formData,                   
-                    success: function(response){ //si la petición se ha realizado correctamente
-                        console.log(response);
-                        $("#spinner").hide();
-                    },
-                    error: function(xhr, status, error){
-                          console.error(xhr.responseText); // Imprimir mensaje de error en la consola
-            }
-                });
-            });
-            $("button").click(function(){
-        
-                $("#spinner").show();
+        $(document).ready(function() { //cuando el documento esté listo
+  var currentIndex = 0; //índice de la imagen actual
+  var slides = $('.slide'); //todas las imágenes
+  var totalSlides = slides.length; //número total de imágenes
+  var efectosJquery = ['bounce', 'shake', 'slide', 'explode', 'puff', 'blind', 'clip', 'drop', 'fold', 'highlight', 'pulsate', 'scale', 'size'];
 
-                //cuando se haga clic en el botón
-                $.ajax({
-                    type: "GET",
-                    url: "vehiculos.php",
-                    success: function(response){ //si la petición se ha realizado correctamente
-                      // Después de 3 segundos, ocultar el spinner
+  showSlide(currentIndex,1000); // Mostrar la primera imagen al cargar la página
 
-    $("#spinner").hide();
 
-                        const vehiculos = JSON.parse(response); //parseamos la respuesta a JSON
-                        $("#resultadosBusqueda").empty(); //vaciamos el div resultadosBusqueda
-                      
-                        for (let vehiculo of vehiculos) {
-                            //recorremos el array de vehículos y mostramos cada registro en el div resultadosBusqueda
-                           console.log('vehículo->' + vehiculo);
-                            let nombre=vehiculo[0]; //obtenemos el nombre del vehículo
 
-                            let apellidos=vehiculo[1];
-                            let email=vehiculo[2];
-                            let fecha_de_nacimiento=vehiculo[3];
-                            let carnet=vehiculo[4];
-                            let marca=vehiculo[5];
-                            let modelo=vehiculo[6];
-                            let acabado=vehiculo[7];
-                            console.debug("nombre : " + nombre);
-                            $("#resultadosBusqueda").append("<p>Nombre: " + nombre + "</p>").show (2000);
-                            $("#resultadosBusqueda").append("<p>Apellidos: " + apellidos + "</p>");
-                            $("#resultadosBusqueda").append("<p>Email: " + email + "</p>");
-                            $("#resultadosBusqueda").append("<p>Fecha de Nacimiento: " + fecha_de_nacimiento + "</p>");
-                            $("#resultadosBusqueda").append("<p>Carnet de conducir: " + carnet + "</p>");
-                            $("#resultadosBusqueda").append("<p>Marca: " + marca + "</p>");
-                            $("#resultadosBusqueda").append("<p>Modelo: " + modelo + "</p>");
-                            $("#resultadosBusqueda").append("<p>Acabado: " + acabado + "</p>");
-                            $("#resultadosBusqueda").append("<hr>").fadeIn(2000);
-                        }
+  function showSlide(index, tiempo=500) { //función para mostrar una imagen
+    slides.removeClass('current'); //eliminamos la clase current de todas las imágenes
+    slides.eq(index).addClass('current').delay(tiempo).fadeIn(); //añadimos la clase current a la imagen que queremos mostrar
+    //buscamos el texto que está debajo de la imagen
+    var texto = slides.eq(index).find('p');
+    //damos un efecto de toggle al texto
+    texto.fadeIn(tiempo).animate({
+    fontSize: '24px'
+  }, tiempo);
+  let efectoRandom = Math.floor(Math.random() * efectosJquery.length);
+  let vecesRandom = Math.floor(Math.random() * 4 + 1);
+  var info =document.createElement('p');
+  info.innerHTML = `Efecto: ${efectosJquery[efectoRandom]} - Veces: ${vecesRandom}`;
+    slides.eq(index).append(info);
+  slides.eq(currentIndex).effect(efectosJquery[efectoRandom], { times: vecesRandom }, 700); // Efecto de rebote tres veces
+  }
 
-                       
-                    },
-                    error: function(xhr, status, error){
-                          console.error(xhr.responseText); // Imprimir mensaje de error en la consola
-            }
-                });
-            });
-        });
-        
-        
+  $('#prevBtn').click(function() { //si hacemos clic en el botón de anterior
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; //restamos 1 al índice, si es negativo, volvemos al último
+    showSlide(currentIndex); //mostramos la imagen
+  });
+
+  $('#nextBtn').click(function() { //si hacemos clic en el botón de siguiente
+    currentIndex = (currentIndex + 1) % totalSlides; //sumamos 1 al índice, si es mayor que el total, volvemos al primero
+    showSlide(currentIndex); //mostramos la imagen
+  });
+});
+
     </script>
 </head>
 <body>
-    <h1> Uso de Jquery</h1>
-    <div id="spinner" class="spinner-border text-primary" style="display:none;">
-        <span class="sr-only">Loading...</span>
+    <div id="slider">
+        <div class="slide">
+          <img src="img/cockapoo1.jpg" alt="Cockapoo 1">
+          <p>Los Cockapoos son una raza de perros híbrida que resulta del cruce entre un Cocker Spaniel y un Caniche (Poodle). Se cree que surgieron en Estados Unidos en la década de 1950, aunque el cruce entre Cocker Spaniels y Poodles puede haber ocurrido mucho antes.</p>
+        </div>
+        <div class="slide">
+          <img src="img/cockapoo2.jpg" alt="Cockapoo 2">
+          <p>Los Cockapoos pueden variar en tamaño dependiendo del tipo de Caniche utilizado en el cruce. Pueden ser de tamaño toy, miniatura o estándar. Por lo general, tienen una apariencia peluda y esponjosa, con orejas largas y caídas, y un hocico de longitud media. Su pelaje puede ser rizado o ligeramente ondulado.
+
+          </p>
+        </div>
+        <div class="slide">
+          <img src="img/cockapoo3.jpg" alt="Cockapoo 3">
+          <p>Los Cockapoos suelen ser conocidos por ser perros cariñosos, juguetones e inteligentes. Tienen una naturaleza amigable y tienden a llevarse bien con niños y otros animales domésticos. También son perros muy adaptables que pueden ser adecuados tanto para vivir en apartamentos como en casas con patio.
+
+          </p>
+        </div>
+        <div class="slide">
+            <img src="img/cockapoo4.jpg" alt="Cockapoo 4">
+            <p>El cuidado de un Cockapoo puede requerir un cepillado regular para evitar que su pelaje se enrede y para mantenerlo limpio. Además, necesitan ejercicio diario y estimulación mental para mantenerse felices y saludables. Como cualquier otro perro, también requieren visitas regulares al veterinario, vacunaciones y cuidado dental adecuado.
+
+            </p>
+          </div>
       </div>
       
-    <form>
-
-    <table>
-        <tr>
-            <td>Nombre:</td>
-            <td><input type="text" name="nombre" required minlength="2"></td>
-        </tr>
-        <tr>
-            <td>Apellidos:</td>
-            <td><input type="text" name="apellidos" required minlength="3"></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" name="email" required></td>
-        </tr>
-        <tr>
-            <td>Fecha de nacimiento:</td>
-            <td><input type="date" name="fecha_de_nacimiento"></td>
-        </tr>
-        <tr>
-            <td>Carnet de conducir:</td>
-            <td><select id="carnet" name="carnet"></select></td>
-        </tr>
-        <tr>
-            <td>Marca vehículo:</td>
-            <td><select id="marca" name="marca"></select>></td>
-        </tr>
-        <tr>
-            <td>Modelo:</td>
-            <td><select id="modelo" name="modelo"></select>></td>
-        </tr>
-        <tr>
-            <td>Acabado:</td>
-            <td><input type="text" name="acabado"></td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Enviar">
-            </td>
-        </tr>
-    </table>
-</form>
-        <hr>
-        <h2>Buscar registros de usuario</h2>
-        <button> Mostrar todos los registros guardados</button>
-       <div id="resultadosBusqueda"></div>
-        <footer>
-            <a href="#" onclick="window.href=window.history.back();" >Volver</a>
+      <button id="prevBtn">Anterior</button>
+      <button id="nextBtn">Siguiente</button>
+      
+      <footer>
+        <a href="#" onclick="window.href=window.history.back();" >Volver</a>
         </footer>
-</body>
+    </body>
 </html>

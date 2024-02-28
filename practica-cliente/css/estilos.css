@@ -44,3 +44,19 @@
 
 
     }
+    #slider {
+        width: 100%;
+        overflow: hidden;
+      }
+      
+      .slide {
+        display: none;
+      }
+      
+      .slide img {
+        max-width: 50%;
+      }
+      
+      .current {
+        display: block;
+      }
