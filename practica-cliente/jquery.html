@@ -30,10 +30,11 @@
   }, tiempo);
   let efectoRandom = Math.floor(Math.random() * efectosJquery.length);
   let vecesRandom = Math.floor(Math.random() * 4 + 1);
+  let tiemporandom = Math.floor(Math.random() * 2000 + 1);
   var info =document.createElement('p');
-  info.innerHTML = `Efecto: ${efectosJquery[efectoRandom]} - Veces: ${vecesRandom}`;
-    slides.eq(index).append(info);
-  slides.eq(currentIndex).effect(efectosJquery[efectoRandom], { times: vecesRandom }, 700); // Efecto de rebote tres veces
+  info.innerHTML = `Efecto: ${efectosJquery[efectoRandom]} - Veces: ${vecesRandom} - Tiempo: ${tiemporandom}ms`;
+    slides.eq(index).append(info); //añadimos el texto al final de la imagen
+  slides.eq(currentIndex).effect(efectosJquery[efectoRandom], { times: vecesRandom }, tiemporandom); //aplicamos el efecto a la imagen
   }
 
   $('#prevBtn').click(function() { //si hacemos clic en el botón de anterior
