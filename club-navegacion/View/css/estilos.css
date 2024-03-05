@@ -1,0 +1,32 @@
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    overflow: hidden;
+  }
+  /* Añade opacidad para hacer el contenido legible */
+  .content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+  }
+  nav{
+    border:1px solid greenyellow;
+  }
+      /* Estilos adicionales para el enlace personalizado */
+      .custom-link {
+        color: blue; /* Color azul */
+        text-decoration: underline; /* Subrayado */
+        cursor: pointer; /* Cambio del cursor a mano */
+      }
+  
+      /* Estilos adicionales para el enlace personalizado al pasar el ratón */
+      .custom-link:hover {
+        color: darkblue; /* Cambio de color al pasar el ratón */
+        text-decoration: underline; /* Mantener el subrayado al pasar el ratón */
+      }
