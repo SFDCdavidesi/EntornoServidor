@@ -30,3 +30,11 @@ video {
         color: darkblue; /* Cambio de color al pasar el ratón */
         text-decoration: underline; /* Mantener el subrayado al pasar el ratón */
       }
+   /* Estilo para limitar el tamaño máximo de las imágenes dentro de la tabla con el ID listadoCursos */
+   #listadoCursos img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .hand-cursor {
+    cursor: pointer;
+}

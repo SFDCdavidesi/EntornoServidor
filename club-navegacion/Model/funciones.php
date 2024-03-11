@@ -19,4 +19,21 @@ curl_close($ch);
 return $response;
 
 }
+
+function get_fotos_by_directory($directory){
+    $directory="../View/".$directory;
+    $fotos = array();
+    $files = scandir($directory);
+    foreach($files as $file){
+        if (is_file($directory . "/" . $file)){
+          // $fotos[]=$file;
+          $fotos[]=["nombre"=>$file,"ruta"=>$directory . "/" . $file,"size"=>filesize($directory . "/" . $file)];
+        }
+    }
+
+      
+        return $fotos;
+    }
+
+      
 ?>

@@ -58,10 +58,18 @@
                echo  json_encode($json, JSON_PRETTY_PRINT);
             
             break;
+                case "ver_cursos":
+                    $verFormularioGestionCursos=false;
+                    include ("../View/gestion_cursos.php");
+                    break;
      case "gestion_cursos": 
-                $cursos = get_cursos_by_id(null);
+                //$cursos = get_cursos_by_id(null);
+                if ($_SESSION["rol"]=="admin"){
+                    $verFormularioGestionCursos=true;
+                }
                 $lugares=get_lugar_by_id(null);
                 $tiempos=get_tiempo_by_id(null);
+                $fotos=get_fotos_by_directory("img/fotosCursos");
                 include('../View/gestion_cursos.php');
                 break;
         case  "update_libroForm":

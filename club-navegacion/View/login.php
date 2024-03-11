@@ -29,7 +29,8 @@ $(document).ready(function() {
             success: function(response) {
                 
                 $('button[type="submit"]').prop('disabled', false);
-                var respuesta = JSON.parse(response);
+                var respuesta = respuesta === 'string' ? JSON.parse(response) : response;
+              
                 console.table(respuesta);
                 if (respuesta.id == 1) {
                     mostrarModal('info', respuesta.mensaje);
@@ -54,29 +55,27 @@ $(document).ready(function() {
             data: datos,
             success: function(response) {
                 $('button[type="submit"]').prop('disabled', false);
-                var respuesta = JSON.parse(response);
-                console.table(respuesta);
+            
+                var respuesta = typeof response === 'string' ? JSON.parse(response) : response;
+                
+                if (respuesta.length>0){
+                    respuesta=respuesta[0];
+                }
                 if (respuesta.id == 1) {
-                    $.ajax({
-                      type: "POST",
-                      url: "./?action=guarda_sesion",
-                      data: {usuario:respuesta.usuario, rol:respuesta.rol},
-                      success: function(response) {
-                       var respuesta = JSON.parse(response);
-                       if (respuesta.id == 1) {
-                        window.location.href = window.location.href;
-                      }else{
-                        mostrarModal('Error', respuesta.mensaje);
-                      }
-                    }
-                  });
+                  window.location.href="./?action=menu_principal";
+
                 } else {
                     mostrarModal('Error', respuesta.mensaje);
                 }
+                console.table(respuesta);
+   
             }
 
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            mostrarModal('Error', errorThrown);
         });
       });
+      $('button[type="submit"]').prop('disabled', false);
 });
 </script>
 <div class="container mt-5 d-none" id="alta_usuarios">

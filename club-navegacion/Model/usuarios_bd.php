@@ -149,7 +149,11 @@ function borra_sesion($usuario){
 function crearSesion($usuario,$rol){
     $_SESSION["usuario"]=$usuario;
     $_SESSION["rol"]=$rol;
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        // Si no hay una sesión activa, inicia una nueva sesión
+        session_start();
+    }
+    
 /**
     setcookie("usuario",$usuario,time()+(3600*24));
     if($rol){

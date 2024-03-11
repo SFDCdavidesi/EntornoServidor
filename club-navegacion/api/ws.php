@@ -1,4 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    // Si no hay una sesión activa, inicia una nueva sesión
+    session_start();
+}
+
   header('Content-Type: text/html; charset=utf-8');
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
@@ -16,19 +21,19 @@
     $rol=(isset($_REQUEST["rol"])?$_REQUEST["rol"]:"");
     $password=(isset($_REQUEST["password"])?$_REQUEST["password"]:"");
     $password2=(isset($_REQUEST["password2"])?$_REQUEST["password2"]:"");
-    $resultArray=array("error"=>"No se ha encontrado la acción");
+    $titulo=(isset($_REQUEST["titulo"])?$_REQUEST["titulo"]:"");
     $descripcion=(isset($_REQUEST["descripcion"])?$_REQUEST["descripcion"]:"");
     $nivel_requerido=(isset($_REQUEST["nivel_requerido"])?$_REQUEST["nivel_requerido"]:"");
 
     $duracion=(isset($_REQUEST["duracion"])?$_REQUEST["duracion"]:"");
     $medida_tiempo=(isset($_REQUEST["medida_tiempo"])?$_REQUEST["medida_tiempo"]:"");
-    $lugar_id=(isset($_REQUEST["lugar_id"])?$_REQUEST["lugar_id"]:"");
+    $ubicacion=(isset($_REQUEST["ubicacion"])?$_REQUEST["ubicacion"]:"");
     $numero_plazas=(isset($_REQUEST["numero_plazas"])?$_REQUEST["numero_plazas"]:"");
     $inscritos=(isset($_REQUEST["inscritos"])?$_REQUEST["inscritos"]:"");
-    $foto1=(isset($_FILES["foto1"])?$_FILES["foto1"]:null);
-    $foto2=(isset($_FILES["foto2"])?$_FILES["foto2"]:null);
-    $foto3=(isset($_FILES["foto3"])?$_FILES["foto3"]:null);
-    $foto4=(isset($_FILES["foto4"])?$_FILES["foto4"]:null);
+    $id=(isset($_REQUEST["id"])?$_REQUEST["id"]:"");
+    $duracion=(isset($_REQUEST["duracion"])?$_REQUEST["duracion"]:"");
+    $entradilla=(isset($_REQUEST["entradilla"])?$_REQUEST["entradilla"]:"");
+    $unidadDuracion=(isset($_REQUEST["unidadDuracion"])?$_REQUEST["unidadDuracion"]:"");
 
     switch($action){
         case "crea_usuario":
@@ -36,19 +41,34 @@
             break;
         case "login":
             $resultArray=comprueba_usuario($nombreUsuario,$password);
+            if ($resultArray["id"]==1){ //si el login es correcto, guardamos la sesión
+                $_SESSION["usuario"]=$nombreUsuario;
+                $_SESSION["rol"]=$resultArray["rol"];
+            }
             break;
+        
         case "alta_curso":
-            $arrayAltaCurso=array("titulo"=>$nombre,"descripcion"=>$descripcion,"nivel_requerido"=>$nivel_requerido,"duracion"=>$duracion,"medida_tiempo"=>$medida_tiempo,"lugar_id"=>$lugar_id,"numero_plazas"=>$numero_plazas,"inscritos"=>$inscritos,"foto1"=>$foto1,"foto2"=>$foto2,"foto3"=>$foto3,"foto4"=>$foto4);
-            $resultArray=alta_curso($arrayAltaCurso,$_FILES);
+            $arrayAltaCurso=array("titulo"=>$titulo,"entradilla"=>$entradilla,"descripcion"=>$descripcion,"nivel_requerido"=>$nivel_requerido,"duracion"=>$duracion,"medida_tiempo"=>$unidadDuracion,"lugar_id"=>$ubicacion,"numero_plazas"=>$numero_plazas,"inscritos"=>$inscritos);
+            $fotosSeleccionadas=$_POST["fotos"];
+            $resultArray=alta_curso($arrayAltaCurso,$fotosSeleccionadas);
+            break;
+        case "get_curso": //sólo un curso
+            $resultArray=get_cursos_by_id($id);
+            break;
+        case "get_cursos":
+            foreach(get_cursos_by_id(null) as $curso){
+                $resultArray[]=$curso;
+            }
             break;
         default:
             $resultArray=array("error"=>"No se ha encontrado la acción");
             break;
 
     }
-    $json= json_encode($resultArray);
+   // $json = json_encode($resultArray,JSON_PRETTY_PRINT);
+    
     /* Output header */
         header('Content-type: application/json');
-       echo  json_encode($json, JSON_PRETTY_PRINT);
+       echo  json_encode($resultArray, JSON_PRETTY_PRINT);
         
   ?>

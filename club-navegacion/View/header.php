@@ -19,7 +19,8 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- bootstrap y jquery --> 
-    <link href="../View/css/estilos.css" rel="stylesheet">
+    <link href="../View/css/estilos.css?v3" rel="stylesheet">
+    <script src="../View/js/cursos.js"></script>
 </head>
 <body>
 
