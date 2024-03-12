@@ -118,6 +118,31 @@ function alta_curso($arrayCurso,$fotosSeleccionadas){
     }
 
 }
+function get_niveles_by_id($id){
+    try{
+        $con =BD::getConexion();
+        $query="select * from niveles ";
+        if ($id){ //el nivel está definido, lo incluimos para filtrarlo
+            $query.=" where id=:id";
+        }
+        $query.=" order by id";
+       $statement= $con->prepare($query);
+        if ($id){
+            $statement->bindValue(":id",$id);
+        }
+        $statement->execute();
+        $resultado=$statement->fetchAll();
+        $statement->closeCursor();
+        return $resultado;
+    }catch(PDOException $e){
+        $error="Ha ocurrido un error obteniendo  el nivel en la base de datos ";
+        $error.= $e->getMessage();
+        include ("../View/error.php");
+        exit();
+    }
+
+
+}
 function get_cursos_by_id($id){
     try{
         $con =BD::getConexion();
@@ -127,7 +152,9 @@ function get_cursos_by_id($id){
         cursos.descripcion as descripcion,
         lugares.nombre AS ubicacion,
         cursos.duracion as duracion, 
-        medida_tiempo.nombre AS unidadDuracion
+        medida_tiempo.nombre AS unidadDuracion,
+        activo,
+        nivel_requerido
     
     FROM
         cursos
@@ -136,7 +163,7 @@ function get_cursos_by_id($id){
     JOIN
         medida_tiempo ON cursos.medida_tiempo = medida_tiempo.id";
         if ($id){ //el curso está definido, lo incluimos para filtrarlo
-            $query.=" where curso.id=:id";
+            $query.=" where cursos.id=:id";
         }
         $query.=" order by titulo";
        $statement= $con->prepare($query);

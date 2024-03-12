@@ -26,7 +26,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="../View/img/velero.png" class="w-25"></a>
+    <a class="navbar-brand" href="./?action=inicio"><img src="../View/img/velero.png" class="w-25"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,7 +45,7 @@
             ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link"  href="./?action=calendario">Calendario</a>
         </li>
             <li class="nav-item dropdown float-right">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

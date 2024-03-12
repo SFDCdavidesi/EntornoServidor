@@ -11,6 +11,8 @@ if (session_status() == PHP_SESSION_NONE) {
   require_once("../Model/BD.php");
   require_once("../Model/usuarios_bd.php");
     require_once("../Model/cursos_bd.php");
+    require_once("../Model/calendario_bd.php");
+
 
     $action = (isset($_REQUEST["action"])?$_REQUEST["action"]:"");
     //obtenemos las variables que vienen por POST
@@ -34,8 +36,24 @@ if (session_status() == PHP_SESSION_NONE) {
     $duracion=(isset($_REQUEST["duracion"])?$_REQUEST["duracion"]:"");
     $entradilla=(isset($_REQUEST["entradilla"])?$_REQUEST["entradilla"]:"");
     $unidadDuracion=(isset($_REQUEST["unidadDuracion"])?$_REQUEST["unidadDuracion"]:"");
+    $activos=(isset($_REQUEST["activos"])?$_REQUEST["activos"]:"");
+
+//datos para alta de curso y calendario
+    $curso=(isset($_REQUEST["curso"])?$_REQUEST["curso"]:"");
+    $nivel=(isset($_REQUEST["nivel"])?$_REQUEST["nivel"]:"");
+    $plazas=(isset($_REQUEST["plazas"])?$_REQUEST["plazas"]:"");
+    $fecha=(isset($_REQUEST["fecha"])?$_REQUEST["fecha"]:"");
+    $activo=(isset($_REQUEST["activo"])?$_REQUEST["activo"]:"");
+  
+    $unidad_medida=(isset($_REQUEST["unidad_medida"])?$_REQUEST["unidad_medida"]:"");
+    $precio=(isset($_REQUEST["precio"])?$_REQUEST["precio"]:"");
+
+    $mes=(isset($_REQUEST["mes"])?$_REQUEST["mes"]:"");
 
     switch($action){
+        case "get_calendarios":
+            $resultArray=get_calendarios_by_month($mes);
+            break;
         case "crea_usuario":
             $resultArray=upsert_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
             break;
@@ -46,7 +64,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 $_SESSION["rol"]=$resultArray["rol"];
             }
             break;
-        
+        case "alta_calendario":
+            $resultArray=alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,$unidad_medida);
+            break;
         case "alta_curso":
             $arrayAltaCurso=array("titulo"=>$titulo,"entradilla"=>$entradilla,"descripcion"=>$descripcion,"nivel_requerido"=>$nivel_requerido,"duracion"=>$duracion,"medida_tiempo"=>$unidadDuracion,"lugar_id"=>$ubicacion,"numero_plazas"=>$numero_plazas,"inscritos"=>$inscritos);
             $fotosSeleccionadas=$_POST["fotos"];
@@ -55,9 +75,24 @@ if (session_status() == PHP_SESSION_NONE) {
         case "get_curso": //sólo un curso
             $resultArray=get_cursos_by_id($id);
             break;
+        case "get_niveles":
+            foreach(get_niveles_by_id(null) as $nivel){
+                $resultArray[]=$nivel;
+            }
+            break;
         case "get_cursos":
+
             foreach(get_cursos_by_id(null) as $curso){
-                $resultArray[]=$curso;
+                if ($activos=="true"){
+                    if (  $curso["activo"]==1){
+                        $resultArray[]=$curso;
+                    }
+                    
+                }else{
+                    $resultArray[]=$curso;
+                }
+
+               
             }
             break;
         default:

@@ -58,9 +58,17 @@
                echo  json_encode($json, JSON_PRETTY_PRINT);
             
             break;
+            case "alta_actividades":
+             
+                include ("../View/alta_calendario.php");
+                break;
+                
                 case "ver_cursos":
                     $verFormularioGestionCursos=false;
                     include ("../View/gestion_cursos.php");
+                    break;
+                case "calendario":
+                    include ("../View/calendario.php");
                     break;
      case "gestion_cursos": 
                 //$cursos = get_cursos_by_id(null);
