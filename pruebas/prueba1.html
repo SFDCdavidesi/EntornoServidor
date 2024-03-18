@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal con Bootstrap, jQuery y Carrusel de Fotos con Web Service</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Slick Carousel CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+  <!-- Slick Carousel JS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <style>
+    /* Estilo personalizado para el carrusel */
+    #carousel {
+      margin-top: 20px;
+    }
+    #carousel img {
+      width: 100%;
+    }
+  </style>
+
+    
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1>Ejemplo de Modal con Bootstrap, jQuery y Carrusel de Fotos con Web Service</h1>
+  <p><a href="#" id="mostrar-modal">Mostrar información</a></p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carousel"></div>
+        <table class="table mt-3">
+          <tbody>
+            <tr>
+              <td>Título</td>
+              <td>Contenido del título</td>
+            </tr>
+            <!-- Otras filas de la tabla -->
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="owl-carousel owl-loaded owl-drag">
+
+  <div class="owl-stage-outer"><div class="owl-stage"></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div
+    <div class="item">
+      <img src="../View/img/fotosCursos/Velero 6.jpg" alt="fotos ">
+    </div>
+    <div class="item">
+      <img src="../View/img/fotosCursos/Velero 8.jpg" alt="fotos ">
+    </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    $("#mostrar-modal").click(function(){
+      $("#infoModal").modal('show');
+      cargarFotos();
+    });
+
+    // Función para cargar las fotos desde el servicio web
+    function cargarFotos() {
+      $.ajax({
+       url: "http://localhost/club-navegacion/api/ws.php?action=get_fotos_curso&id=" + 10,
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          // Limpiar el carrusel
+          $('#carousel').empty();
+          // Agregar las fotos al carrusel
+          $.each(data, function(index, photo) {
+            $('#carousel').append('<div><img src="' + photo.url + '" alt="Foto ' + (index+1) + '"></div>');
+          });
+          // Inicializar el carrusel
+          $('#carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 2000, // Cambia cada 2 segundos
+            arrows: false, // Sin flechas de navegación
+            dots: false, // Sin indicadores de puntos
+            fade: true // Efecto de fundido entre las imágenes
+          });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log("Error al cargar las fotos:", errorThrown);
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

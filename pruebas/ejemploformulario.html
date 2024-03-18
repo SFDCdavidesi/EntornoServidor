@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar de alta perros</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="raza">Raza:</label>
+        <select id="raza" name="raza" required>
+            <option value="labrador">Labrador</option>
+            <option value="bulldog">Bulldog</option>
+            <option value="pastor-aleman">Pastor Alemán</option>
+            <!-- Add more options as needed -->
+        </select><br><br>
+
+        <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required><br><br>
+
+        <label for="peso">Peso:</label>
+        <input type="number" id="peso" name="peso" required><br><br>
+
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+
+        <input type="submit" value="Guardar">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<?php
+$host = "localhost";
+$dbname = "database_name";
+$username = "user";
+$password = "password1234";
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Insert your code here to interact with the database
+    
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+?>
+        <?php
+        // Get the data from the form
+        $nombre = $_POST["nombre"];
+        $raza = $_POST["raza"];
+        $fechaNacimiento = $_POST["fecha-nacimiento"];
+        $peso = $_POST["peso"];
+        $foto = $_FILES["foto"];
+        //insertamos los datos en la base de datos
+        $query="INSERT INTO perros (nombre, raza, fecha_nacimiento, peso, foto) VALUES (:nombre, :raza, :fecha_nacimiento, :peso, :foto)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":nombre", $nombre);
+        $stmt->bindParam(":raza", $raza);
+        $stmt->bindParam(":fecha_nacimiento", $fechaNacimiento);
+        $stmt->bindParam(":peso", $peso);
+        $stmt->bindParam(":foto", $foto);
+        $stmt->execute();
+        // Insert the data into the database
+        //controlamos si ha habido un error
+        if ($stmt->rowCount() == 1) {
+            echo "El perro se ha guardado correctamente";
+        } else {
+            echo "Ha habido un error al guardar el perro";
+        }
+        // Connect to the database using PDO and insert the data
+        // Insert code here
+    }
+    ?>
+</body>
+</html>
+  rm-data"></form>
+
+</body>
+</html>

@@ -34,6 +34,10 @@ function get_fotos_by_directory($directory){
       
         return $fotos;
     }
+//función para comprobar si el usuario es administrador
+    function esadmin(){
 
+        return (isset($_SESSION["rol"]) && $_SESSION["rol"]=="admin");
+    }
       
 ?>

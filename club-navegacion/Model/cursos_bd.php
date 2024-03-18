@@ -50,7 +50,8 @@ function get_tiempo_by_id($id){
 
 
 }
-function alta_curso($arrayCurso,$fotosSeleccionadas){
+
+function upsert_curso($arrayCurso,$fotosSeleccionadas,$id){
     $arrayResultado = array();
     try{
         /**  `id` int(11) NOT NULL,
@@ -67,8 +68,18 @@ function alta_curso($arrayCurso,$fotosSeleccionadas){
   `foto3` varchar(255) DEFAULT NULL,
   `foto4` varchar(255) DEFAULT NULL */
         $con =BD::getConexion();
-        $query="insert into cursos (titulo,entradilla,descripcion,lugar_id,duracion,medida_tiempo,createdby,nivel_requerido) values (:titulo,:entradilla,:descripcion,:lugar_id,:duracion,:medida_tiempo,:createdby,1)";
+        if ($id==null){
+            $query="insert into cursos (titulo,entradilla,descripcion,lugar_id,duracion,medida_tiempo,createdby,nivel_requerido,activo) values (:titulo,:entradilla,:descripcion,:lugar_id,:duracion,:medida_tiempo,:createdby,1,:activo)";
+        }else{
+            $query="update cursos set titulo=:titulo,entradilla=:entradilla,descripcion=:descripcion,lugar_id=:lugar_id,duracion=:duracion,medida_tiempo=:medida_tiempo,activo=:activo where id=:id";
+        }
+
         $statement= $con->prepare($query);
+        if ($id!=null){
+            $statement->bindValue(":id",$id);
+        }else{
+            $statement->bindValue(":createdby",$_SESSION["usuario"]);
+        }
         $statement->bindValue(":titulo",$arrayCurso["titulo"]);
         $statement->bindValue(":entradilla",$arrayCurso["entradilla"]);
         $statement->bindValue(":descripcion",$arrayCurso["descripcion"]);
@@ -78,7 +89,8 @@ function alta_curso($arrayCurso,$fotosSeleccionadas){
         $statement->bindValue(":duracion",$arrayCurso["duracion"]);
         $statement->bindValue(":medida_tiempo",$arrayCurso["medida_tiempo"]);
       
-        $statement->bindValue(":createdby",$_SESSION["usuario"]);
+      
+        $statement->bindValue(":activo",$arrayCurso["activo"]=="true"?1:0);
 
    
  
@@ -89,6 +101,15 @@ function alta_curso($arrayCurso,$fotosSeleccionadas){
         
         //insertamos las fotos en el caso de que se hayan incluido
         if ($fotosSeleccionadas!=null && count($fotosSeleccionadas)>0){
+            if ($id!=null){
+                $idcurso=$id;
+                //borramos las fotos anteriores
+                $query="delete from fotosCursos where id_curso=:id";
+                $statement= $con->prepare($query);
+                $statement->bindValue(":id",$id);
+                $statement->execute();
+                $statement->closeCursor();
+            }
             $queryFotos ="insert into fotosCursos (id_curso,foto) values ";
 
             for ($i=0;$i<count($fotosSeleccionadas);$i++){
@@ -154,7 +175,11 @@ function get_cursos_by_id($id){
         cursos.duracion as duracion, 
         medida_tiempo.nombre AS unidadDuracion,
         activo,
-        nivel_requerido
+        nivel_requerido,
+        numero_plazas,
+        cursos.lugar_id as lugar_id,
+        cursos.medida_tiempo as medida_tiempo
+        
     
     FROM
         cursos
@@ -186,7 +211,26 @@ function get_cursos_by_id($id){
     }
 
 }
+function get_fotos_curso($id){
+    try{
+        $con =BD::getConexion();
+        $query="select * from fotosCursos where id_curso=:id";
+        $statement= $con->prepare($query);
+        $statement->bindValue(":id",$id);
+        $statement->execute();
+        $resultado=$statement->fetchAll();
+        $statement->closeCursor();
+        return $resultado;
+    }catch(PDOException $e){
+        $error="Ha ocurrido un error obteniendo  las fotos del curso en la base de datos ";
+        $error.= $e->getMessage();
+        
+       
+        exit();
+        return  array("id"=>0,"mensaje"=>$error);
+    }
 
+}
 function pintaOptionsSelect($arrayOpciones,$clave=null,$valor=null){
     $html="";
     foreach($arrayOpciones as $opcion){

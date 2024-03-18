@@ -23,8 +23,8 @@ if (isset($error)){
 <div class="content container-fluid">
   <div class="row">
     <div class="col-12 text-center mt-5">
-      <h1>Bienvenido</h1>
-      <p>Este es el contenido de tu página con un vídeo de fondo.</p>
+      <h1>Bienvenid@</h1>
+      <p>CLUB DE NAVEGACIÓN.</p>
     </div>
   </div>
 </div>

@@ -1,5 +1,7 @@
 <?php
-
+if ($mostrarheaderyfooter) {
+    include(__DIR__ . '/header.php');
+}
 ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap4.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
@@ -26,48 +28,7 @@
 
 </div>
 <script>
-function muestraCursos() {
 
-    $.ajax({
-        type: "GET",
-        url: "<?=$urlws?>?action=get_cursos",
-        success: function(data) {
-            // Llena la tabla con los datos recibidos
-            $('#listadoCursos').DataTable({
-                data: data,
-      
-
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json'
-                },
-
-                columns: [{
-                        data: 'id'
-                    },
-                    {
-                        data: 'titulo'
-                    },
-                    {
-                        data: 'ubicacion'
-                    },
-                    {
-                        data: 'duracion'
-                    },
-                    {
-                        data: 'unidadDuracion'
-                    }
-
-                    // Agrega más columnas según tus necesidades
-                ],
-                // Configura opciones de paginación, búsqueda, etc.
-                paging: true,
-                pageLength: 10, // Número de filas por página
-                // Agrega más opciones según tus necesidades
-            });
-        }
-    });
-
-}
 $(document).ready(function() {
  var $tablalistado = $('#listadoCursos').DataTable({
     "paging": true,
@@ -78,10 +39,16 @@ $(document).ready(function() {
             "type": "GET",
             "dataSrc": ""
         },
-            
+        "select": false,       
         "language": {
             "url": "//cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
         },
+         // Agrega una columna para los botones de edición
+         "columnDefs": [{
+                    "targets": -1, // Última columna
+                    "data": null,
+                    "defaultContent": "<button class='btnEditar'>Editar</button>"
+                }],
         "columns": [{
                 "data": "id"
             },
@@ -91,17 +58,88 @@ $(document).ready(function() {
             {
                 "data": "ubicacion"
             },
+   
+             {
+                        // Combina nombre y edad en una sola columna
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return data.duracion + ' ' + data.unidadDuracion + '';
+                        }
+                   
+            }
+            <?php
+            if (esadmin()) {
+                ?>
+            ,            
             {
-                "data": "duracion"
-            },
-            {
-                "data": "unidadDuracion"
-            }]
+                "data":  "<button class='btnEditar' >Editar</button>"
+            }
+            <?php
+            }
+            ?>
+        ]
         });
 
-        quit
+
+        $('#listadocursos').on('hover', 'tbody tr', function() {
+            $(this).css('cursor', 'pointer');
+            $(this).css('background-color', 'lightgray');
+        });
+        $('#listadoCursos').on('click', 'tbody tr button', function() {
+           $.ajax({
+                type: "GET",
+                url: "<?=$urlws?>?action=get_curso&id=" + $(this).closest('tr').find('td').eq(0).text(),
+                success: function(data) {
+                    data = typeof data === 'string' ? JSON.parse(data) : data;
+                    if (data.length>0){
+                    data=data[0];
+                    }
+                  
+                    $("#titulo").val(data.titulo);
+                    $("#entradilla").val(data.entradilla);
+                    $("#descripcion").val(data.descripcion);
+                    $("#id_lugar").val(data.lugar_id);
+                    $("#duracion").val(data.duracion);
+                    $("#unidadDuracion").val(data.medida_tiempo);
+                    $("#activo").val(data.activo);
+                    
+
+                    //obtenemos las fotos
+                    $.ajax({
+                        type: "GET",
+                        url: "<?=$urlws?>?action=get_fotos_curso&id=" + data.id,
+                        success: function(data) {
+                            data = typeof data === 'string' ? JSON.parse(data) : data;
+                            //recorremos el array obtenido con las fotos y preseleccionamos el select
+                            data.forEach(function(data) {
+                                $("#fotos option[value='" + data.foto + "']").prop('selected', true);
+                            });
+                        }
+                    });
+
+                    //cambiamos el texto del botón submit a modificar
+                    $('button[type="submit"]').text('Modificar');
+                    //mostramos un alert cuando se hace click en el botón de limpiar
+                    $('button[type="reset"]').click(function() {
+                        $('button[type="submit"]').text('Registrar Curso');
+                    });
+                    //creamos un campo hidden con el id del curso y lo adjuntamos al formulario
+                    var idCurso = $("<input>").attr("type", "hidden").attr("name", "id").val(data.id);
+                    $('#cursoForm').append(idCurso);
+                    //cambiamos el evento submit del formulario para que haga un update en lugar de un insert
+      
+                }
+            });
+});
+
+        
 });
 
 
 
 </script>
+<?php
+if ($mostrarheaderyfooter) {
+    include(__DIR__ . '/footer.php');
+}
+?>

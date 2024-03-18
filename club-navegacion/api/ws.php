@@ -51,6 +51,12 @@ if (session_status() == PHP_SESSION_NONE) {
     $mes=(isset($_REQUEST["mes"])?$_REQUEST["mes"]:"");
 
     switch($action){
+        case "get_fotos_curso":
+            $resultArray=get_fotos_curso($id);
+            break;
+        case "get_nivel_requerido":
+            $resultArray=get_niveles_by_id($id);
+            break;
         case "get_calendarios":
             $resultArray=get_calendarios_by_month($mes);
             break;
@@ -67,13 +73,23 @@ if (session_status() == PHP_SESSION_NONE) {
         case "alta_calendario":
             $resultArray=alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,$unidad_medida);
             break;
+       case "actualiza_curso":
+       $actualizandocurso=1;
         case "alta_curso":
-            $arrayAltaCurso=array("titulo"=>$titulo,"entradilla"=>$entradilla,"descripcion"=>$descripcion,"nivel_requerido"=>$nivel_requerido,"duracion"=>$duracion,"medida_tiempo"=>$unidadDuracion,"lugar_id"=>$ubicacion,"numero_plazas"=>$numero_plazas,"inscritos"=>$inscritos);
+            $arrayAltaCurso=array("titulo"=>$titulo,"entradilla"=>$entradilla,"descripcion"=>$descripcion,"nivel_requerido"=>$nivel_requerido,"duracion"=>$duracion,"medida_tiempo"=>$unidadDuracion,"lugar_id"=>$ubicacion,"numero_plazas"=>$numero_plazas,
+            "activo"=>$activo,
+            "inscritos"=>$inscritos);
             $fotosSeleccionadas=$_POST["fotos"];
-            $resultArray=alta_curso($arrayAltaCurso,$fotosSeleccionadas);
+            if (isset($actualizandocurso) && $actualizandocurso==1){
+                $resultArray=upsert_curso($arrayAltaCurso,$fotosSeleccionadas,$id);
+            }else{
+                          
+            $resultArray=upsert_curso($arrayAltaCurso,$fotosSeleccionadas,null);
+                        }
             break;
+       
         case "get_curso": //sólo un curso
-            $resultArray=get_cursos_by_id($id);
+             $resultArray=get_cursos_by_id($id);
             break;
         case "get_niveles":
             foreach(get_niveles_by_id(null) as $nivel){

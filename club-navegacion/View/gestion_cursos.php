@@ -34,6 +34,10 @@ include(__DIR__ . '/header.php');
 </select>
             </div>
             <div class="form-group">
+                <label for="activo">Activo:</label>
+                <input type="checkbox" id="activo" name="activo" value="1">
+            </div>
+            <div class="form-group">
                 <label for="fotos">Fotos:</label>
                 <table ><tr><td>     <select multiple class="form-control" id="fotos" name="fotos[]">
                    <?php
@@ -44,17 +48,48 @@ include(__DIR__ . '/header.php');
                 </select></td><td><img class="hand-cursor" id="fotoMostrada" ></td></tr></table>
            
             </div>
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
             <button type="submit" class="btn btn-primary">Registrar Curso</button>
         </form>
     </div>
 
         <script>
             $(document).ready(function () {
+      
                 $("#cursoForm").submit(function (event) {
                     event.preventDefault();
                     var form = $(this);
                     var url = form.attr('action');
                     var formData = new FormData(form[0]);
+                    //cormpruebo si el formulario tiene un campo llamado id
+                    let esModificacion=form.find("input[name='id']").length>0?true:false;
+                    //compruebo si el checkbox está marcado
+                    let checkboxMarcado=form.find("input[name='activo']").is(":checked");
+                    formData.append('activo', checkboxMarcado);
+// Convertir el valor del checkbox a booleano y agregarlo a FormData
+formData.append('miCheckbox', checkboxMarcado);
+                    if (esModificacion){
+                        $.ajax({
+                        type: "POST",
+                        url: "<?=$urlws?>?action=actualiza_curso",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        //nos aseguramos que el campo de tipo checkbox se envíe como booleano
+
+                        success: function (data) {
+                            // Remove unnecessary variable assignment
+                            var data=typeof data === 'string' ? JSON.parse(data) : data;
+                            alert("Curso registrado correctamente" + data.id);
+                    
+                            var table = $('#listadoCursos').DataTable();
+                            table.ajax.reload();
+                        },
+                        error: function (data) {
+                            alert("Error al modificar el curso");
+                        }
+                    });
+                    }else{
                     $.ajax({
                         type: "POST",
                         url: "<?=$urlws?>?action=alta_curso",
@@ -73,6 +108,7 @@ include(__DIR__ . '/header.php');
                             alert("Error al registrar el curso");
                         }
                     });
+                }
                 });
 
 
@@ -91,6 +127,9 @@ include(__DIR__ . '/header.php');
                      var ventana=window.open(foto,"_blank");
                     });
                 });
+
+                //editamos el curso
+
             });
             </script>
 </div>
