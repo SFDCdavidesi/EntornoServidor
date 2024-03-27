@@ -15,7 +15,7 @@
     $apellidos=(isset($_REQUEST["apellidos"])?$_REQUEST["apellidos"]:"");
     $email=(isset($_REQUEST["email"])?$_REQUEST["email"]:"");
     $rol=(isset($_REQUEST["rol"])?$_REQUEST["rol"]:"");
-
+    $token=(isset($_REQUEST["token"])?$_REQUEST["token"]:"");
 
 
 
@@ -58,6 +58,12 @@
                echo  json_encode($json, JSON_PRETTY_PRINT);
             
             break;
+            case "cambiarcontraseña":
+                include ("../View/cambiarcontraseña.php");
+                break;
+            case "recuperarcontraseña":
+                include ("../View/recuperarcontraseña.php");
+                break;
             case "alta_actividades":
              
                 include ("../View/alta_calendario.php");

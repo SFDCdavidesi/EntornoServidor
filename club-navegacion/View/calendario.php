@@ -4,10 +4,7 @@ include_once 'header.php';
 <link type="text/css" rel="stylesheet" href="../View/pluggins/calendar-gc.css" />
 <script src="../View/pluggins/calendar-gc.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 
 
 <div id="calendario" class="container">
@@ -49,10 +46,14 @@ include_once 'header.php';
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body ">
-                <div class="owl-carousel">
-
+            <div class="modal-content">
+                <div id="fotos">
+                    <div class="item"><img src="https://via.placeholder.com/150" alt="Imagen 1"></div>
                 </div>
+
+            </div>
+            <div class="modal-body ">
+
                 <table class="table mt-3">
                     <tbody>
                         <tr>
@@ -88,6 +89,11 @@ include_once 'header.php';
 
             </div>
             <div class="modal-footer">
+               <?php
+               if (isset($_SESSION) && isset($_SESSION["rol"])){?> <button type="button" class="btn btn-secondary" id="inscribirme"  >Inscribirme</button>
+               <?php
+               }
+               ?>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -141,6 +147,14 @@ $(document).ready(function() {
     }
     //obtenemos los calendarios del mes actual
     calendar.setDate(diaHoy);
+<?php
+if (isset($_SESSION) && isset($_SESSION["rol"])) { ?>
+$("#inscribirme").click(function(){
+    console.log("inscribirme en el curso "+cursoseleccionado);
+});
+
+    <?php
+}?>
     $.ajax({
         url: "<?=$urlws?>?action=get_calendarios",
         method: "GET",
@@ -168,7 +182,7 @@ $(document).ready(function() {
         }
     });
 
-   
+
 });
 
 function obtener_cursos() {
@@ -187,11 +201,11 @@ function obtener_cursos() {
         }
     });
 }
-
+var cursoseleccionado;
 function muestraDatosCurso(idCurso) {
 
     $("#infoModal").modal('show');
-
+    cursoseleccionado = idCurso;
     $.ajax({
         url: "<?=$urlws?>?action=get_curso&id=" + idCurso,
         method: "GET",
@@ -221,36 +235,55 @@ function muestraDatosCurso(idCurso) {
 
 
             //obtenemos las fotos del curso
-            cargarFotos('.owl-carousel',idCurso);
-     
+            cargarFotos('#fotos', idCurso);
+
         }
     });
 }
+var arrayfotos = [];
+var currentIndex = 0;
 
-function cargarFotos(idcarrusel,idcurso) {
-
-      $.ajax({
-        url: "<?=$urlws?>?action=get_fotos_curso&id="+idcurso,
+function cargarFotos(idcarrusel, idcurso) {
+    currentIndex = 0;
+    $.ajax({
+        url: "<?=$urlws?>?action=get_fotos_curso&id=" + idcurso,
         type: "GET",
         dataType: "json",
-        
-        success: function(data) {
-            $(idcarrusel).find('.item').remove();
 
-          // Agregar las nuevas fotos al carrusel
-          $.each(data, function(index, photo) {
-            var img = $('<img>').attr('src', photo.foto).attr('alt', 'Imagen ' + (index + 1));
-            $('<div>').addClass('item').append(img).appendTo(idcarrusel);
-          });
-          // Re-inicializar el carrusel con las nuevas imágenes
-          $(idcarrusel).trigger('refresh.owl.carousel');
-         
+        success: function(data) {
+           arrayfotos=[];
+            for (let i = 0; i < data.length; i++) {
+                arrayfotos.push(data[i].foto);
+            }
+
+
+
+
+            // Llamamos a la función inicialmente para mostrar la primera foto
+            mostrarSiguienteFoto();
+
+            // Llamamos a la función cada 3 segundos para mostrar la siguiente foto
+            if (arrayfotos.length > 1){
+                setInterval(mostrarSiguienteFoto, 3000);
+
+            }else if (arrayfotos.length==0) {
+                $('#fotos').empty();
+
+            }
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log("Error al cargar las fotos:", errorThrown);
+            console.log("Error al cargar las fotos:", errorThrown);
         }
-      });
-    }
+    });
+}
+// Función para mostrar la siguiente foto en el div "fotos"
+function mostrarSiguienteFoto() {
+    $('#fotos').empty(); // Limpiamos el div antes de agregar la nueva foto
+    $('#fotos').append('<img src="' + arrayfotos[currentIndex]+
+        '" class="img-responsive" style="max-width: 300px; height: auto;">');
+    currentIndex = (currentIndex + 1) % arrayfotos.length; // Avanzamos al siguiente índice (circular)
+}
 </script>
 <?php
 include_once 'footer.php';

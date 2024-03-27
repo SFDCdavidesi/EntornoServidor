@@ -37,7 +37,7 @@ if (session_status() == PHP_SESSION_NONE) {
     $entradilla=(isset($_REQUEST["entradilla"])?$_REQUEST["entradilla"]:"");
     $unidadDuracion=(isset($_REQUEST["unidadDuracion"])?$_REQUEST["unidadDuracion"]:"");
     $activos=(isset($_REQUEST["activos"])?$_REQUEST["activos"]:"");
-
+    $nombreusuario=(isset($_REQUEST["nombreusuario"])?$_REQUEST["nombreusuario"]:"");
 //datos para alta de curso y calendario
     $curso=(isset($_REQUEST["curso"])?$_REQUEST["curso"]:"");
     $nivel=(isset($_REQUEST["nivel"])?$_REQUEST["nivel"]:"");
@@ -49,6 +49,8 @@ if (session_status() == PHP_SESSION_NONE) {
     $precio=(isset($_REQUEST["precio"])?$_REQUEST["precio"]:"");
 
     $mes=(isset($_REQUEST["mes"])?$_REQUEST["mes"]:"");
+    $token=(isset($_REQUEST["token"])?$_REQUEST["token"]:"");
+
 
     switch($action){
         case "get_fotos_curso":
@@ -87,7 +89,12 @@ if (session_status() == PHP_SESSION_NONE) {
             $resultArray=upsert_curso($arrayAltaCurso,$fotosSeleccionadas,null);
                         }
             break;
-       
+        case "docambiarcontraseña":
+            $resultArray=actualizarcontraseña($token,$password,$password2);
+            break;
+       case "recuperarcontraseña":
+            $resultArray=recuperar_contraseña($nombreusuario,$email);
+            break;
         case "get_curso": //sólo un curso
              $resultArray=get_cursos_by_id($id);
             break;

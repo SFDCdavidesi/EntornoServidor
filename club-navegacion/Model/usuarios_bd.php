@@ -18,8 +18,9 @@ function comprueba_usuario($usu,$pass):array{
             "rol"=>$resultado["rol"],
             "mensaje"=>"Usuario y contraseña correctos");
         }else{
+            $recuperarcontraseña="<a href='index.php?action=recuperarcontraseña'>Restablecer contraseña</a>";
             $resultado = array("id"=>-1,
-            "mensaje"=>"Contraseña incorrecta");
+            "mensaje"=>"Contraseña incorrecta " . $recuperarcontraseña);
         }
     }else{
         $statement->closeCursor();
@@ -29,7 +30,103 @@ function comprueba_usuario($usu,$pass):array{
     return $resultado;
 
 }
+function recuperar_contraseña($nombreusuario,$email):array{
+    //comprobamos que el usuario o el email existen
+    try{
+    $con=BD::getConexion();
+    if($nombreusuario!=""){
+        $query="select * from usuarios where nombre_usuario=:nombre_usuario";
+        if ($email!=""){
+            $query.=" AND email=:email";
+        }
+    }else{
+        $query="select * from usuarios where email=:email";
+        if ($nombreusuario!=""){
+            $query.=" AND nombre_usuario=:nombre_usuario";
+        }
+    }
+  
+    $statement= $con->prepare($query);
+    if ($nombreusuario!=""){
+        $statement->bindValue(":nombre_usuario",$nombreusuario);
+    }
+    if ($email!=""){
+        $statement->bindValue(":email",$email);
+    }
+    $statement->execute();
+    if ($statement->rowCount()==1){
+        $resultado=$statement->fetch(PDO::FETCH_ASSOC);
+        $nombreusuario=$resultado["nombre_usuario"];
+        $statement->closeCursor();
+        //enviamos un correo  con un enlace para restablecer la contraseña
+        //generamos un token de 25 caracteres y lo guardamos en el registro del usuario
+        $token=bin2hex(random_bytes(25));
+        //guardamos los primeros 25 caracteres en $token
+        $token=substr($token,0,25);
+        $query="update usuarios set control_contraseña=:token where nombre_usuario=:nombre_usuario";
+        $statement= $con->prepare($query);
+        $statement->bindValue(":token",$token);
+        $statement->bindValue(":nombre_usuario",$nombreusuario);
+        $statement->execute();
+        $statement->closeCursor();
+        //creamos el cuerpo del correo con el enlace a la página de cambio de contraseña
+        $cuerpo="<html><head><title> Cambio de Contraseña</title></head><body>Se ha solicitado un restablecimiento de contraseña para el usuario " . $nombreusuario . ".<br> Para restablecer la contraseña, haga click en el siguiente enlace: <a href='http://localhost/club-navegacion/controller/index.php?action=cambiarcontraseña&token=" . $token . "'>Restablecer contraseña</a>";
+        $cuerpo.="<p>Si no ha solicitado el restablecimiento de contraseña, ignore este mensaje</p></body></html>";
+     
+      
+        // Envío del correo
+        $para=$resultado["email"];
+        $asunto="Restablecimiento de contraseña";
+        $mensaje=$cuerpo;
+        include __DIR__ . '/enviarcorreo.php'; //incluimos la función 'enviar_correo' que se encuentra en el archivo 'enviarcorreo.php'
+        
+        $resultado=array("mensaje"=>enviar_correo($para,$asunto,$mensaje));
 
+    }else{
+        $resultado=array("id"=>0,
+        "mensaje"=>"No se ha encontrado el usuario o el email en la base de datos");
+    }
+    }catch(PDOException $e){
+        $resultado=array("id"=>0,
+        "mensaje"=>"Ha ocurrido un error recuperando la contraseña en la base de datos " . $e->getMessage()
+    );
+    }
+}
+
+function existetoken ($token):bool{
+    $con=BD::getConexion();
+    $query="select * from usuarios where control_contraseña=:token";
+    $statement= $con->prepare($query);
+    $statement->bindValue(":token",$token);
+    $statement->execute();
+    if ($statement->rowCount()==1){
+        return true;
+    }else{
+        return false;
+    }
+}
+function actualizarcontraseña($token,$contraseña,$contraseña2):array{
+    if ($contraseña!=$contraseña2){
+        $resultado=array("id"=>0,
+        "mensaje"=>"Las contraseñas no coinciden");
+    }else{
+        $con=BD::getConexion();
+        $query="update usuarios set password=:password,control_contraseña=null where control_contraseña=:token";
+        $statement= $con->prepare($query);
+        $hashedpassword= password_hash($contraseña,PASSWORD_DEFAULT);
+        $statement->bindValue(":password",$hashedpassword);
+        $statement->bindValue(":token",$token);
+        $statement->execute();
+        if ($statement->rowCount()==1){
+            $resultado=array("id"=>1,
+            "mensaje"=>"Contraseña actualizada correctamente");
+        }else{
+            $resultado=array("id"=>0,
+            "mensaje"=>"Ha ocurrido un error actualizando la contraseña");
+        }
+    }
+    return $resultado;
+}   
 function upsert_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$rol):array{
     
     
