@@ -49,16 +49,21 @@
         <li class="nav-item">
           <a class="nav-link"  href="./?action=calendario">Calendario</a>
         </li>
+        <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"]=="admin"){
+                ?>
             <li class="nav-item dropdown float-right">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
+                Admin
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="http://localhost/phpmyadmin/" target="_blank">Gestionar BBDD</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </li>
+        <?php
+            }
+            ?>
       </ul>
       <?php if (isset($_SESSION["usuario"])){
         ?>

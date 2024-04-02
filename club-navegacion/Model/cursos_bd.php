@@ -53,6 +53,10 @@ function get_tiempo_by_id($id){
 
 function upsert_curso($arrayCurso,$fotosSeleccionadas,$id){
     $arrayResultado = array();
+    if ($_SESSION["rol"]!="admin"){
+        $arrayResultado = array("id" => 0, "mensaje" => "No tienes permisos para realizar esta acción");
+        return $arrayResultado;
+    }
     try{
         /**  `id` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
@@ -78,7 +82,8 @@ function upsert_curso($arrayCurso,$fotosSeleccionadas,$id){
         if ($id!=null){
             $statement->bindValue(":id",$id);
         }else{
-            $statement->bindValue(":createdby",$_SESSION["usuario"]);
+          //  $statement->bindValue(":createdby",$_SESSION["usuario"]);
+            $statement->bindValue(":createdby",$_SESSION["id_usuario"]);
         }
         $statement->bindValue(":titulo",$arrayCurso["titulo"]);
         $statement->bindValue(":entradilla",$arrayCurso["entradilla"]);

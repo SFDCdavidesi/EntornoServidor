@@ -1,7 +1,7 @@
 <?php
 function comprueba_usuario($usu,$pass):array{
     $con=BD::getConexion();
-    $query="select usuarios.nombre_usuario,usuarios.password,roles.nombre as rol FROM
+    $query="select usuarios.id_usuario, usuarios.nombre_usuario,usuarios.password,roles.nombre as rol FROM
     usuarios left JOIN roles ON usuarios.rol_id=roles.id where usuarios.nombre_usuario=:usuario";
    $statement= $con->prepare($query);
     $statement->bindValue(":usuario",$usu);
@@ -16,6 +16,7 @@ function comprueba_usuario($usu,$pass):array{
             $resultado = array("id"=>1,
             "usuario"=>$usu,
             "rol"=>$resultado["rol"],
+            "id_usuario"=>$resultado["id_usuario"],
             "mensaje"=>"Usuario y contraseña correctos");
         }else{
             $recuperarcontraseña="<a href='index.php?action=recuperarcontraseña'>Restablecer contraseña</a>";
@@ -126,15 +127,58 @@ function actualizarcontraseña($token,$contraseña,$contraseña2):array{
         }
     }
     return $resultado;
-}   
+}  
+function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$rol):array{
+    if ($rol==""){
+        $rol=2; //por defecto, el rol es usuario
+    }
+    try{
+        $con =BD::getConexion();
+    $query="select * from usuarios where nombre_usuario=:nombre_usuario or email=:email";
+    $statement= $con->prepare($query);
+    $statement->bindValue(":nombre_usuario",$nombre_usuario);
+    $statement->bindValue(":email",$email);
+    $statement->execute();
+    if ($statement->rowCount()>0){
+        $resultado=array("id"=>0,
+        "mensaje"=>"El usuario o el email ya existen en la base de datos");
+    }else{
+
+
+    $query="insert into usuarios (nombre_usuario,nombre,apellidos,email,password,rol_id) values (:nombre_usuario,:nombre,:apellidos,:email,:password,:rol)";
+   $statement= $con->prepare($query);
+    $statement->bindValue(":nombre_usuario",$nombre_usuario);
+    $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
+    $statement->bindValue(":password",$hashedpassword);
+    $statement->bindValue(":nombre",$nombre);
+    $statement->bindValue(":apellidos",$apellidos);
+    $statement->bindValue(":email",$email);
+    $statement->bindValue(":rol",$rol);
+    $statement->execute();
+    $statement->closeCursor();
+    $last_id = $con->lastInsertId();
+ $resultado=array("id"=>1,
+ "mensaje"=>"Usuario insertado correctamente" + $last_id);
+    }
+    }catch(PDOException $e){
+        $resultado=array("id"=>0,
+        "mensaje"=>"Ha ocurrido un error insertando el usuario en la base de datos " . $e->getMessage()
+    );
+    }
+    return $resultado;
+}
 function upsert_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$rol):array{
     
+    if (!isset($rol) || $rol==""){
+        $rol=2; //por defecto, el rol es usuario
+    }
     
     try{
         $con =BD::getConexion();
-    $query="select * from usuarios where nombre_usuario=:nombre_usuario"; //compruebo si existe ya un usuario . recordamso que usuario es primary key
+    $query="select * from usuarios where nombre_usuario=:nombre_usuario or email=:email"; //compruebo si existe ya un usuario . recordamso que usuario es primary key
    $statement= $con->prepare($query);
     $statement->bindValue(":nombre_usuario",$nombre_usuario);
+    $statement->bindValue(":email",$email);
     $statement->execute();
     $actualizapassword=false;
     if ($statement->rowCount()>0){

@@ -63,13 +63,15 @@ if (session_status() == PHP_SESSION_NONE) {
             $resultArray=get_calendarios_by_month($mes);
             break;
         case "crea_usuario":
-            $resultArray=upsert_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
+         //   $resultArray=upsert_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
+            $resultArray=insertar_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
             break;
         case "login":
             $resultArray=comprueba_usuario($nombreUsuario,$password);
             if ($resultArray["id"]==1){ //si el login es correcto, guardamos la sesión
                 $_SESSION["usuario"]=$nombreUsuario;
                 $_SESSION["rol"]=$resultArray["rol"];
+                $_SESSION["id_usuario"]=$resultArray["id_usuario"];
             }
             break;
         case "alta_calendario":

@@ -107,10 +107,22 @@ $(document).ready(function() {
             <input type="text" class="form-control" id="apellidos" name="apellidos" min="3" max="64" required>
         </div>
 
-        <div class="mb-3">
+        <!--div class="mb-3">
             <label for="rol" class="form-label">Rol:</label>
             <input type="text" class="form-control" id="rol" name="rol" required>
-        </div>
+        </div-->
+        <?php
+        if (isset($_SESSION) && isset($_SESSION["rol"]) && $_SESSION["rol"] == "admin"){
+            ?>
+        <div class="mb-3">
+            <label for="rol" class="form-label">Rol:</label>
+            <select class="form-select" id="rol" name="rol" required>
+                <option value="usuario">Usuario</option>
+                <option value="admin">Administrador</option>
+            </select>
+            <?php
+        }
+        ?>
         <button type="submit" class="btn btn-primary">Crear Usuario</button>
     </form>
     <br>
