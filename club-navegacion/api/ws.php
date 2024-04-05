@@ -91,6 +91,9 @@ if (session_status() == PHP_SESSION_NONE) {
             $resultArray=upsert_curso($arrayAltaCurso,$fotosSeleccionadas,null);
                         }
             break;
+        case "borrar_curso":
+            $resultArray=borrar_curso($id);
+            break;
         case "docambiarcontraseña":
             $resultArray=actualizarcontraseña($token,$password,$password2);
             break;

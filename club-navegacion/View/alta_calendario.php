@@ -93,6 +93,9 @@ $(document).ready(function() {
         dataType: "json",
         success: function(data) {
             console.log(data);
+           data.forEach(function(nivel) {
+                console.table(nivel);
+            });
             data.forEach(function(nivel) {
                 $("#nivel").append(`<option value="${nivel.id}">${nivel.nombre}</option>`);
             });

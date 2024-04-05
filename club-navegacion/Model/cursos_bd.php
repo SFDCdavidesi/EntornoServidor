@@ -144,6 +144,32 @@ function upsert_curso($arrayCurso,$fotosSeleccionadas,$id){
     }
 
 }
+
+function borrar_curso($id){
+    $arrayResultado = array();
+    if ($_SESSION["rol"]!="admin"){
+        $arrayResultado = array("id" => 0, "mensaje" => "No tienes permisos para realizar esta acción");
+        return $arrayResultado;
+    }
+    try{
+        $con =BD::getConexion();
+        $query="delete from cursos where id=:id";
+        $statement= $con->prepare($query);
+        $statement->bindValue(":id",$id);
+        $statement->execute();
+        $statement->closeCursor();
+        $arrayResultado = array("id" => 1, "mensaje" => "Curso borrado correctamente");
+        return $arrayResultado;
+    }catch(PDOException $e){
+        http_response_code(500); // Código de error de servidor interno
+        $arrayResultado = array("id" => 0, "mensaje" => "Ha ocurrido un error borrando el curso en la base de datos " . $e->getMessage());
+        return $arrayResultado;
+        exit();
+    }
+}   
+/**
+ * Obtiene los niveles de la base de datos
+ */
 function get_niveles_by_id($id){
     try{
         $con =BD::getConexion();

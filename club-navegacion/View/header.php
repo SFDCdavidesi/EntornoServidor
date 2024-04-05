@@ -117,9 +117,25 @@
     $(document).ready(function(){
     
 
-    }); 
-    function mostrarModal(titulo,mensaje){
+    });
+    //la función mostrar modal recibe un parámetro título, otro mensaje conel contenido del mensaje y otro parémetro que puede ser null o puede contener un array con los botones que queremos mostrar en el modal
+    
+    
+    function mostrarModal(titulo,mensaje,botones=null){
+    
         $('#exampleModalCenter').modal('show');
         $('#exampleModalLongTitle').html(titulo);
+        if (botones!=null){
+            var html="";
+            for (var i=0;i<botones.length;i++){
+                html+="<button type='button' class='btn btn-primary'>"+botones[i]+"</button>";
+            }
+            $('#exampleModalCenter .modal-footer').html(html);
+            //si pulsamos un botón del modal asignamos el valor del botón a la variable global pulsado
+            $('#exampleModalCenter .modal-footer button').click(function(){
+                pulsado=$(this).html();
+            });
+
+        }
         $('.modal-body').html(mensaje);}
 </script>

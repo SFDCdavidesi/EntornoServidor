@@ -53,7 +53,11 @@ include(__DIR__ . '/header.php');
         </form>
     </div>
 
+
         <script>
+            //creamos una variable global para almacenar el resultado de la pulsación de modal llamada "pulsado"
+            var pulsado = "";
+                    
             $(document).ready(function () {
       
                 $("#cursoForm").submit(function (event) {
