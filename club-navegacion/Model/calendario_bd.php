@@ -2,7 +2,7 @@
 function alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,$unidad_medida){
     try{
         $con =BD::getConexion();
-        $query="insert into calendario (curso_id,nivel_requerido,plazas_disponibles,fecha,activo,precio,createdby) values (:curso,:nivel,:plazas,:fecha,:activo,:precio,:createdby)";
+        $query="insert into calendario (id_curso,nivel_requerido,plazas_disponibles,fecha,activo,precio,createdby) values (:curso,:nivel,:plazas,:fecha,:activo,:precio,:createdby)";
         $statement= $con->prepare($query);
         $statement->bindValue(":curso",$curso);
         $statement->bindValue(":nivel",$nivel);
@@ -10,11 +10,10 @@ function alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,
         $statement->bindValue(":fecha",$fecha);
         $statement->bindValue(":activo",$activo=="true"?1:0);
         $statement->bindValue(":precio",$precio);
-        $statement->bindValue(":createdby",$_SESSION["usuario"]); //añadimos el usuario que está dando de alta el curso
+        $statement->bindValue(":createdby",$_SESSION["id_usuario"]); //añadimos el usuario que está dando de alta el curso
         $statement->execute();
-        $resultado=$con->lastInsertId();
         $statement->closeCursor();
-        $resultado=array("id"=>$statement->lastInsertId(),
+        $resultado=array("id"=>$con->lastInsertId(),
         "mensaje"=>"Curso dado de alta correctamente");
         return $resultado;
     }catch(PDOException $e){

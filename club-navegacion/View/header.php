@@ -57,7 +57,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="http://localhost/phpmyadmin/" target="_blank">Gestionar BBDD</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="?action=gestion_usuarios">Gestión Usuarios</a>
                 <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </li>

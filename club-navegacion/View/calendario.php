@@ -128,7 +128,7 @@ var calendar = $("#calendar").calendarGC({
 let hoy = new Date();
 let anio = hoy.getFullYear();
 let mes = hoy.getMonth();
-
+mes++;
 if (mes < 10) {
     mes = "0" + mes;
 }
@@ -147,6 +147,7 @@ $(document).ready(function() {
     }
     //obtenemos los calendarios del mes actual
     calendar.setDate(diaHoy);
+
 <?php
 if (isset($_SESSION) && isset($_SESSION["rol"])) { ?>
 $("#inscribirme").click(function(){

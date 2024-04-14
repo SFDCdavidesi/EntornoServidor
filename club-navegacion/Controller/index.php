@@ -77,6 +77,10 @@
                 case "calendario":
                     include ("../View/calendario.php");
                     break;
+    case "gestion_usuarios":
+
+        include('../View/gestion_usuarios.php');
+        break;
      case "gestion_cursos": 
                 //$cursos = get_cursos_by_id(null);
                 if ($_SESSION["rol"]=="admin"){
