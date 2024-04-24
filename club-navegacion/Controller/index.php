@@ -25,6 +25,11 @@
 
             include('../View/login.php');
             break;
+        case "ver_mis_cursos":
+            //mostramos la página del usuario donde se mostrarán todos sus cursos
+            include('../View/mis_cursos.php');
+            break;
+
         case "crea_usuario": 
             $params = array("action"=>"crea_usuario",
                             "nombreUsuario"=>$usuario,
@@ -64,6 +69,14 @@
             case "recuperarcontraseña":
                 include ("../View/recuperarcontraseña.php");
                 break;
+            case "inscripcion":
+                if (isset($_SESSION) && isset($_SESSION['rol']) ) {
+            
+                include ("../View/inscripcion.php");
+                }else{
+                    header("Location: .?action=menu_principal");
+                }
+                break;
             case "alta_actividades":
              
                 include ("../View/alta_calendario.php");
@@ -75,11 +88,22 @@
                     include ("../View/listado_cursos.php");
                     break;
                 case "calendario":
+                    if (isset($_SESSION) && isset($_SESSION['rol']) ) {
+                        $verFormularioGestionCursos=true;
+                    }
                     include ("../View/calendario.php");
                     break;
     case "gestion_usuarios":
-
+        $mostrarheaderyfooter=false;
         include('../View/gestion_usuarios.php');
+        break;
+    case "asistentes_cursos":
+        if (isset($_SESSION) && isset($_SESSION["rol"]) && $_SESSION["rol"]=="admin"){
+            $mostrarheaderyfooter=false;
+            include('../View/asistentes_cursos.php');
+        }else{
+            header("Location: .?action=menu_principal");
+        }
         break;
      case "gestion_cursos": 
                 //$cursos = get_cursos_by_id(null);

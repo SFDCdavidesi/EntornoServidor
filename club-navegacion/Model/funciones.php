@@ -1,4 +1,9 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+
+use \Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
+
 $auxarray=explode("/",$_SERVER['REQUEST_URI']);
 
 $urlws = "http://" . $_SERVER['SERVER_NAME'] . "/" . $auxarray[1] . "/api/ws.php";
@@ -40,4 +45,29 @@ function get_fotos_by_directory($directory){
         return (isset($_SESSION["rol"]) && $_SESSION["rol"]=="admin");
     }
       
+    //función que lee del fichero jwt.ini y genera un token
+    function getToken($datos_usuario):string{
+        $ini_array = parse_ini_file(__DIR__. "/../config/jwt.ini");
+        $clave = $ini_array["jwt.clave"];
+                // Configurar el token (tiempo de expiración, algoritmo de firma, etc.)
+        $tiempo_expiracion = time() + (60 * 60); // 1 hora de expiración
+        $algoritmo = 'HS256';
+
+        // Generar el token JWT
+        $token = JWT::encode($datos_usuario, $clave, $algoritmo);
+        return $token;
+    }
+    //función que usando JWT recibe un token y lo valida
+    function validaToken($token){
+        $ini_array = parse_ini_file(__DIR__. "/../config/jwt.ini");
+        $clave = $ini_array["jwt.clave"];
+        $algoritmo = 'HS256';
+        try {
+            $datos = JWT::decode($token, new Key($clave, 'HS256'));
+
+            return (array)$datos;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 ?>

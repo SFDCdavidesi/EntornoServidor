@@ -1,4 +1,21 @@
 <?php
+// Path: club-navegacion/Model/usuarios_bd.php
+// obtiene un listado de usuarios. Si se le pasa un id, devuelve solo el usuario con ese id
+function get_usuario_by_id($id):array{
+    $con =BD::getConexion();
+    $query="select u.id_usuario,u.nombre,u.apellidos,u.nombre_usuario,u.email,r.nombre as rol,u.fecha_creacion,u.fecha_ultimo_ingreso,u.instructor from usuarios u left join roles r on u.rol_id=r.id";
+    if ($id){
+        $query.=" where id_usuario=:id";
+    }
+   $statement= $con->prepare($query);
+    if ($id){
+        $statement->bindValue(":id",$id);
+    }
+    $statement->execute();
+    $resultado=$statement->fetch();
+    $statement->closeCursor();
+    return $resultado;
+}   
 function comprueba_usuario($usu,$pass):array{
     $con=BD::getConexion();
     $query="select usuarios.id_usuario, usuarios.nombre_usuario,usuarios.password,roles.nombre as rol FROM

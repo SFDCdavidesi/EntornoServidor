@@ -17,12 +17,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/2.0.0/i18n/Spanish.json"></script>
 
 <!-- Bootstrap CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   
-    <link href="../View/css/estilos.css?v2" rel="stylesheet">
-    <script src="../View/js/cursos.js"></script>
+    <link href="../View/css/estilos.css?v3" rel="stylesheet">
+    <script src="../View/js/cursos.js?v3.1"></script>
 </head>
 <body>
 
@@ -58,8 +64,17 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="http://localhost/phpmyadmin/" target="_blank">Gestionar BBDD</a>
                 <a class="dropdown-item" href="?action=gestion_usuarios">Gestión Usuarios</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="?action=asistentes_cursos">Asistentes cursos</a>
             </div>
+        </li>
+        
+        <?php
+            }
+            ?>
+            <?php if (isset($_SESSION) && isset($_SESSION['usuario']) ) {
+                ?>
+                <li class="nav-item">
+          <a class="nav-link"  href="./?action=ver_mis_cursos">Ver mis cursos</a>
         </li>
         <?php
             }

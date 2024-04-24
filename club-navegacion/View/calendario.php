@@ -1,5 +1,11 @@
 <?php
 include_once 'header.php';
+//obtenemos el token si este se ha generado
+if (isset($_SESSION) && isset($_SESSION["token"])) {
+    $token = $_SESSION["token"];
+} else {
+    $token ="";
+}
 ?>
 <link type="text/css" rel="stylesheet" href="../View/pluggins/calendar-gc.css" />
 <script src="../View/pluggins/calendar-gc.js"></script>
@@ -36,76 +42,9 @@ include_once 'header.php';
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel">Información</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-content">
-                <div id="fotos">
-                    <div class="item"><img src="https://via.placeholder.com/150" alt="Imagen 1"></div>
-                </div>
-
-            </div>
-            <div class="modal-body ">
-
-                <table class="table mt-3">
-                    <tbody>
-                        <tr>
-                            <th>Título</th>
-                            <td id="titulo"></td>
-                        </tr>
-                        <tr>
-                            <th>Entradilla</th>
-                            <td id="entradilla"></td>
-                        </tr>
-                        <tr>
-                            <th>Descripción</th>
-                            <td id="descripcion"></td>
-                        </tr>
-                        <tr>
-                            <th>Nivel Requerido</th>
-                            <td id="nivel_requerido"></td>
-                        </tr>
-                        <tr>
-                            <th>Lugar</th>
-                            <td id="lugar"></td>
-                        </tr>
-                        <tr>
-                            <th>Número de Plazas</th>
-                            <td id="numero_plazas"></td>
-                        </tr>
-                        <tr>
-                            <th>Duración</th>
-                            <td id="duracion"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-            <div class="modal-footer">
-               <?php
-               if (isset($_SESSION) && isset($_SESSION["rol"])){?> <button type="button" class="btn btn-secondary" id="inscribirme"  >Inscribirme</button>
-               <?php
-               }
-               ?>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-</div>
-</div>
-</div>
-</div>
+<?php
+include_once 'modal_curso.php';
+?>
 <script>
 var calendar = $("#calendar").calendarGC({
     dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
@@ -152,12 +91,76 @@ $(document).ready(function() {
 if (isset($_SESSION) && isset($_SESSION["rol"])) { ?>
 $("#inscribirme").click(function(){
     console.log("inscribirme en el curso "+cursoseleccionado);
+    console.log("calendario seleccionado "+calendarioseleccionado);
+let confirmacioncurso=document.createElement("div");
+confirmacioncurso.innerHTML="Va a proceder a inscribirse en el curso seleccionado. ¿Está seguro de que desea continuar?<br><br>";
+let botonconfirmacion=document.createElement("button");
+botonconfirmacion.innerHTML="Sí";
+botonconfirmacion.classList.add("btn");
+botonconfirmacion.classList.add("btn-primary");
+confirmacioncurso.appendChild(botonconfirmacion);
+let space = document.createTextNode(" ");
+confirmacioncurso.appendChild(space);
+let botoncancelar=document.createElement("button");
+botoncancelar.innerHTML="Cancelar";
+botoncancelar.classList.add("btn");
+botoncancelar.classList.add("btn-secondary");
+confirmacioncurso.appendChild(botoncancelar);
+confirmacioncurso.classList.add("alert");
+confirmacioncurso.classList.add("alert-warning");
+confirmacioncurso.classList.add("mt-3");
+confirmacioncurso.classList.add("text-center");
+$("#infoModal .modal-body").append(confirmacioncurso);
+//si pulsa en el botón Cancelar , cerramos la ventana de confirmación
+botoncancelar.addEventListener("click",function(){
+    $("#infoModal .modal-body .alert").remove();
+});
+//si pulsa en el botón Sí, procedemos a inscribir al usuario en el curso
+botonconfirmacion.addEventListener("click",function(){
+    $.ajax({
+        url: "<?=$urlws?>?action=inscribir&idCalendario="+calendarioseleccionado + "&token=<?=$token?>",
+        method: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+            if (data.id > 0) {
+                alert("Inscripción realizada correctamente");
+                window.location.href = "./";
+            } else {
+                if (data.mensaje != undefined){
+                    alert(data.mensaje);
+                    //mostrar el mensaje en una ventana modal
+                    mostrarModal("Error",data.mensaje,["Cerrar"])
+
+
+                }
+                else{
+                    alert("Ha ocurrido un error al realizar la inscripción");
+                }
+                  
+            }
+        },
+        error: function() {
+            alert("Ha ocurrido un error al realizar la inscripción");
+        }
+    });
+});
+
+
+
 });
 
     <?php
-}?>
+}
+//obtenemos el valor del token si este se ha generado
+if (isset($_SESSION) && isset($_SESSION["token"])) {
+    $token = $_SESSION["token"];
+} else {
+    $token = "";
+}
+?>
     $.ajax({
-        url: "<?=$urlws?>?action=get_calendarios",
+        url: "<?=$urlws?>?action=get_calendarios&token=<?=$token?>&anio=" + anio + "&mes=" + mesActual,
         method: "GET",
         dataType: "json",
         success: function(data) {
@@ -171,8 +174,9 @@ $("#inscribirme").click(function(){
                     className: "badge bg-info",
                     dateColor: "red",
                     idCurso: calendario.idcurso,
+                    idCalendario: calendario.id,
                     onclick: function(e, data) {
-                        muestraDatosCurso(data.idCurso)
+                        muestraDatosCurso("<?=$urlws?>",data.idCurso, idCalendario = data.idCalendario,true);
                     }
                 };
                 eventosObtenidos.push(evento);
@@ -180,111 +184,32 @@ $("#inscribirme").click(function(){
             if (eventosObtenidos.length > 0) {
                 calendar.setEvents(eventosObtenidos);
             }
+            calendar.setDate(diaHoy);
         }
     });
 
-
+    
 });
 
-function obtener_cursos() {
-    $.ajax({
-        url: "<?=$urlws?>?action=get_cursos",
-        method: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-            data.forEach(function(curso) {
-                $("#curso").append(`<option value="${curso.id}">${curso.titulo}</option>`);
-            });
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-}
-var cursoseleccionado;
-function muestraDatosCurso(idCurso) {
-
-    $("#infoModal").modal('show');
-    cursoseleccionado = idCurso;
-    $.ajax({
-        url: "<?=$urlws?>?action=get_curso&id=" + idCurso,
-        method: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-            let curso = data[0];
-            $("#titulo").html(curso.titulo);
-            $("#entradilla").html(curso.entradilla);
-            $("#descripcion").html(curso.descripcion);
-            //obtenemos el nivel requerido
-            $.ajax({
-                url: "<?=$urlws?>?action=get_nivel_requerido&id=" + curso.nivel_requerido,
-                method: "GET",
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    let nivel = data[0];
-                    console.table(nivel);
-                    $("#nivel_requerido").html(nivel.nombre);
-                }
-            });
-
-            $("#lugar").html(curso.ubicacion);
-            $("#numero_plazas").html(curso.numero_plazas);
-            $("#duracion").html(curso.duracion + " " + curso.unidadDuracion);
-
-
-            //obtenemos las fotos del curso
-            cargarFotos('#fotos', idCurso);
-
-        }
-    });
-}
-var arrayfotos = [];
-var currentIndex = 0;
-
-function cargarFotos(idcarrusel, idcurso) {
-    currentIndex = 0;
-    $.ajax({
-        url: "<?=$urlws?>?action=get_fotos_curso&id=" + idcurso,
-        type: "GET",
-        dataType: "json",
-
-        success: function(data) {
-           arrayfotos=[];
-            for (let i = 0; i < data.length; i++) {
-                arrayfotos.push(data[i].foto);
+/**
+    function obtener_cursos() {
+        $.ajax({
+            url: "<?=$urlws?>?action=get_cursos",
+            method: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                data.forEach(function(curso) {
+                    $("#curso").append(`<option value="${curso.id}">${curso.titulo}</option>`);
+                });
+            },
+            error: function(error) {
+                console.log(error);
             }
+        });
+    }
+*/
 
-
-
-
-            // Llamamos a la función inicialmente para mostrar la primera foto
-            mostrarSiguienteFoto();
-
-            // Llamamos a la función cada 3 segundos para mostrar la siguiente foto
-            if (arrayfotos.length > 1){
-                setInterval(mostrarSiguienteFoto, 3000);
-
-            }else if (arrayfotos.length==0) {
-                $('#fotos').empty();
-
-            }
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Error al cargar las fotos:", errorThrown);
-        }
-    });
-}
-// Función para mostrar la siguiente foto en el div "fotos"
-function mostrarSiguienteFoto() {
-    $('#fotos').empty(); // Limpiamos el div antes de agregar la nueva foto
-    $('#fotos').append('<img src="' + arrayfotos[currentIndex]+
-        '" class="img-responsive" style="max-width: 300px; height: auto;">');
-    currentIndex = (currentIndex + 1) % arrayfotos.length; // Avanzamos al siguiente índice (circular)
-}
 </script>
 <?php
 include_once 'footer.php';

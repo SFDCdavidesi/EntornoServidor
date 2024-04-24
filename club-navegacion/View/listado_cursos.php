@@ -3,11 +3,6 @@ if ($mostrarheaderyfooter) {
     include(__DIR__ . '/header.php');
 }
 ?>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
-<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <div id="listado_cursos" class="container">
     <div class="row justify-content-center">

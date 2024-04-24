@@ -25,6 +25,108 @@ function get_lugar_by_id($id_lugar){
 
 
 }
+//función que actualizar un registro de calendario_curso en la base de datos
+/*
+@params $idCalendario,$campo,$valor
+@return array
+
+*/
+function actualiza_datos_curso($id_usuario_curso,$campo,$valor):array{
+    $arrayResultado = array();
+$campo.="do"; //añadimos el sufijo do para que el campo sea confirmado o pagado
+    try{
+        $con =BD::getConexion();
+        $query="update usuarios_cursos set " . $campo . "=:valor where id_usuario_curso=:id_usuario_curso";
+        $statement= $con->prepare($query);
+        $statement->bindValue(":valor",$valor);
+        $statement->bindValue(":id_usuario_curso",$id_usuario_curso);
+        $statement->execute();
+        $statement->closeCursor();
+        $arrayResultado = array("id" => 1, "mensaje" => "Campo actualizado correctamente");
+        return $arrayResultado;
+    }catch(PDOException $e){
+        $arrayResultado = array("id" => 0, "mensaje" => "Ha ocurrido un error actualizando el campo en la base de datos " . $e->getMessage());
+        return $arrayResultado;
+        exit();
+    }
+}
+//función que recibe por parámetro el id de usuario y devuelve todos los cursos a los que se ha inscrito
+function get_cursos_by_usuario($id_usuario){
+    try{
+        $con =BD::getConexion();
+        $query="SELECT 
+        uc.id_usuario_curso,
+        uc.id_usuario,
+        uc.id_calendario,
+        uc.confirmado,
+        uc.pagado,
+        uc.precio,
+        uc.descuento,
+        c.id AS curso_id,
+        c.titulo AS curso_titulo,
+        c.descripcion AS curso_descripcion,
+        c.entradilla AS curso_entradilla,
+        c.activo AS curso_activo,
+        c.fecha_creacion AS curso_fecha_creacion,
+        c.lugar_id AS curso_lugar_id,
+        c.duracion AS curso_duracion,
+        c.medida_tiempo AS curso_medida_tiempo_id,
+        mt.nombre AS curso_medida_tiempo_nombre,
+        c.numero_plazas AS curso_numero_plazas,
+        c.precio AS curso_precio,
+        c.nivel_requerido AS curso_nivel_requerido,
+        c.createdBy AS curso_createdBy,
+        ca.plazas_disponibles AS calendario_plazas_disponibles,
+        ca.activo AS calendario_activo,
+        ca.precio AS calendario_precio,
+        ca.nivel_requerido AS calendario_nivel_requerido,
+        ca.fecha AS calendario_fecha,
+        i.id_instructor AS instructor_id,
+        i.nombre AS instructor_nombre,
+        i.apellidos AS instructor_apellidos,
+        i.activo AS instructor_activo,
+        i.fecha_creacion AS instructor_fecha_creacion,
+        i.fecha_ultimo_curso AS instructor_fecha_ultimo_curso,
+        i.email AS instructor_email,
+        i.telefono AS instructor_telefono,
+        u.nombre as nombre,
+        u.apellidos as apellidos,
+        u.telefono as telefono,
+        u.email as email
+    FROM 
+        usuarios_cursos uc
+    LEFT JOIN 
+        calendario ca ON uc.id_calendario = ca.id
+    LEFT JOIN 
+        cursos c ON ca.curso_id = c.id
+    LEFT JOIN 
+        instructores i ON ca.id_instructor = i.id_instructor
+    LEFT JOIN
+        medida_tiempo mt ON c.medida_tiempo = mt.id
+    LEFT JOIN
+        usuarios u ON uc.id_usuario = u.id_usuario";
+        if ($id_usuario){ //el usuario está definido, lo incluimos para filtrarlo
+            $query.=" WHERE uc.id_usuario = :id_usuario";
+        }
+
+        $statement= $con->prepare($query);
+        if ($id_usuario){
+            $statement->bindValue(":id_usuario",$id_usuario);
+        }
+    
+        $statement->execute();
+        $resultado=$statement->fetchAll();
+        $statement->closeCursor();
+        return $resultado;
+
+    }catch(PDOException $e){
+        $error="Ha ocurrido un error obteniendo  los cursos en la base de datos ";
+        $error.= $e->getMessage();
+        include ("../View/error.php");
+        exit();
+    }
+}   
+
 function get_tiempo_by_id($id){
     try{
         $con =BD::getConexion();
@@ -218,12 +320,12 @@ function get_cursos_by_id($id){
         lugares ON cursos.lugar_id = lugares.id
     JOIN
         medida_tiempo ON cursos.medida_tiempo = medida_tiempo.id";
-        if ($id){ //el curso está definido, lo incluimos para filtrarlo
+        if ($id && $id!=null){ //el curso está definido, lo incluimos para filtrarlo
             $query.=" where cursos.id=:id";
         }
         $query.=" order by titulo";
        $statement= $con->prepare($query);
-        if ($id){
+        if ($id && $id!=null){ //el curso está definido, lo incluimos para filtrarlo
             $statement->bindValue(":id",$id);
         }
         $statement->execute();

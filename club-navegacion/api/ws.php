@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
   header('Content-Type: text/html; charset=utf-8');
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
@@ -12,6 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
   require_once("../Model/usuarios_bd.php");
     require_once("../Model/cursos_bd.php");
     require_once("../Model/calendario_bd.php");
+    require_once("../Model/funciones.php");
 
 
     $action = (isset($_REQUEST["action"])?$_REQUEST["action"]:"");
@@ -49,8 +51,17 @@ if (session_status() == PHP_SESSION_NONE) {
     $precio=(isset($_REQUEST["precio"])?$_REQUEST["precio"]:"");
 
     $mes=(isset($_REQUEST["mes"])?$_REQUEST["mes"]:"");
+    $anio=(isset($_REQUEST["anio"])?$_REQUEST["anio"]:"");
     $token=(isset($_REQUEST["token"])?$_REQUEST["token"]:"");
-
+    $idCalendario=(isset($_REQUEST["idCalendario"])?$_REQUEST["idCalendario"]:"");
+    $id_usuario_curso=(isset($_REQUEST["id_usuario_curso"])?$_REQUEST["id_usuario_curso"]:"");
+    $campo=(isset($_REQUEST["campo"])?$_REQUEST["campo"]:"");
+    $valor=(isset($_REQUEST["valor"])?$_REQUEST["valor"]:"");
+    $usuario_valido=false;
+    if (isset($token)&& $token!=null)
+    {
+        $usuario_valido=validaToken($token);
+    } 
 
     switch($action){
         case "get_fotos_curso":
@@ -60,7 +71,8 @@ if (session_status() == PHP_SESSION_NONE) {
             $resultArray=get_niveles_by_id($id);
             break;
         case "get_calendarios":
-            $resultArray=get_calendarios_by_month($mes);
+            
+            $resultArray=get_calendarios_by_month_and_year($mes,$anio);
             break;
         case "crea_usuario":
          //   $resultArray=upsert_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
@@ -72,10 +84,20 @@ if (session_status() == PHP_SESSION_NONE) {
                 $_SESSION["usuario"]=$nombreUsuario;
                 $_SESSION["rol"]=$resultArray["rol"];
                 $_SESSION["id_usuario"]=$resultArray["id_usuario"];
+                $datos_usuario=array("id"=>$resultArray["id_usuario"],"nombre"=>$nombreUsuario,"rol"=>$resultArray["rol"]);
+                $_SESSION["token"]=getToken($datos_usuario);
             }
             break;
         case "alta_calendario":
             $resultArray=alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,$unidad_medida);
+            break;
+        case "inscribir":
+            if ($usuario_valido){
+                $resultArray=inscribirUsuarioEnCalendario($idCalendario);
+
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
             break;
        case "actualiza_curso":
        $actualizandocurso=1;
@@ -99,6 +121,35 @@ if (session_status() == PHP_SESSION_NONE) {
             break;
        case "recuperarcontraseña":
             $resultArray=recuperar_contraseña($nombreusuario,$email);
+            break;
+        case "actualiza_datos_curso":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=actualiza_datos_curso($id_usuario_curso,$campo,$valor);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
+            break;
+        case "get_asistentes_cursos":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=get_cursos_by_usuario(null);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
+            break;
+
+        case "get_mis_cursos":
+            if ($usuario_valido!=false){
+                $resultArray=get_cursos_by_usuario($usuario_valido["id"]);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
+            break;
+        case "get_usuarios":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=get_usuario_by_id($id);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
             break;
         case "get_curso": //sólo un curso
              $resultArray=get_cursos_by_id($id);

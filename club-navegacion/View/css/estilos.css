@@ -56,3 +56,14 @@ video {
       cursor: pointer;
     }
     
+    #fotos {
+      display: flex; /* Utilizamos flexbox para centrar el contenido */
+      justify-content: center; /* Centramos horizontalmente */
+      align-items: center; /* Centramos verticalmente */
+      height: 100%; /* Establecemos altura al 100% para que flex funcione correctamente */
+  }
+  
+  .item {
+      /* Estilos opcionales para el contenedor de la imagen */
+      margin: auto; /* Margen automático para centrar */
+  }
