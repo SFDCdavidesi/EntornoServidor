@@ -3,12 +3,12 @@
 // obtiene un listado de usuarios. Si se le pasa un id, devuelve solo el usuario con ese id
 function get_usuario_by_id($id):array{
     $con =BD::getConexion();
-    $query="select u.id_usuario,u.nombre,u.apellidos,u.nombre_usuario,u.email,r.nombre as rol,u.fecha_creacion,u.fecha_ultimo_ingreso,u.instructor from usuarios u left join roles r on u.rol_id=r.id";
-    if ($id){
+    $query="select u.id_usuario,u.nombre,u.apellidos,u.nombre_usuario,u.email,u.telefono,r.nombre as rol,u.fecha_creacion,u.fecha_ultimo_ingreso,u.instructor from usuarios u left join roles r on u.rol_id=r.id";
+    if ($id && $id!=null){
         $query.=" where id_usuario=:id";
     }
    $statement= $con->prepare($query);
-    if ($id){
+    if ($id && $id!=null){
         $statement->bindValue(":id",$id);
     }
     $statement->execute();
@@ -145,7 +145,7 @@ function actualizarcontraseña($token,$contraseña,$contraseña2):array{
     }
     return $resultado;
 }  
-function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$rol):array{
+function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$telefono,$rol):array{
     if ($rol==""){
         $rol=2; //por defecto, el rol es usuario
     }
@@ -162,7 +162,7 @@ function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$r
     }else{
 
 
-    $query="insert into usuarios (nombre_usuario,nombre,apellidos,email,password,rol_id) values (:nombre_usuario,:nombre,:apellidos,:email,:password,:rol)";
+    $query="insert into usuarios (nombre_usuario,nombre,apellidos,email,telefono,password,rol_id) values (:nombre_usuario,:nombre,:apellidos,:email,:telefono,:password,:rol)";
    $statement= $con->prepare($query);
     $statement->bindValue(":nombre_usuario",$nombre_usuario);
     $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
@@ -170,12 +170,13 @@ function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$r
     $statement->bindValue(":nombre",$nombre);
     $statement->bindValue(":apellidos",$apellidos);
     $statement->bindValue(":email",$email);
+    $statement->bindValue(":telefono",$telefono);
     $statement->bindValue(":rol",$rol);
     $statement->execute();
     $statement->closeCursor();
     $last_id = $con->lastInsertId();
- $resultado=array("id"=>1,
- "mensaje"=>"Usuario insertado correctamente" + $last_id);
+$resultado=array("id"=>1,
+"mensaje"=>"Usuario insertado correctamente " . $last_id);
     }
     }catch(PDOException $e){
         $resultado=array("id"=>0,

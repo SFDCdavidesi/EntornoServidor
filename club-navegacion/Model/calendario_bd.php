@@ -2,7 +2,7 @@
 function alta_calendario($curso,$nivel,$plazas,$fecha,$activo,$precio,$duracion,$unidad_medida){
     try{
         $con =BD::getConexion();
-        $query="insert into calendario (id_curso,nivel_requerido,plazas_disponibles,fecha,activo,precio,createdby) values (:curso,:nivel,:plazas,:fecha,:activo,:precio,:createdby)";
+        $query="insert into calendario (curso_id,nivel_requerido,plazas_disponibles,fecha,activo,precio,createdby) values (:curso,:nivel,:plazas,:fecha,:activo,:precio,:createdby)";
         $statement= $con->prepare($query);
         $statement->bindValue(":curso",$curso);
         $statement->bindValue(":nivel",$nivel);

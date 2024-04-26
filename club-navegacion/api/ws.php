@@ -22,6 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
     $nombre=(isset($_REQUEST["nombre"])?$_REQUEST["nombre"]:"");
     $apellidos=(isset($_REQUEST["apellidos"])?$_REQUEST["apellidos"]:"");
     $email=(isset($_REQUEST["email"])?$_REQUEST["email"]:"");
+    $telefono = (isset($_REQUEST["telefono"])?$_REQUEST["telefono"]:"");
     $rol=(isset($_REQUEST["rol"])?$_REQUEST["rol"]:"");
     $password=(isset($_REQUEST["password"])?$_REQUEST["password"]:"");
     $password2=(isset($_REQUEST["password2"])?$_REQUEST["password2"]:"");
@@ -76,7 +77,7 @@ if (session_status() == PHP_SESSION_NONE) {
             break;
         case "crea_usuario":
          //   $resultArray=upsert_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
-            $resultArray=insertar_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$rol);
+            $resultArray=insertar_usuario($nombreUsuario,$password,$nombre,$apellidos,$email,$telefono,$rol);
             break;
         case "login":
             $resultArray=comprueba_usuario($nombreUsuario,$password);
@@ -146,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
             break;
         case "get_usuarios":
             if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
-                $resultArray=get_usuario_by_id($id);
+                $resultArray=get_usuario_by_id(null);
             }else{
                 $resultArray=array("error"=>"Usuario no válido");
             }

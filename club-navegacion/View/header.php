@@ -29,6 +29,7 @@
   
     <link href="../View/css/estilos.css?v3" rel="stylesheet">
     <script src="../View/js/cursos.js?v3.1"></script>
+    <script src="../View/js/funciones.js"></script>
 </head>
 <body>
 

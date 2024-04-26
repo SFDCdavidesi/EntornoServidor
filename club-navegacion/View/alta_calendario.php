@@ -131,7 +131,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 console.log(data);
-                mostrarModal("Alta de calendario", "El calendario del curso se ha dado de alta correctamente");
+                mostrarModal("Alta de calendario", data.mensaje);
                 //limpiamos el formulario
                 $("#altaCursosForm")[0].reset();
             },

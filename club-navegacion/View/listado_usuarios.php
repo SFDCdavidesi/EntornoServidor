@@ -19,8 +19,13 @@ $token=$_SESSION['token'];
                 <th scope="col">#id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
+                <th scope="col">Nombre de usuario</th>
                 <th scope="col">Email</th>
+                <th scope="col">Teléfono</th>
                 <th scope="col">Rol</th>
+                <th scope="col">Fecha de alta</th>
+                <th scope="col">Fecha de último ingreso</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -59,49 +64,44 @@ $token=$_SESSION['token'];
   </div>
 </div>
 <script>
+    <?php
+    if (isset($_SESSION["token"])){
+        $token=$_SESSION["token"];
+    }?>
 $(document).ready(function() {
-    fetch('http://localhost/club-navegacion/api/ws.php?action=get_usuarios&token=<?php echo $token ?>')
-    .then(response => response.json())
-    .then(data => {
-        // Llenar la tabla con los datos recibidos
-        $.each(data, function(index, usuario) {
-            $('#listadoUsuarios tbody').append(
-                '<tr>' +
-                    '<td>' + usuario.id_usuario + '</td>' +
-                    '<td>' + usuario.nombre + '</td>' +
-                    '<td>' + usuario.apellidos + '</td>' +
-                    '<td>' + usuario.email + '</td>' +
-                    '<td>' + usuario.rol + '</td>' +
-                '</tr>'
-            );
-        });
-    })
-    // Hacer la solicitud AJAX
-    $.ajax({
-        url: 'http://localhost/club-navegacion/api/ws.php?action=get_usuarios&token=<?php echo $token ?>',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-data= data.json();
-
-            // Llenar la tabla con los datos recibidos
-            $.each(data, function(index, usuario) {
-                $('#listadoUsuarios tbody').append(
-                    '<tr>' +
-                        '<td>' + usuario.id_usuario + '</td>' +
-                        '<td>' + usuario.nombre + '</td>' +
-                        '<td>' + usuario.apellidos + '</td>' +
-                        '<td>' + usuario.email + '</td>' +
-                        '<td>' + usuario.rol + '</td>' +
-                    '</tr>'
-                );
-            });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error en la solicitud AJAX:', textStatus, errorThrown);
+  $listadoUsuarios = $('#listadoUsuarios').DataTable({
+    "paging": true,
+    "pageLength": 10,
+    "ajax": {
+      "url": "<?=$urlws?>?action=get_usuarios&token=<?=$token?>",
+      "type": "POST",
+      "dataSrc": ""
+    },
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
+    },
+    "columns": [
+      { data: 'id_usuario' },
+      { data: 'nombre' },
+      { data: 'apellidos' },
+      { data: 'nombre_usuario' },
+      { data: 'email' },
+      { data: 'telefono' },
+      { data: 'rol' },
+      { data: 'fecha_creacion' },
+      { data: 'fecha_ultimo_ingreso' },
+      {
+        data: 'id_usuario',
+        render: function(data) {
+          return '<a href="./?action=editar_usuario&id=' + data + '" class="btn btn-primary">Editar</a> <button class="btn btn-danger" data-toggle="modal" data-target="#confirmModal" data-id="' + data + '">Borrar</button>';
         }
-    });
+      }
+    ]
+  });
 });
+   
+
+
 
 
 
