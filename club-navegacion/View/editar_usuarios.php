@@ -46,8 +46,7 @@ include(__DIR__ . '/header.php');
         <div class="mb-3">
             <label for="rol" class="form-label">Rol:</label>
             <select class="form-select" id="rol" name="rol" required>
-                <option value="usuario">Usuario</option>
-                <option value="admin">Administrador</option>
+                
             </select>
             <?php
         }
@@ -64,6 +63,24 @@ include(__DIR__ . '/header.php');
         $token=$_SESSION["token"];
     }?>
     $(document).ready(function() {
+        //cargamos los roles
+        $.ajax({
+            type: "POST",
+            url: "<?=$urlws?>",
+            data: {
+                action: "get_roles",
+                token: "<?=$token?>"
+            },
+            success: function(response) {
+                if (response.error) {
+                    alert(response.error);
+                    return;
+                }
+                response.forEach(function(rol) {
+                    $("#rol").append('<option value="' + rol.id + '">' + rol.nombre + '</option>');
+                });
+            }
+        });
         //obtenemos los datos del usuario
         var id = new URLSearchParams(window.location.search).get("id");
         $.ajax({
@@ -75,23 +92,27 @@ include(__DIR__ . '/header.php');
                 token: "<?=$token?>"
             },
             success: function(response) {
-                if (response.error) {
-                    alert(response.error);
-                    return;
-                }
                 if (response.length>0){
                     response=response[0];
                 }
+                if (response.id===0) {
+                    alert(response.mensaje);
+                    return;
+                }
+         
                 $("#nombreUsuario").val(response.nombre_usuario);
                 $("#email").val(response.email);
                 $("#telefono").val(response.telefono);
                 $("#nombre").val(response.nombre);
                 $("#apellidos").val(response.apellidos);
-                $("#rol").val(response.rol);
+                $("#rol").val(response.rol_id);
                 $("input[name='id']").val(response.id_usuario);
                 //establecemos unos asteriscos en la contraseña
                 $("#pass1").attr("placeholder", "******");
                 $("#pass2").attr("placeholder", "******");
+            },
+            error: function(response) {
+                alert("Error al obtener los datos del usuario");
             }
         });
         $("#formulario_de_modificacion").submit(function(event) {
@@ -108,8 +129,21 @@ include(__DIR__ . '/header.php');
                 url: "<?=$urlws?>?action=modificar_usuario&token=<?=$token?>",
                 data: parametros,
                 success: function(response) {
-                    alert(response);
-                    location.reload();
+                    if (response.length>0){
+                        response=response[0];
+                    }
+                    if (response.id===0) {
+                        alert(response.mensaje);
+                        mostrarModal("Error",response.mensaje);
+                        return;
+                    }else{
+                        mostrarModal("Usuario modificado",response.mensaje);
+                    }
+
+                   // location.reload();
+                },
+                error: function(response) {
+                    alert("Error al modificar el usuario");
                 }
             });
         });

@@ -3,7 +3,7 @@
 // obtiene un listado de usuarios. Si se le pasa un id, devuelve solo el usuario con ese id
 function get_usuario_by_id($id):array{
     $con =BD::getConexion();
-    $query="select u.id_usuario,u.nombre,u.apellidos,u.nombre_usuario,u.email,u.telefono,r.nombre as rol,u.fecha_creacion,u.fecha_ultimo_ingreso,u.instructor from usuarios u left join roles r on u.rol_id=r.id";
+    $query="select u.id_usuario,u.nombre,u.apellidos,u.nombre_usuario,u.email,u.telefono,r.nombre as rol,u.rol_id as rol_id, u.fecha_creacion,u.fecha_ultimo_ingreso,u.instructor from usuarios u left join roles r on u.rol_id=r.id";
     if ($id && $id!=null){
         $query.=" where id_usuario=:id";
     }
@@ -202,13 +202,16 @@ function actualiza_usuario($id,$nombre_usuario,$password,$nombre,$apellidos,$ema
         $statement->execute();
         if ($statement->rowCount()>0){
             $resultado=array("id"=>0,
-            "mensaje"=>"El nombre de usuario ya existe en la base de datos");
+            "mensaje"=>"El nombre de usuario ya existe en la base de datos",
+            "error"=>"El nombre de usuario ya existe en la base de datos");
             return $resultado;
         }
     }
     try{
         $con =BD::getConexion();
-    if ($password!=""){
+        //quiero verificar que la variable password no es nula y no está vacía
+        
+    if (null==$password || $password==""){
         $query="update usuarios set nombre_usuario=:nombre_usuario,nombre=:nombre,apellidos=:apellidos,email=:email,telefono=:telefono,rol_id=:rol where id_usuario=:id";
     }else{
         $query="update usuarios set nombre_usuario=:nombre_usuario,nombre=:nombre,apellidos=:apellidos,email=:email,telefono=:telefono,rol_id=:rol,password=:password where id_usuario=:id";
@@ -233,12 +236,13 @@ function actualiza_usuario($id,$nombre_usuario,$password,$nombre,$apellidos,$ema
 
     }catch(PDOException $e){
         $resultado=array("id"=>0,
+        "error"=> "Ha ocurrido un error actualizando el usuario en la base de datos " . $e->getMessage(),
         "mensaje"=>"Ha ocurrido un error actualizando el usuario en la base de datos " . $e->getMessage()
     );
-    
+}
     return $resultado;
 
-    }
+    
 
 
 
@@ -324,6 +328,23 @@ function validaUsuarioRol($usuario,$rol):bool{
         return false;
     }
 }
+//obtiene un listado de roles. Si se le pasa un id, devuelve solo el rol con ese id
+function get_roles_by_id($id):array{
+    $con =BD::getConexion();
+    $query="select * from roles ";
+    if ($id && $id!=null){
+        $query.=" where id=:id";
+    }
+    $query.=" order by nombre";
+   $statement= $con->prepare($query);
+    if ($id && $id!=null){
+        $statement->bindValue(":id",$id);
+    }
+    $statement->execute();
+    $resultado=$statement->fetchAll();
+    $statement->closeCursor();
+    return $resultado;
+}
 function get_usuarios_by_username($username){
 
         $con =BD::getConexion();
@@ -377,4 +398,3 @@ function crearSesion($usuario,$rol){
         setcookie("rol",$rol,time()+(3600*24));
     }
 */
-

@@ -162,8 +162,8 @@ if (session_status() == PHP_SESSION_NONE) {
             break;
         case "modificar_usuario":
             if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
-                $resultArray=upsert_usuario($id,$nombreUsuario,$password,$nombre,$apellidos,$email,$telefono,$rol)
-                ($nombre_usuario,$password,$nombre,$apellidos,$email,$rol);
+                $resultArray=actualiza_usuario($id,$nombreUsuario,$password,$nombre,$apellidos,$email,$telefono,$rol);
+         
             }else{
                 $resultArray=array("error"=>"Usuario no válido");
             }
@@ -174,6 +174,11 @@ if (session_status() == PHP_SESSION_NONE) {
         case "get_niveles":
             foreach(get_niveles_by_id(null) as $nivel){
                 $resultArray[]=$nivel;
+            }
+            break;
+        case "get_roles":
+            foreach(get_roles_by_id(null) as $rol){
+                $resultArray[]=$rol;
             }
             break;
         case "get_cursos":
