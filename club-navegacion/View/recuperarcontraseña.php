@@ -14,6 +14,7 @@ include(__DIR__ . '/header.php');
             }
             let email = $("#email").val();
             let nombreUsuario = $("#nombreUsuario").val();
+           
             $.ajax({
                 url: "<?=$urlws?>?action=recuperarcontraseña",
                 method: "POST",

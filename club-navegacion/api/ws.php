@@ -41,6 +41,12 @@ if (session_status() == PHP_SESSION_NONE) {
     $unidadDuracion=(isset($_REQUEST["unidadDuracion"])?$_REQUEST["unidadDuracion"]:"");
     $activos=(isset($_REQUEST["activos"])?$_REQUEST["activos"]:"");
     $nombreusuario=(isset($_REQUEST["nombreusuario"])?$_REQUEST["nombreusuario"]:"");
+    if (isset($_REQUEST["nombreUsuario"]) && $_REQUEST["nombreUsuario"]!=null){
+        $nombreUsuario=$_REQUEST["nombreUsuario"];
+    }
+    if (isset($nombreUsuario)){
+        $nombreusuario=$nombreUsuario;
+    }
 //datos para alta de curso y calendario
     $curso=(isset($_REQUEST["curso"])?$_REQUEST["curso"]:"");
     $nivel=(isset($_REQUEST["nivel"])?$_REQUEST["nivel"]:"");
