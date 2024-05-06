@@ -63,6 +63,16 @@ $token=$_SESSION['token'];
     </div>
   </div>
 </div>
+<style>
+    .btn-transparent {
+      background-color: transparent;
+      border: none;
+    }
+    .btn-transparent .oi {
+      color: #000; /* Cambiar color del símbolo */
+      font-size: 1.5rem; /* Ajustar tamaño del símbolo */
+    }
+  </style>
 <script>
     <?php
     if (isset($_SESSION["token"])){
@@ -93,7 +103,7 @@ $(document).ready(function() {
       {
         data: 'id_usuario',
         render: function(data) {
-          return '<a href="./?action=editar_usuario&id=' + data + '" class="btn btn-primary">Editar</a> <button class="btn btn-danger" data-toggle="modal" data-target="#confirmModal" data-id="' + data + '">Borrar</button>';
+          return '<a href="./?action=editar_usuario&id=' + data + '" class="btn btn-transparent">📝</a> <button class="btn btn-transparent" data-toggle="modal" data-target="#confirmModal" data-id="' + data + '">🗑️</button>';
         }
       }
     ]

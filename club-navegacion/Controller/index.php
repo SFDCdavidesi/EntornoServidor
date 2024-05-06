@@ -25,6 +25,16 @@
 
             include('../View/login.php');
             break;
+        case "editar_usuario":
+            //mostramos la página del usuario donde se podrá editar
+            //validamos que el usuario tenga permisos para editar
+            if (isset($_SESSION) && isset($_SESSION["rol"]) && $_SESSION["rol"]=="admin"){
+  
+            include('../View/editar_usuarios.php');
+            }else{
+                header("Location: .?action=menu_principal");
+            }
+            break;
         case "ver_mis_cursos":
             //mostramos la página del usuario donde se mostrarán todos sus cursos
             include('../View/mis_cursos.php');

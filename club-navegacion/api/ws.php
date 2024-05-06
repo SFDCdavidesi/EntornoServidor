@@ -145,9 +145,25 @@ if (session_status() == PHP_SESSION_NONE) {
                 $resultArray=array("error"=>"Usuario no válido");
             }
             break;
+        case "get_usuario":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=get_usuario_by_id($id);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
+            break;
+
         case "get_usuarios":
             if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
                 $resultArray=get_usuario_by_id(null);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
+            break;
+        case "modificar_usuario":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=upsert_usuario($id,$nombreUsuario,$password,$nombre,$apellidos,$email,$telefono,$rol)
+                ($nombre_usuario,$password,$nombre,$apellidos,$email,$rol);
             }else{
                 $resultArray=array("error"=>"Usuario no válido");
             }

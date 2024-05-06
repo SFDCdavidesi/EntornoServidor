@@ -12,7 +12,7 @@ function get_usuario_by_id($id):array{
         $statement->bindValue(":id",$id);
     }
     $statement->execute();
-    $resultado=$statement->fetch();
+    $resultado=$statement->fetchAll();
     $statement->closeCursor();
     return $resultado;
 }   
@@ -185,7 +185,65 @@ $resultado=array("id"=>1,
     }
     return $resultado;
 }
-function upsert_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$rol):array{
+/*
+Función que actualiza un usuario.
+Si actualiza el nombre de usuario, se verificará que no exista
+ */
+function actualiza_usuario($id,$nombre_usuario,$password,$nombre,$apellidos,$email,$telefono,$rol):array{
+    //obtengo todos los datos del usuario con id recibido
+    $datos_usuario=get_usuario_by_id($id);
+    $usuario=$datos_usuario[0];
+    //compruebo si se ha actualizado el nombre de usuario. En caso afirmativo compruebo que el nuevo nombre de usuario no exista
+    if ($usuario["nombre_usuario"]!=$nombre_usuario){
+        $con =BD::getConexion();
+        $query="select * from usuarios where nombre_usuario=:nombre_usuario";
+        $statement= $con->prepare($query);
+        $statement->bindValue(":nombre_usuario",$nombre_usuario);
+        $statement->execute();
+        if ($statement->rowCount()>0){
+            $resultado=array("id"=>0,
+            "mensaje"=>"El nombre de usuario ya existe en la base de datos");
+            return $resultado;
+        }
+    }
+    try{
+        $con =BD::getConexion();
+    if ($password!=""){
+        $query="update usuarios set nombre_usuario=:nombre_usuario,nombre=:nombre,apellidos=:apellidos,email=:email,telefono=:telefono,rol_id=:rol where id_usuario=:id";
+    }else{
+        $query="update usuarios set nombre_usuario=:nombre_usuario,nombre=:nombre,apellidos=:apellidos,email=:email,telefono=:telefono,rol_id=:rol,password=:password where id_usuario=:id";
+    }
+    $statement= $con->prepare($query);
+    $statement->bindValue(":id",$id);
+    $statement->bindValue(":nombre_usuario",$nombre_usuario);
+    if ($password!=""){
+        $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
+        $statement->bindValue(":password",$hashedpassword);
+    }
+    $statement->bindValue(":nombre",$nombre);
+    $statement->bindValue(":apellidos",$apellidos);
+    $statement->bindValue(":email",$email);
+    $statement->bindValue(":telefono",$telefono);
+    $statement->bindValue(":rol",$rol);
+    $statement->execute();
+    $statement->closeCursor();
+    $resultado=array("id"=>1,
+    "mensaje"=>"Usuario actualizado correctamente");
+
+
+    }catch(PDOException $e){
+        $resultado=array("id"=>0,
+        "mensaje"=>"Ha ocurrido un error actualizando el usuario en la base de datos " . $e->getMessage()
+    );
+    
+    return $resultado;
+
+    }
+
+
+
+}
+function upsert_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$telefono,$rol):array{
     
     if (!isset($rol) || $rol==""){
         $rol=2; //por defecto, el rol es usuario
@@ -312,12 +370,11 @@ function crearSesion($usuario,$rol){
         // Si no hay una sesión activa, inicia una nueva sesión
         session_start();
     }
-    
+}  
 /**
     setcookie("usuario",$usuario,time()+(3600*24));
     if($rol){
         setcookie("rol",$rol,time()+(3600*24));
     }
 */
-}
-?>
+
