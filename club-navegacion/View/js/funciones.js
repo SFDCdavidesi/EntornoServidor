@@ -8,3 +8,17 @@
         if (day.length < 2) day = '0' + day;
         return [day, month, year].join('-');
     }
+
+    function formateaFecha(fecha,incremento){
+        let dia = fecha.getDate();
+        if (dia < 10) {
+            dia = "0" + dia;
+        }
+        let mes = fecha.getMonth()+incremento;
+        if (mes < 10) {
+            mes = "0" + mes;
+        }
+        let anio = fecha.getFullYear();
+        let fechaFormateada = anio + "-" + mes + "-" + dia;
+        return fechaFormateada;
+    }

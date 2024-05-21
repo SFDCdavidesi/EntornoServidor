@@ -125,7 +125,7 @@ botonconfirmacion.addEventListener("click",function(){
             console.log(data);
             if (data.id > 0) {
                 alert("Inscripción realizada correctamente");
-                window.location.href = "./";
+                calendariowindow.location.href = "./";
             } else {
                 if (data.mensaje != undefined){
                     alert(data.mensaje);
@@ -160,7 +160,7 @@ if (isset($_SESSION) && isset($_SESSION["token"])) {
 }
 ?>
     $.ajax({
-        url: "<?=$urlws?>?action=get_calendarios&token=<?=$token?>&anio=" + anio + "&mes=" + mesActual,
+        url: "<?=$urlws?>?action=get_calendarios&token=<?=$token?>&anio=" + anio,
         method: "GET",
         dataType: "json",
         success: function(data) {
