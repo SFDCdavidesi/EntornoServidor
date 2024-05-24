@@ -22,14 +22,13 @@
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/2.0.0/i18n/Spanish.json"></script>
 
 <!-- Bootstrap CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   
     <link href="../View/css/estilos.css?v4" rel="stylesheet">
     <script src="../View/js/cursos.js?v3.1"></script>
-    <script src="../View/js/funciones.js"></script>
+    <script src="../View/js/funciones.js?v2"></script>
 </head>
 <body>
 

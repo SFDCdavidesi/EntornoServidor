@@ -1,22 +1,21 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     // Si no hay una sesión activa, inicia una nueva sesión
-    session_start();
+    session_start(); // Inicia la sesión
 }
 
 
-  header('Content-Type: text/html; charset=utf-8');
-  header('Access-Control-Allow-Origin: *');
-  header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
+  header('Content-Type: text/html; charset=utf-8'); //para que se muestren las tildes correctamente
+  header('Access-Control-Allow-Origin: *'); //permite que el servicio web sea llamado desde cualquier dominio
+  header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers'); //permite que se envíen las cabeceras necesarias
 
-  require_once("../Model/BD.php");
-  require_once("../Model/usuarios_bd.php");
+  require_once("../Model/BD.php"); //incluimos el archivo con los datos de conexión
+  require_once("../Model/usuarios_bd.php"); //incluimos el archivo con las funciones de usuario
     require_once("../Model/cursos_bd.php");
     require_once("../Model/calendario_bd.php");
     require_once("../Model/funciones.php");
 
-
-    $action = (isset($_REQUEST["action"])?$_REQUEST["action"]:"");
+    $action = (isset($_REQUEST["action"])?$_REQUEST["action"]:""); //obtenemos la acción que se va a realizar
     //obtenemos las variables que vienen por POST
     $nombreUsuario=(isset($_REQUEST["nombreUsuario"])?$_REQUEST["nombreUsuario"]:"");
     $nombre=(isset($_REQUEST["nombre"])?$_REQUEST["nombre"]:"");
@@ -42,7 +41,7 @@ if (session_status() == PHP_SESSION_NONE) {
     $activos=(isset($_REQUEST["activos"])?$_REQUEST["activos"]:"");
     $nombreusuario=(isset($_REQUEST["nombreusuario"])?$_REQUEST["nombreusuario"]:"");
     if (isset($_REQUEST["nombreUsuario"]) && $_REQUEST["nombreUsuario"]!=null){
-        $nombreUsuario=$_REQUEST["nombreUsuario"];
+        $nombreUsuario=$_REQUEST["nombreUsuario"]; //si viene por POST, lo guardamos en la variable
     }
     if (isset($nombreUsuario)){
         $nombreusuario=$nombreUsuario;
@@ -71,6 +70,7 @@ if (session_status() == PHP_SESSION_NONE) {
     } 
 
     switch($action){
+        //acciones de usuario
         case "get_fotos_curso":
             $resultArray=get_fotos_curso($id);
             break;
@@ -122,6 +122,13 @@ if (session_status() == PHP_SESSION_NONE) {
             break;
         case "borrar_curso":
             $resultArray=borrar_curso($id);
+            break;
+        case "borra_usuario":
+            if ($usuario_valido!=false && $usuario_valido["rol"]=="admin"){
+                $resultArray=borrar_usuario($id);
+            }else{
+                $resultArray=array("error"=>"Usuario no válido");
+            }
             break;
         case "docambiarcontraseña":
             $resultArray=actualizarcontraseña($token,$password,$password2);
@@ -203,6 +210,7 @@ if (session_status() == PHP_SESSION_NONE) {
             }
             break;
         default:
+            //si no se ha encontrado la acción, devolvemos un error
             $resultArray=array("error"=>"No se ha encontrado la acción");
             break;
 
@@ -211,6 +219,6 @@ if (session_status() == PHP_SESSION_NONE) {
     
     /* Output header */
         header('Content-type: application/json');
-       echo  json_encode($resultArray, JSON_PRETTY_PRINT);
+       echo  json_encode($resultArray, JSON_PRETTY_PRINT); //devolvemos el resultado en formato JSON
         
   ?>

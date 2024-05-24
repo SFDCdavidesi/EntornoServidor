@@ -35,16 +35,17 @@ include(__DIR__ . '/header.php');
     $(document).ready(function() {
         var $tablalistado = $('#listadoAsistentes').DataTable({
             "paging": true,
-            "pageLength": 10,
+            "pageLength": 100,
 
             "ajax": {
                 "url": "<?=$urlws?>?action=get_asistentes_cursos&token=<?=$token?>",
-                "type": "POST",
+                "type": "GET",
                 "dataSrc": ""                
             },
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
+                "url": "https://cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
             },
+            
             "columns": [
                         { data: 'id_usuario_curso' },
                         { data: 'curso_titulo' },

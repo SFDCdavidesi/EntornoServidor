@@ -12,28 +12,28 @@ $token=$_SESSION['token'];
 
 <div id="listado_usuarios" class="container">
     <div class="row justify-content-center">
-    <div class="table-responsive">
-    <table id="listadoUsuarios" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col">#id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Nombre de usuario</th>
-                <th scope="col">Email</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Fecha de alta</th>
-                <th scope="col">Fecha de último ingreso</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
-    </tbody>
-    </table>
-    
-</div>
+        <div class="table-responsive">
+            <table id="listadoUsuarios" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">#id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Fecha de alta</th>
+                        <th scope="col">Fecha de último ingreso</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
+                </tbody>
+            </table>
+
+        </div>
 
 
     </div>
@@ -44,77 +44,134 @@ $token=$_SESSION['token'];
 
 <!-- modal para confirmar el borrado del usuario -->
 
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmModalLabel">Confirmar acción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ¿Estás seguro de que deseas borrar el usuario?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="noBtn" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger" id="siBtn">Sí</button>
-      </div>
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar acción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas borrar el usuario?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="noBtn" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="siBtn">Sí</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <style>
-    .btn-transparent {
-      background-color: transparent;
-      border: none;
-    }
-    .btn-transparent .oi {
-      color: #000; /* Cambiar color del símbolo */
-      font-size: 1.5rem; /* Ajustar tamaño del símbolo */
-    }
-  </style>
+.btn-transparent {
+    background-color: transparent;
+    border: none;
+}
+
+.btn-transparent .oi {
+    color: #000;
+    /* Cambiar color del símbolo */
+    font-size: 1.5rem;
+    /* Ajustar tamaño del símbolo */
+}
+</style>
 <script>
-    <?php
+<?php
     if (isset($_SESSION["token"])){
         $token=$_SESSION["token"];
     }?>
+let usuarioABorrar = null;
 $(document).ready(function() {
-  $listadoUsuarios = $('#listadoUsuarios').DataTable({
-    "paging": true,
-    "pageLength": 10,
-    "ajax": {
-      "url": "<?=$urlws?>?action=get_usuarios&token=<?=$token?>",
-      "type": "POST",
-      "dataSrc": ""
-    },
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
-    },
-    "columns": [
-      { data: 'id_usuario' },
-      { data: 'nombre' },
-      { data: 'apellidos' },
-      { data: 'nombre_usuario' },
-      { data: 'email' },
-      { data: 'telefono' },
-      { data: 'rol' },
-      { data: 'fecha_creacion' },
-      { data: 'fecha_ultimo_ingreso' },
-      {
-        data: 'id_usuario',
-        render: function(data) {
-          return '<a href="./?action=editar_usuario&id=' + data + '" class="btn btn-transparent">📝</a> <button class="btn btn-transparent" data-toggle="modal" data-target="#confirmModal" data-id="' + data + '">🗑️</button>';
-        }
-      }
-    ]
-  });
+    // Escuchar el evento de apertura del modal
+    $('#confirmModal').on('show.bs.modal', function(event) {
+        // Botón que activó el modal
+        var button = $(event.relatedTarget);
+        // Extraer el valor de data-id
+        var dataId = button.data('id');
+        // Seleccionar el elemento dentro del modal donde se mostrará el data-id
+        var modal = $(this);
+        usuarioABorrar = dataId;
+        modal.find('.modal-body #modal-id-display').text('ID del elemento: ' + dataId);
+    });
+
+    //si el usuario confirma el borrado del usuario se llamará a la api para el borrado
+    $('#siBtn').click(function() {
+
+        var id = $(this).data('id');
+        alert(usuarioABorrar);
+        $.ajax({
+            url: '<?=$urlws?>?action=borra_usuario',
+            type: 'GET',
+            data: {
+                id: usuarioABorrar,
+                token: '<?=$token?>'
+            },
+            success: function(data) {
+                $('#confirmModal').modal('hide');
+
+                if (data.id > 0) {
+                    $listadoUsuarios.ajax.reload();
+                } else {
+                    mostrarModal("error", "Ha ocurrido un error al borrar el usuario. Seguramente tenga cursos asociados.");
+                }
+            },
+            error: function(data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+    $listadoUsuarios = $('#listadoUsuarios').DataTable({
+        "paging": true,
+        "pageLength": 10,
+        "ajax": {
+            "url": "<?=$urlws?>?action=get_usuarios&token=<?=$token?>",
+            "type": "POST",
+            "dataSrc": ""
+        },
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json"
+        },
+        "columns": [{
+                data: 'id_usuario'
+            },
+            {
+                data: 'nombre'
+            },
+            {
+                data: 'apellidos'
+            },
+            {
+                data: 'nombre_usuario'
+            },
+            {
+                data: 'email'
+            },
+            {
+                data: 'telefono'
+            },
+            {
+                data: 'rol'
+            },
+            {
+                data: 'fecha_creacion'
+            },
+            {
+                data: 'fecha_ultimo_ingreso'
+            },
+            {
+                data: 'id_usuario',
+                render: function(data) {
+
+                    return '<a href="./?action=editar_usuario&id=' + data +
+                        '" class="btn btn-transparent">📝</a> <button class="btn btn-transparent" data-toggle="modal" data-target="#confirmModal" data-id="' +
+                        data + '">🗑️</button>';
+                }
+            }
+        ]
+    });
 });
-   
-
-
-
-
-
 </script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -145,6 +145,24 @@ function actualizarcontraseña($token,$contraseña,$contraseña2):array{
     }
     return $resultado;
 }  
+function borrar_usuario($id):array{
+    try{
+        $con =BD::getConexion();
+    $query="delete from usuarios where id_usuario=:id"; //compruebo si existe ya un usuario . recordamso que usuario es primary key
+   $statement= $con->prepare($query);
+    $statement->bindValue(":id",$id);
+    $statement->execute();
+    
+    $statement->closeCursor();
+    $resultado=array("id"=>1,
+    "mensaje"=>"Usuario borrado correctamente");
+    }catch(PDOException $e){
+        $resultado=array("id"=>0,
+        "mensaje"=>"Ha ocurrido un error borrando  el usuario en la base de datos " . $e->getMessage()
+    );
+    }
+    return $resultado;
+}
 function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$telefono,$rol):array{
     if ($rol==""){
         $rol=2; //por defecto, el rol es usuario
@@ -176,7 +194,7 @@ function insertar_usuario($nombre_usuario,$password,$nombre,$apellidos,$email,$t
     $statement->closeCursor();
     $last_id = $con->lastInsertId();
 $resultado=array("id"=>1,
-"mensaje"=>"Usuario insertado correctamente " . $last_id);
+"mensaje"=>"Usuario insertado correctamente " );
     }
     }catch(PDOException $e){
         $resultado=array("id"=>0,
